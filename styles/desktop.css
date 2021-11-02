@@ -24,6 +24,10 @@
     margin-left: 10rem;
     width: 60%;  
 }
+.logo1{
+    bottom: 3rem;
+    width: 35rem;
+ }
 /* Formulario alumno */
 .form-alumno-container {
     display: grid;
