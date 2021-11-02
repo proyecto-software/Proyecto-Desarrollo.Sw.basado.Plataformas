@@ -1,0 +1,40 @@
+.container{
+    width: 100rem;
+    margin-left: auto;
+    margin-right: auto;
+}
+.c1{
+    width: 50%;
+    height: 25rem;
+}
+.c2 {
+    width: 50%;
+    height: 25rem;
+}
+
+.form-container{
+    width: 50rem;
+    margin-right: 4rem;
+    margin-left: 25rem;
+    height: 40rem;
+}
+.form {
+    display: flex;
+    flex-direction: column;
+    margin-left: 10rem;
+    width: 60%;  
+}
+/* Formulario alumno */
+.form-alumno-container {
+    display: grid;
+    grid-template-rows: auto 1fr auto;
+    margin-left: 25rem;
+    width: 50%;
+    height: 65rem;
+    left: 29.4rem;
+    top: 22.1rem;
+    border: 1px solid  var(--color1);
+    box-sizing: border-box;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    border-radius: 5px;
+  }
