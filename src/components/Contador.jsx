@@ -3,7 +3,7 @@ import React, {useState} from 'react';
 const Contador = () => {
     /* Lógica de JS */
     /* Ponemos nuestros estados */
-    const [numero, setNumero] = useState();
+    const [numero, setNumero] = useState(0);
 
 
 
