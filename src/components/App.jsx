@@ -1,10 +1,13 @@
 import React from 'react';
-import '../styles/global.scss';
+//import '../styles/global.scss';
+import Contador from './Contador'
+import Formulario from './Formulario';
+import Jsx from './Jsx'
+import Lista from './Lista'
 
 const App = () => {
     return(
-        
-  <h1>Hola</h1>
+     <Lista/>
     );
 }
 export default App;
