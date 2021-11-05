@@ -1,12 +1,10 @@
 import React from 'react';
 import '../styles/global.scss';
-import Formulario from './formulario';
+
 const App = () => {
     return(
         
-        <div className="`container">
-            <Formulario/>
-        </div>
+  <h1>Hola</h1>
     );
 }
 export default App;
