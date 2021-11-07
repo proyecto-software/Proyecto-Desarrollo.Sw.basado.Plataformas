@@ -1,6 +1,170 @@
 $base-color: #ff0000;
 $color:rgba(black,0.88);
-body{
+$white: #FFFFFF;
+$black: #000000;
+$color1:rgba(138, 138, 138, 0.6);
+$color2: rgba(196, 196, 196, 0.6);
+$color3:#2B9BBE;
+$color4:#6C6C6C99;
+$sm: 1.4rem;
+$md: 1.6rem;
+$lg: 1.8rem;
+
+
+
+/* body{
     background-color: $base-color;
     color:$color;
+} */
+*{
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+  }
+
+html{
+    font-size: 62.5%;/* 1rem = 10px */
 }
+  body {
+    background: url("../assets/img/escuela.jpg") center center / cover no-repeat fixed;
+    width: 100%;
+    margin: 0;
+    font-family: 'Quicksand', sans-serif;
+  }
+  img{
+    width: 100%;
+  }
+  .container{
+    display: flex;
+    flex-wrap: wrap;
+  }
+  .c1, .c2, .form-container{
+    width: 100vw;
+    /* width: 100%; */
+    min-width: 15rem;
+    height: 15rem;
+  }
+  /* Logo UCN */
+  .c1{
+      background-color: transparent;
+  
+  }
+  .logo1{
+      width: 25rem;
+      display: inline-block;
+      position: relative;
+      left: 50%; 
+      transform: translateX(-50%);
+      margin-top: 5rem;
+  
+  }
+  /* Logo EIC */
+  .c2{
+      background-color: transparent;
+  }
+  .logo2{
+    width: 25rem;
+    display: inline-block;
+    position: relative;
+    left: 50%; 
+    transform: translateX(-50%);
+    margin-top: 0.5rem;
+  }
+  /* LOGIN */
+  .form-container {
+    display: grid;
+    grid-template-rows: auto 1fr auto;
+    margin-left: 2.5rem;
+    width: 90%;
+    height: 40rem;
+    left: 29.4rem;
+    top: 22.1rem;
+    background:$color1;
+    border: 1px solid  $color1;
+    box-sizing: border-box;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    border-radius: 5px;
+  }
+  .form {
+    display: flex;
+    flex-direction: column;
+    margin-left: 10rem;
+    width: 60%;
+  }
+  .label {
+    font-size: $md;/* 14px la letra */
+    font-weight: bold;
+    margin-bottom: 4px;
+  }
+  .input {
+    background-color: $color2;
+    border: none;
+    border-radius: 8px;
+    height: 3rem;
+    font-size: $md;
+    padding: 0.6rem;
+    margin-bottom: 1.2rem;
+  }
+  .input-rut {
+    margin-bottom: 2.2rem;
+  }
+  .input-password {
+    margin-bottom: 2.2rem;
+  }
+  .primary-button {
+    background-color: $color2;
+    border-radius: 0.8rem;
+    border: none;
+    color: $black;
+    width: 100%;
+    cursor: pointer;
+    font-size: $md;
+    font-weight: bold;
+    height: 5rem;
+  }
+  .secondary-button {
+    background-color: transparent;
+    border-radius: 0.8rem;
+    border: 0px solid;
+    color: $color3;
+    width: 100%;
+    cursor: pointer;
+    font-size: $md;
+    font-weight: bold;
+    height: 5rem;
+  }
+  .login-button {
+    margin-top: 1.4rem;
+    margin-bottom: 3rem;
+  }
+  .text-form{
+    color: white;
+    margin-top: 3rem;
+    margin-bottom: 3rem;
+    font-size: 3rem;
+    display: grid;
+    place-items: center;
+  }
+  /* Formulario alumno */
+  .form-alumno-container {
+    display: grid;
+    grid-template-rows: auto 1fr auto;
+    margin-left: 2.5rem;
+    width: 90%;
+    height: 65rem;
+    left: 29.4rem;
+    top: 22.1rem;
+    background:  $color4;
+    border: 1px solid  $color1;
+    box-sizing: border-box;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    border-radius: 5px;
+  }
+  .text-form-alumno{
+    color: white;
+    margin-top: 3rem;
+    margin-bottom: 3rem;
+    font-size: 2.8rem;
+    display: grid;
+    place-items: center;
+  }

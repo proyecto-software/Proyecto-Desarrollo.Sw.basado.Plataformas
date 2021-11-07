@@ -1,5 +1,5 @@
-import React from 'react';
-//import '../styles/global.scss';
+import React, { Fragment } from 'react';
+import '../styles/global.scss';
 import Contador from './Contador'
 import Formulario from './Formulario';
 import Jsx from './Jsx'
@@ -7,7 +7,9 @@ import Lista from './Lista'
 
 const App = () => {
     return(
-     <Lista/>
+    <Fragment>
+        <Formulario/>
+    </Fragment>
     );
 }
 export default App;
