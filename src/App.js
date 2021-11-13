@@ -1,4 +1,8 @@
 import React from 'react';
+import Formulario from './Formulario'
+import Inicio from './components/Inicio'
+import Nosotros from './components/Nosotros'
+import "./styles/mobile.css"
 
 import {
   BrowserRouter as Router,
@@ -11,15 +15,24 @@ function App() {
   return (
     <Router>
       <div className="container mt-5">
-        <div className="btn-group">
-          <Link to="/" className="btn btn-dark">Inicio</Link>
-          <Link to="/bla" className="btn btn-dark">Bla bla bla</Link>
-          <NavLink to="/users" className="btn btn-dark" activeClassName="active">Users</NavLink>
-        </div>
-        <hr />
+      {/* NAV BAR */}
+      {/*         <div className="btn-group">
+          <Link to="/Inicio" className="btn btn-dark">Inicio</Link>
+          <Link to="/Formulario" className="btn btn-dark">Formulario</Link>
+          <NavLink to="/usuario" className="btn btn-dark" activeClassName="active">Usuarios</NavLink>
+        </div> 
+         <hr />
+        */
+        }
         <Switch>
-          <Route path="/" exact>
-          
+          <Route path="/Inicio">
+          <Inicio></Inicio>
+          </Route>
+          <Route path="/Formulario">
+          <Formulario></Formulario>
+          </Route>
+          <Route path="/Nosotros">
+          <Nosotros></Nosotros>
           </Route>
         </Switch>
       </div>
