@@ -3,7 +3,7 @@ import Formulario from './Formulario'
 import Inicio from './components/Inicio'
 import Nosotros from './components/Nosotros'
 import "./styles/mobile.css"
-
+import User from './components/User'
 import {
   BrowserRouter as Router,
   Switch,
@@ -25,14 +25,14 @@ function App() {
         */
         }
         <Switch>
-          <Route path="/Inicio">
+          <Route path="/" exact>
           <Inicio></Inicio>
           </Route>
           <Route path="/Formulario">
           <Formulario></Formulario>
           </Route>
-          <Route path="/Nosotros">
-          <Nosotros></Nosotros>
+          <Route path="/Nosotros/:id">
+          <User></User>
           </Route>
         </Switch>
       </div>
