@@ -1,10 +1,6 @@
-import React  from 'react';
+import React, { Fragment }  from 'react';
 import {
-    BrowserRouter as Router,
-    Switch,
-    Route,
-    Link,
-    NavLink
+    Link
   } from "react-router-dom";
 const Nosotros = () => {
     const [equipo, setEquipo] = React.useState([])
@@ -22,21 +18,22 @@ const Nosotros = () => {
         setEquipo(users.civilizations)
     }
     return(
-        <div>
+        <Fragment>
             <h1>Api rest</h1>
             <ul>
                 {
                     equipo.map( item =>(
                         <li key={item.id}>
-                        <Link to={`/Nosotros/${item.id}`} >
-                            {item.name} - {item.expansion}
-                        </Link>
+                            <Link to={`/Nosotros/${item.id}`}>
+                                {item.name} - {item.expansion}
+                            </Link>
                         </li>
                     )
                     )
                 }
             </ul>
-        </div>
-    );
+        
+        </Fragment>
+    )
 }
 export default Nosotros
