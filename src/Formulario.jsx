@@ -4,7 +4,7 @@ import AddUserForm from './components/AddUserForm'
 import { v4 as uuidv4 } from 'uuid';
 import EditUserForm from './components/EditUserForm'
 
-const Formulario = () => {
+const FormularioTest = () => {
   const usersData = [
     { id: uuidv4(), name: 'Dionisio', username: 'xdionisio' },
     { id: uuidv4(), name: 'Nicolás', username: 'Ngarcia' },
@@ -80,4 +80,4 @@ const updateUser = (id, updateUser) => {
   )
 }
 
-export default Formulario
+export default FormularioTest

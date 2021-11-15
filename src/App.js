@@ -1,5 +1,5 @@
 import React from 'react';
-import Formulario from './Formulario'
+
 import Inicio from './components/Inicio'
 import "./styles/mobile.css"
 import User from './components/User'
@@ -11,12 +11,16 @@ import {
   Link,
   NavLink
 } from "react-router-dom";
+import Formulario from './components/pages/Formulario/Formulario';
+
+
 function App() {
   return (
     <Router>
       <div className="container mt-5">
         <div className="btn-group">
           <Link to="/Inicio" className="btn btn-dark">Inicio</Link>
+         
           <Link to="/Formulario" className="btn btn-dark">Formulario</Link>
           <NavLink to="/Nosotros" className="btn btn-dark" activeClassName="active">Nosotros</NavLink>
         </div> 
