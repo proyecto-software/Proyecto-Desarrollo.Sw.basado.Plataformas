@@ -15,6 +15,7 @@ const FormularioAlumno = () => {
   //State
   const [formulario, setFormulario] = useState({
     rut: '',
+    nombre: '',
     correo: '',
     carrera: '',
     cantidad: '',
@@ -39,6 +40,7 @@ const FormularioAlumno = () => {
         //Método Post
         Axios.post(endPoint,{
             rut: formulario.rut,
+            nombre: formulario.nombre,
             correo: formulario.correo,
             carrera: formulario.carrera,
             cantidad: formulario.cantidad,
@@ -86,6 +88,27 @@ const FormularioAlumno = () => {
                 {errors.rut &&  errors.rut.message}
             </span>
             </div>
+
+            <div class="form-group col-md-6">
+            <br/>
+            <input
+                    type="text"
+                    placeholder="Nombre"
+                    class="form-control"
+                    name="nombre"
+                    {...register("nombre", { 
+                    required:{
+                        value: true,
+                        message: 'Campo requerido' 
+                    }
+                })}
+                    onChange = {handleInputChange}
+            />
+            <span className="">
+                {errors.rut &&  errors.rut.message}
+            </span>
+            </div>
+
             <br/>
             <input  
                     placeholder="Correo"
