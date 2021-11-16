@@ -12,10 +12,10 @@ const Nosotros = () => {
     //Llamado a la api
     const obtenerDatos = async() => {
         //const data = await fetch('https://jsonplaceholder.typicode.com/users')
-        const data = await fetch('https://age-of-empires-2-api.herokuapp.com/api/v1/civilizations')
+        const data = await fetch('http://localhost:10000/ucn/carreras')
         const users = await data.json()//tenemos la info a JSON
         //console.log(users)
-        setEquipo(users.civilizations)
+        setEquipo(users)
     }
     return(
         <Fragment>
@@ -25,7 +25,7 @@ const Nosotros = () => {
                     equipo.map( item =>(
                         <li key={item.id}>
                             <Link to={`/Nosotros/${item.id}`}>
-                                {item.name} - {item.expansion}
+                                {item.id} - {item.nombre}
                             </Link>
                         </li>
                     )
