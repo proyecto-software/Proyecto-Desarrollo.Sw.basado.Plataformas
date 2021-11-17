@@ -64,11 +64,12 @@ const FormularioAlumno = () => {
                     class="form-control"
                     name="rut"
                     {...register("rut", { 
-                    required:{
-                        value: true,
-                        message: 'Campo requerido' 
+                        required:{
+                            value: true,
+                            message: 'Campo requerido' 
+                        }
+                    })
                     }
-                })}
                     onChange = {handleInputChange}
             />
             <span className="">
