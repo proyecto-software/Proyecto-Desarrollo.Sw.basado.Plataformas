@@ -6,12 +6,12 @@ const Formulario = () => {
 
   //Agregar Formulario
   return (
-      <div className="container">
+      <div className="">
         <h1>Formulario peticion electivo</h1>
-        <div className="flex-row">
-          <div className="flex-large">
+        <div className="">
+          <div className="">
               <div>
-                <h2>Agregar formulario</h2>
+              <br/>
                <FormularioAlumno/>
                </div>
           </div>

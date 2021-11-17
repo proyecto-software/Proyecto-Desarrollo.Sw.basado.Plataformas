@@ -44,9 +44,6 @@ const FormularioAlumno = () => {
     //UserForm
     const {control, register, handleSubmit, formState:{ errors } } =  useForm({defaultValues});
     const onSubmit = (data, e)=>{
-        //console.log(data)
-      
-        //dataPostFormulario.rut = data.rut
         e.target.reset()
     }
     //Método Post
