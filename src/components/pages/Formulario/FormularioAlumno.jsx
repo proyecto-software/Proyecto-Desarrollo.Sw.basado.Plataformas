@@ -1,11 +1,13 @@
-import React,{useState,Fragment} from 'react'
-import {Input,Button,Card,CardContent,Typography,TextField,Grid,Autocomplete,Box} from "@mui/material";
+import React,{useState} from 'react'
+import { useForm } from "react-hook-form";
+import {Button,Card,CardContent,Typography,TextField,Grid,Autocomplete,Box} from "@mui/material";
 import { alpha, styled } from "@mui/material/styles";
 
+
 const FormularioAlumno = () => {
-    const endPoint ="http://localhost:10000/ucn/formulario"
+    //const endPoint ="http://localhost:10000/ucn/formulario"
     //State
-    const [formulario, setFormulario] = useState({
+    const [formulario] = useState({
       rut: '',
       nombre: '',
       correo: '',
@@ -55,32 +57,58 @@ const FormularioAlumno = () => {
         }
       });
 
-
+    //GET DESDE LA API
     //Valores select
     const cantidad = [
-        { label: '1', num: 1 },
-        { label: '2', num: 2 },
-        { label: '3', num: 3 }
-      ];
+        { label: '1', value: 1 },
+        { label: '2', value: 2 },
+        { label: '3', value: 3 }
+    ];
     //Carreras que vienen desde la api
     const carrera = [
-        { label: 'ICCI', sigla: 'ICCI' },
-        { label: 'ICI', sigla: 'ICI' },
-        { label: 'ITI', sigla: 'ITI' }
-      ];
-   //Electivos que vienen desde la api
-   const electivos = [
-    { label: 'Electivo 1', sigla: 'E1' },
-    { label: 'Electivo 2', sigla: 'E2' },
-    { label: 'Electivo 3', sigla: 'E3' }
-  ];
-  //Enviar datos
-  const [selectedOptions, setSelectedOptions] = useState([]);
+        { label: 'ICCI', value: 'ICCI' },
+        { label: 'ICI', value: 'ICI' },
+        { label: 'ITI', value: 'ITI' }
+    ];
+    //Electivos que vienen desde la api
+    const electivos = [
+        { label: 'REDES DE COMPUTADORES', value: 'RC' },
+        { label: 'SISTEMAS DE RECOMENDACION', value: 'SR' },
+        { label: 'DATA SCIENCE', value: 'DS' }
+    ];
+    /////////////////////////////////////////
 
-  const handleChange = (event, value) => setSelectedOptions(value);
-  
-  const handleSubmit = () => console.log(selectedOptions);
-  
+    //Enviar datos
+    const {handleSubmit} =  useForm();
+
+    const onSubmit = (data, event)=>{
+        console.log(data)
+        var requestSuccessful = false
+        
+        if(requestSuccessful){
+            alert("Solicitud registrada con exito.")
+            window.location.reload();
+        }else{
+            alert("La solicitud no se ha podido registrar, la culpa es del nico.")
+        }
+
+        
+    }
+    //const [selectedOptions, setSelectedOptions] = useState([]);
+
+    //const handleChange = (event, value) => setSelectedOptions(value);
+    
+    const handleInputChange = (event) => {
+        formulario[event.target.name] = event.target.value
+        console.log(formulario)
+    }
+
+    const handleAutocompleteChange = (id,value) => {
+        formulario[id] = value
+        console.log(formulario)
+        
+    }
+
     return (
         <Box
         display="flex"
@@ -97,20 +125,20 @@ const FormularioAlumno = () => {
             borderColor: "#00FF87" }}
             >
            
-            <form>
+            <form onSubmit={handleSubmit(onSubmit)}>
                 <Card sx={{ bgcolor: 'rgba(60, 60, 60, 0.6)', color: 'text.primary', p: 2 }}>
                     <Typography color ="white" gutterBottom variant ="h3" align="center" align="center">Formulario Alumno</Typography>
                     <CardContent>
                         <Grid container spacing ={1}>
                             <Grid xs={12} sm={6 } color= "green" item>
-                            <CssTextField style={{ backgroundColor: 'rgba(160, 160, 160, 0.6)'}}label="Rut" placeholder="Ingrese Rut" name="rut" variant="outlined" fullWidth required
+                            <CssTextField style={{ backgroundColor: 'rgba(160, 160, 160, 0.6)'}}label="Rut" placeholder="Ingrese Rut" name="rut" variant="outlined" fullWidth required onChange={handleInputChange}
                             ></CssTextField>
                             </Grid>
                             <Grid xs={12} sm={6}item>
-                            <CssTextField style={{ backgroundColor: 'rgba(160, 160, 160, 0.6)'}} label="Nombre" placeholder="Ingrese Nombre" name="nombre" variant="outlined" fullWidth required></CssTextField>
+                            <CssTextField style={{ backgroundColor: 'rgba(160, 160, 160, 0.6)'}} label="Nombre" placeholder="Ingrese Nombre" name="nombre" variant="outlined" fullWidth required onChange={handleInputChange}></CssTextField>
                             </Grid>
                             <Grid xs={12}item>
-                            <CssTextField style={{ backgroundColor: 'rgba(160, 160, 160, 0.6)'}} type="email" label="Correo" placeholder="Ingrese alumnos.ucn.cl" name="correo" variant="outlined" fullWidth required></CssTextField>
+                            <CssTextField style={{ backgroundColor: 'rgba(160, 160, 160, 0.6)'}} type="email" label="Correo" placeholder="Ingrese alumnos.ucn.cl" name="correo" variant="outlined" fullWidth required onChange={handleInputChange}></CssTextField>
                             </Grid>
                             <Grid xs={6}  item>
                                 <Autocomplete 
@@ -118,11 +146,10 @@ const FormularioAlumno = () => {
                                         disablePortal
                                         id="carrera"
                                         options={carrera}
-                                        onChange={(event, value) => console.log(value)} // prints the selected value
+                                        onChange = {(event, value) => handleAutocompleteChange("carrera",value.value)} // prints the selected value
                                         renderInput={params => (
-                                            <CssTextField {...params} label="Carrera" variant="outlined" fullWidth />
+                                            <CssTextField {...params} label="Carrera" variant="outlined" fullWidth required/>
                                         )}
-                                        required
                                 />
                             </Grid>
                             <Grid xs={6}  item>
@@ -131,11 +158,10 @@ const FormularioAlumno = () => {
                                         disablePortal
                                         id="cantidad"
                                         options={cantidad}
-                                        onChange={(event, value) => console.log(value)} // prints the selected value
+                                        onChange =  {(event, value) => handleAutocompleteChange("cantidad",value.value)} // prints the selected value
                                         renderInput={params => (
-                                            <CssTextField {...params} label="Cantidad" variant="outlined" fullWidth />
+                                            <CssTextField {...params} label="Cantidad" variant="outlined" fullWidth required/>
                                         )}
-                                        required
                                 />
                             </Grid>
                             <Grid xs={12}  item>
@@ -145,11 +171,10 @@ const FormularioAlumno = () => {
                                         id="electivo1"
                                         options={electivos}
                                         
-                                        onChange={(event, value) => console.log(value)} // prints the selected value
+                                        onChange =  {(event, value) => handleAutocompleteChange("electivo1",value.value)} // prints the selected value
                                         renderInput={params => (
-                                            <CssTextField {...params} label="Electivo 1" variant="outlined" fullWidth />
+                                            <CssTextField {...params} label="Electivo 1" variant="outlined" fullWidth required/>
                                         )}
-                                        required
                             />
                             </Grid>
                             <Grid xs={12} item>
@@ -159,11 +184,11 @@ const FormularioAlumno = () => {
                                         id="electivo2"
                                         options={electivos}
                                         
-                                        onChange={(event, value) => console.log(value)} // prints the selected value
+                                        onChange =  {(event, value) => handleAutocompleteChange("electivo2",value.value)} // prints the selected value
                                         renderInput={params => (
-                                            <CssTextField {...params} label="Electivo 2" variant="outlined" fullWidth />
+                                            <CssTextField {...params} label="Electivo 2" variant="outlined" fullWidth required/>
                                         )}
-                                        required
+                                        
                             />
                             </Grid>
                             <Grid xs={12} item>
@@ -172,22 +197,19 @@ const FormularioAlumno = () => {
                                         disablePortal
                                         id="electivo3"
                                         options={electivos}
-                                    
-                                        onChange={(event, value) => console.log(value)} // prints the selected value
+                                        onChange = {(event, value) => handleAutocompleteChange("electivo3",value.value)} // prints the selected value
                                         renderInput={params => (
-                                            <CssTextField {...params} label="Electivo 3" variant="outlined" fullWidth />
+                                            <CssTextField {...params} label="Electivo 3" variant="outlined" fullWidth required/>
                                         )}
-                                        required
                             />
                             </Grid>
                             <Grid xs={12} item>
-                            <Button  color="primary" onClick={handleSubmit} type="submit" variant="contained">Enviar</Button>
+                                <div align="center">
+                                <Button  color="primary" onClick={handleSubmit} type="submit" variant="contained" >Enviar</Button>
+                                </div>
                             
                             </Grid>
                         </Grid>
-
-
-
                     </CardContent>
                 </Card>
             </form>
