@@ -8,17 +8,26 @@ import {
   Link,
   NavLink
 } from "react-router-dom";
+import Inicio from './components/pages/homePage/inicio';
 
 
 
 function App() {
   return (
+    
     <Router>
+    
       <div className="">
         <Switch>
-          <Route path="/Formulario"  exact>
+          <Route path="/Inicio"  exact>
+            <Inicio/>
+          </Route>
+
+          <Route path="/Formulario">
           <Formulario/>
           </Route>
+
+
         </Switch>
       </div>
     </Router>

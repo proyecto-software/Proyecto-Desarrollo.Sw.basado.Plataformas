@@ -1,23 +1,21 @@
-import React,{useState} from 'react'
+import React,{Fragment, useState} from 'react'
+import HeaderHome from '../homePage/HeaderHome'
 import FormularioAlumno from './FormularioAlumno'
-
-
+import {Box,Grid,Paper } from '@mui/material';
+import { styled } from '@mui/material/styles';
+import { positions,sizing } from '@mui/system';
 const Formulario = () => {
-
   //Agregar Formulario
-  return (
-      <div className="">
-        <h1>Formulario peticion electivo</h1>
-        <div className="">
-          <div className="">
-              <div>
-              <br/>
-               <FormularioAlumno/>
-               </div>
-          </div>
-        </div>
-      </div>
+  return ( 
+      <Fragment>
+        <FormularioAlumno/>
+      </Fragment>
   )
 }
 
 export default Formulario
+
+   {/*       <HeaderHome/>
+          <div className="">
+               <FormularioAlumno/>
+          </div> */}
