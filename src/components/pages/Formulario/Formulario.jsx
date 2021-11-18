@@ -7,15 +7,12 @@ import { positions,sizing } from '@mui/system';
 const Formulario = () => {
   //Agregar Formulario
   return ( 
+      
       <Fragment>
+        <HeaderHome/>
         <FormularioAlumno/>
       </Fragment>
   )
 }
 
 export default Formulario
-
-   {/*       <HeaderHome/>
-          <div className="">
-               <FormularioAlumno/>
-          </div> */}

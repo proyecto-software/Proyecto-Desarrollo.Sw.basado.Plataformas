@@ -1,6 +1,7 @@
 import React,{useState} from 'react'
 import {Box,Grid,Paper } from '@mui/material';
 import HeaderHome from './HeaderHome'
+import Home from './Home'
 const Inicio = () => {
   //Agregar Formulario
   const section = {
@@ -18,10 +19,10 @@ const Inicio = () => {
                     </div>
                 </Grid>
                 {/* Login Inicio */}
-                <Grid item xs={12} md={6}>
+                <Grid item xs={12} md={12}>
                 <div style={section}>
 
-                    asjdkajsdfkaskdjfhjashdfhasjkldhajhkldso
+                <Home/>
                 </div>
                 </Grid>
            
