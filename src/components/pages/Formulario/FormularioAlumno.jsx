@@ -41,14 +41,25 @@ const FormularioAlumno = () => {
   const handleSubmit = () => console.log(selectedOptions);
   
     return (
-        <Grid xs={12} sm={6}item>
-            <Typography gutterBottom variant ="h3" align="center" align="center">Formulario</Typography>
+        <Box
+        display="flex"
+        justifyContent="center"
+        alignItems="center"
+        minHeight="100vh"
+        >
+        <Grid xs={12} sm={6} item 
+        alignItems='center'
+        justify='center'
+            >
+            <Typography color ="" gutterBottom variant ="h3" align="center" align="center">Formulario</Typography>
             <form>
-                <Card >
+                <Card sx={{ bgcolor: 'text.disabled', color: 'text.primary', p: 2 }}>
                     <CardContent>
                         <Grid container spacing ={1}>
-                            <Grid xs={12} sm={6}item>
-                            <TextField label="Rut" placeholder="Ingrese Rut" name="rut" variant="outlined" fullWidth required></TextField>
+                            <Grid xs={12} sm={6 }item>
+                            <TextField label="Rut" placeholder="Ingrese Rut" name="rut" variant="outlined" fullWidth required
+                            
+                            ></TextField>
                             </Grid>
                             <Grid xs={12} sm={6}item>
                             <TextField label="Nombre" placeholder="Ingrese Nombre" name="nombre" variant="outlined" fullWidth required></TextField>
@@ -57,12 +68,10 @@ const FormularioAlumno = () => {
                             <TextField type="email" label="Correo" placeholder="Ingrese alumnos.ucn.cl" name="correo" variant="outlined" fullWidth required></TextField>
                             </Grid>
                             <Grid xs={6}  item>
-                                <Autocomplete
-                                        
+                                <Autocomplete   
                                         disablePortal
                                         id="carrera"
                                         options={carrera}
-                                       
                                         onChange={(event, value) => console.log(value)} // prints the selected value
                                         renderInput={params => (
                                             <TextField {...params} label="Carrera" variant="outlined" fullWidth />
@@ -76,7 +85,6 @@ const FormularioAlumno = () => {
                                         disablePortal
                                         id="cantidad"
                                         options={cantidad}
-                                   
                                         onChange={(event, value) => console.log(value)} // prints the selected value
                                         renderInput={params => (
                                             <TextField {...params} label="Cantidad" variant="outlined" fullWidth />
@@ -124,7 +132,7 @@ const FormularioAlumno = () => {
                             />
                             </Grid>
                             <Grid xs={12} item>
-                            <Button  onClick={handleSubmit} type="submit" variant="contained" color="primary">Enviar</Button>
+                            <Button  color="primary" onClick={handleSubmit} type="submit" variant="contained">Enviar</Button>
                             
                             </Grid>
                         </Grid>
@@ -135,8 +143,7 @@ const FormularioAlumno = () => {
                 </Card>
             </form>
         </Grid>
-
+        </Box>
     )
 }
 export default FormularioAlumno
-
