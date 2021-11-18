@@ -4,6 +4,7 @@ import Inicio from './components/Inicio'
 import "./styles/mobile.css"
 import User from './components/User'
 import Nosotros from './components/Nosotros'
+import TestsComponent from './components/pages/test/test'
 import {
   BrowserRouter as Router,
   Switch,
@@ -20,7 +21,7 @@ function App() {
       <div className="container mt-5">
         <div className="btn-group">
           <Link to="/Inicio" className="btn btn-dark">Inicio</Link>
-         
+          <Link to="/Test" className="btn btn-dark">Test</Link>
           <Link to="/Formulario" className="btn btn-dark">Formulario</Link>
           <NavLink to="/Nosotros" className="btn btn-dark" activeClassName="active">Nosotros</NavLink>
         </div> 
@@ -29,7 +30,7 @@ function App() {
           <Route path="/Nosotros/:id">
           <User/>
           </Route>        
-          <Route path="/" exact>
+          <Route path="/Inicio" exact>
           <Inicio/>
           </Route>
           <Route path="/Formulario">
@@ -37,6 +38,9 @@ function App() {
           </Route>
           <Route path="/Nosotros/">
           <Nosotros/>
+          </Route>
+          <Route path="/Test/">
+          <TestsComponent/>
           </Route>
         </Switch>
       </div>
