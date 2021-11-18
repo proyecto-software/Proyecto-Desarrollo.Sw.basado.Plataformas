@@ -1,6 +1,7 @@
 import React,{useState,Fragment} from 'react'
-import Button from "@material-ui/core/Button";
-import {Input,Card,CardContent,Typography,TextField,Grid,Autocomplete  } from "@mui/material";
+import {Input,Button,Card,CardContent,Typography,TextField,Grid,Autocomplete,Box} from "@mui/material";
+import { alpha, styled } from "@mui/material/styles";
+
 const FormularioAlumno = () => {
     const endPoint ="http://localhost:10000/ucn/formulario"
     //State
@@ -45,30 +46,36 @@ const FormularioAlumno = () => {
         display="flex"
         justifyContent="center"
         alignItems="center"
-        minHeight="100vh"
+        minHeight="80vh"
+        
         >
         <Grid xs={12} sm={6} item 
         alignItems='center'
         justify='center'
+        style={{
+            boxShadow:`${alpha("#00FF87  ", 1)} 0 0 0 2px`,
+            borderColor: "#00FF87" }}
             >
-            <Typography color ="" gutterBottom variant ="h3" align="center" align="center">Formulario</Typography>
+           
             <form>
-                <Card sx={{ bgcolor: 'text.disabled', color: 'text.primary', p: 2 }}>
+                <Card sx={{ bgcolor: 'rgba(60, 60, 60, 0.6)', color: 'text.primary', p: 2 }}>
+                    <Typography color ="white" gutterBottom variant ="h3" align="center" align="center">Formulario Alumno</Typography>
                     <CardContent>
                         <Grid container spacing ={1}>
-                            <Grid xs={12} sm={6 }item>
-                            <TextField label="Rut" placeholder="Ingrese Rut" name="rut" variant="outlined" fullWidth required
-                            
+                            <Grid xs={12} sm={6 } color= "green" item>
+                            <TextField style={{ backgroundColor: 'rgba(160, 160, 160, 0.6)',}} 
+                                label="Rut" placeholder="Ingrese Rut" name="rut" variant="outlined" fullWidth required
                             ></TextField>
                             </Grid>
                             <Grid xs={12} sm={6}item>
-                            <TextField label="Nombre" placeholder="Ingrese Nombre" name="nombre" variant="outlined" fullWidth required></TextField>
+                            <TextField style={{ backgroundColor: 'rgba(160, 160, 160, 0.6)'}} label="Nombre" placeholder="Ingrese Nombre" name="nombre" variant="outlined" fullWidth required></TextField>
                             </Grid>
                             <Grid xs={12}item>
-                            <TextField type="email" label="Correo" placeholder="Ingrese alumnos.ucn.cl" name="correo" variant="outlined" fullWidth required></TextField>
+                            <TextField style={{ backgroundColor: 'rgba(160, 160, 160, 0.6)'}} type="email" label="Correo" placeholder="Ingrese alumnos.ucn.cl" name="correo" variant="outlined" fullWidth required></TextField>
                             </Grid>
                             <Grid xs={6}  item>
-                                <Autocomplete   
+                                <Autocomplete 
+                                        style={{ backgroundColor: 'rgba(160, 160, 160, 0.6)'}} 
                                         disablePortal
                                         id="carrera"
                                         options={carrera}
@@ -81,7 +88,7 @@ const FormularioAlumno = () => {
                             </Grid>
                             <Grid xs={6}  item>
                                 <Autocomplete
-                                       
+                                       style={{ backgroundColor: 'rgba(160, 160, 160, 0.6)'}}
                                         disablePortal
                                         id="cantidad"
                                         options={cantidad}
@@ -94,6 +101,7 @@ const FormularioAlumno = () => {
                             </Grid>
                             <Grid xs={12}  item>
                             <Autocomplete
+                            style={{ backgroundColor: 'rgba(160, 160, 160, 0.6)'}}
                                         disablePortal
                                         id="electivo1"
                                         options={electivos}
@@ -107,6 +115,7 @@ const FormularioAlumno = () => {
                             </Grid>
                             <Grid xs={12} item>
                             <Autocomplete
+                                        style={{ backgroundColor: 'rgba(160, 160, 160, 0.6)'}}
                                         disablePortal
                                         id="electivo2"
                                         options={electivos}
@@ -120,6 +129,7 @@ const FormularioAlumno = () => {
                             </Grid>
                             <Grid xs={12} item>
                             <Autocomplete
+                                        style={{ backgroundColor: 'rgba(160, 160, 160, 0.6)'}}
                                         disablePortal
                                         id="electivo3"
                                         options={electivos}
