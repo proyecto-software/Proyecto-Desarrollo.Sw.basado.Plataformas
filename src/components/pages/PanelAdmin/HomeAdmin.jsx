@@ -5,22 +5,10 @@ import CssBaseline from '@mui/material/CssBaseline';
 import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 import Link from '@mui/material/Link';
-import Navigator from './Navigator';
+import Sidebar from './Sidebar';
 import Content from './Content';
 import Header from './Header';
-
-function Copyright() {
-  return (
-    <Typography variant="body2" color="text.secondary" align="center">
-      {'Copyright © '}
-      <Link color="inherit" href="https://mui.com/">
-        Your Website
-      </Link>{' '}
-      {new Date().getFullYear()}.
-    </Typography>
-  );
-}
-
+/* Tema */
 let theme = createTheme({
   palette: {
     primary: {
@@ -166,7 +154,7 @@ theme = {
 /* Tamanio del width */
 const tamanoWidth = 256;
 
-export default function Paperbase() {
+export default function HomeAdmin() {
   /* Responsive design del pantalla celular */
   const [ResponsiveMobile, setResponsiveMobile] = React.useState(false);
   /* Es el cambio  de sm a sx con breakpoints*/
@@ -181,13 +169,14 @@ export default function Paperbase() {
     <ThemeProvider theme={theme}>
       <Box sx={{ display: 'flex', minHeight: '100vh' }}>
         <CssBaseline />
+        {/* ---------SideBar---------- */}
         <Box
           component="nav"
           sx={{ width: { sm: tamanoWidth }, flexShrink: { sm: 0 } }}
         >
          {/* ---------SideBar---------- */}
           {SmCambiar ? null : (
-            <Navigator
+            <Sidebar
               PaperProps={{ style: { width: tamanoWidth } }}
               variant="temporary"
               open={ResponsiveMobile}
@@ -195,7 +184,7 @@ export default function Paperbase() {
             />
           )}
          {/* ---------SideBar----------  cambiar vista*/}
-          <Navigator
+          <Sidebar
             PaperProps={{ style: { width: tamanoWidth } }}
             sx={{ display: { sm: 'block', xs: 'none' } }}
           />
@@ -205,9 +194,7 @@ export default function Paperbase() {
           <Box component="main" sx={{ flex: 1, py: 6, px: 4, bgcolor: '#eaeff1' }}>
             <Content />
           </Box>
-          <Box component="footer" sx={{ p: 2, bgcolor: '#eaeff1' }}>
-            <Copyright />
-          </Box>
+   
         </Box>
       </Box>
     </ThemeProvider>

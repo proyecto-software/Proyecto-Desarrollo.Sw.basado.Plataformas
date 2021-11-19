@@ -3,7 +3,7 @@ import React from 'react';
 import Formulario from './components/pages/Formulario/Formulario';
 import Login from './components/pages/LoginAdmin/Login'
 import Inicio from './components/pages/homePage/inicio';
-import Paperbase from './components/pages/PanelAdmin/Paperbase';
+import HomeAdmin from './components/pages/PanelAdmin/HomeAdmin';
 import {
   BrowserRouter as Router,
   Switch,
@@ -30,8 +30,8 @@ function App() {
           <Route path="/Login">
           <Login/>
           </Route>
-          <Route path="/Paperbase">
-          <Paperbase/>
+          <Route path="/HomeAdmin">
+          <HomeAdmin/>
           </Route>
         </Switch>
       
