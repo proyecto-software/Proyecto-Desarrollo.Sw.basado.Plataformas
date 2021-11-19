@@ -1,8 +1,11 @@
 import React,{Fragment} from 'react'
 import {Button,Typography,Grid} from "@mui/material";
-
+import  "../../../index.css"
 import HeaderHome from './HeaderHome'
-const Home = () => {   
+
+const Home = () => {
+
+     
       const section = {
         backgroundColor: "transparent"
       };

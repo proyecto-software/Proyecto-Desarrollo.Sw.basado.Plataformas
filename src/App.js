@@ -1,7 +1,8 @@
 import React from 'react';
-import "./styles/mobile.css"
+
 import Formulario from './components/pages/Formulario/Formulario';
 import Login from './components/pages/LoginAdmin/Login'
+import HomeAdmin from './components/pages/PanelAdmin/HomeAdmin'
 import {
   BrowserRouter as Router,
   Switch,
@@ -29,7 +30,9 @@ function App() {
           <Route path="/Login">
           <Login/>
           </Route>
-
+          <Route path="/HomeAdmin">
+          <HomeAdmin/>
+          </Route>
         </Switch>
       
     </Router>
