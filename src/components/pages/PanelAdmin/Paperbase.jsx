@@ -167,11 +167,13 @@ theme = {
 const drawerWidth = 256;
 
 export default function Paperbase() {
-  const [mobileOpen, setMobileOpen] = React.useState(false);
+  /* Responsive design del pantalla celular */
+  const [ResponsiveMobile, setResponsiveMobile] = React.useState(false);
+  /* Es el cambio  */
   const isSmUp = useMediaQuery(theme.breakpoints.up('sm'));
 
   const handleDrawerToggle = () => {
-    setMobileOpen(!mobileOpen);
+    setResponsiveMobile(!ResponsiveMobile);
   };
 
   return (
@@ -186,7 +188,7 @@ export default function Paperbase() {
             <Navigator
               PaperProps={{ style: { width: drawerWidth } }}
               variant="temporary"
-              open={mobileOpen}
+              open={ResponsiveMobile}
               onClose={handleDrawerToggle}
             />
           )}
