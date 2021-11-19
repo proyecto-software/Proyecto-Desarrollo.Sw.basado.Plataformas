@@ -16,45 +16,38 @@ const Home = () => {
 
         </Grid>
         <Grid xs={10} sm={5.5 } sx={{ bgcolor: 'rgba(60, 60, 60, 0.6)', color: 'text.primary', p: 2 }}>
+            <br/>
             <Typography color ="white" gutterBottom variant ="h3"  align="center">SISTEMA ELECTIVOS PROFESIONALES</Typography>
             <br/>
             <br/>
-            <br/>
-            <div >
-            <Button style={{
-                backgroundColor: 'rgba(160, 160, 160, 0.6)',
-                width:'30rem',height:'6rem',fontSize:15 }} 
-                href="/Inicio" 
-                variant="contained"
-                m 
-            >
-            ADMINISTRADOR
-            </Button>
-            </div>
-            <br/>
-            <br/>
-            <br/>
-            <div>
-        
-                <Button 
-                    style={{ 
+            <Grid xs={12} item>
+            <div align="center">
+            <Button  style={{ 
                     backgroundColor: 'rgba(160, 160, 160, 0.6)',
                     width:'30rem',
                     height:'6rem',
                     fontSize:15
-                    }}
-                    href="/Formulario"
-                    variant="contained"
-                    size="large"
-                    >
-                    ALUMNO
-                </Button>
-            
+                    }}   type="submit" variant="contained"   href="/Inicio"  >ADMINISTRADOR</Button>
             </div>
+            <br/>  
+            <br/> 
+            <br/>    
+            </Grid>
+            <Grid xs={12} item>
+            <div align="center">
+            <Button  style={{ 
+                    backgroundColor: 'rgba(160, 160, 160, 0.6)',
+                    width:'30rem',
+                    height:'6rem',
+                    fontSize:15
+                    }}   type="submit" variant="contained" href="/Formulario" >ALUMNO</Button>
+            </div>
+                            
+            </Grid>
             <br/>
             <br/>
             <br/>
-            <br/>
+            
         </Grid>
         <Grid xs={1} sm={3.25 }  >
         

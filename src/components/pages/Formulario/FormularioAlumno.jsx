@@ -235,9 +235,33 @@ const FormularioAlumno = () => {
                                         )}
                             />
                             </Grid>
-                            <Grid xs={12} item>
+                            <Grid xs={6} item>
                                 <div align="center">
-                                <Button  color="primary" onClick={handleSubmit} type="submit" variant="contained" >Enviar</Button>
+                                <Button  
+                                style={{ 
+                                        backgroundColor: 'rgba(160, 160, 160, 0.6)',
+                                        width:'30rem',
+                                        height:'6rem',
+                                        fontSize:15
+                                        }}
+                               
+                                type="submit" variant="contained" 
+                                href="/Inicio"
+                                >Volver</Button>
+                                </div>
+                            
+                            </Grid>
+                            <Grid xs={6} item>
+                                <div align="center">
+                                <Button  
+                                style={{ 
+                                        backgroundColor: 'rgba(160, 160, 160, 0.6)',
+                                        width:'30rem',
+                                        height:'6rem',
+                                        fontSize:15
+                                        }}
+                                onClick={handleSubmit}
+                                type="submit" variant="contained" >Enviar</Button>
                                 </div>
                             
                             </Grid>
