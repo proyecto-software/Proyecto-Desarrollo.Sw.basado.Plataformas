@@ -163,43 +163,45 @@ theme = {
     },
   },
 };
-
-const drawerWidth = 256;
+/* Tamanio del width */
+const tamanoWidth = 256;
 
 export default function Paperbase() {
   /* Responsive design del pantalla celular */
   const [ResponsiveMobile, setResponsiveMobile] = React.useState(false);
-  /* Es el cambio  */
-  const isSmUp = useMediaQuery(theme.breakpoints.up('sm'));
-
-  const handleDrawerToggle = () => {
+  /* Es el cambio  de sm a sx con breakpoints*/
+  const SmCambiar = useMediaQuery(theme.breakpoints.up('sm'));
+  /* Setear el responsive degin */
+  const manejorResponsive = () => {
     setResponsiveMobile(!ResponsiveMobile);
   };
 
   return (
+    /* Aplica el método propio */
     <ThemeProvider theme={theme}>
       <Box sx={{ display: 'flex', minHeight: '100vh' }}>
         <CssBaseline />
         <Box
           component="nav"
-          sx={{ width: { sm: drawerWidth }, flexShrink: { sm: 0 } }}
+          sx={{ width: { sm: tamanoWidth }, flexShrink: { sm: 0 } }}
         >
-          {isSmUp ? null : (
+         {/* ---------SideBar---------- */}
+          {SmCambiar ? null : (
             <Navigator
-              PaperProps={{ style: { width: drawerWidth } }}
+              PaperProps={{ style: { width: tamanoWidth } }}
               variant="temporary"
               open={ResponsiveMobile}
-              onClose={handleDrawerToggle}
+              onClose={manejorResponsive}
             />
           )}
-
+         {/* ---------SideBar----------  cambiar vista*/}
           <Navigator
-            PaperProps={{ style: { width: drawerWidth } }}
+            PaperProps={{ style: { width: tamanoWidth } }}
             sx={{ display: { sm: 'block', xs: 'none' } }}
           />
         </Box>
         <Box sx={{ flex: 1, display: 'flex', flexDirection: 'column' }}>
-          <Header onDrawerToggle={handleDrawerToggle} />
+          <Header onDrawerToggle={manejorResponsive} />
           <Box component="main" sx={{ flex: 1, py: 6, px: 4, bgcolor: '#eaeff1' }}>
             <Content />
           </Box>
