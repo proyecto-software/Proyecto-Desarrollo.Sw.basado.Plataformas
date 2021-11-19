@@ -246,7 +246,7 @@ const FormularioAlumno = () => {
                                         }}
                                
                                 type="submit" variant="contained" 
-                                href="/Inicio"
+                                href="/"
                                 >Volver</Button>
                                 </div>
                             

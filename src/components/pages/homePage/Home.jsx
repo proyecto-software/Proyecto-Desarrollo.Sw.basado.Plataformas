@@ -1,7 +1,7 @@
-import React,{useState,Fragment} from 'react'
-import {Stack,Paper,Button,Card,CardContent,Typography,TextField,Grid,Autocomplete,Box} from "@mui/material";
-import { alpha, styled } from "@mui/material/styles";
-import { hydrate } from 'react-dom/cjs/react-dom.development';
+import React,{Fragment} from 'react'
+import {Button,Typography,Grid} from "@mui/material";
+
+import HeaderHome from './HeaderHome'
 const Home = () => {   
       const section = {
         backgroundColor: "transparent"
@@ -11,10 +11,34 @@ const Home = () => {
       }
     return (
         <Fragment>
-        <Grid container spacing ={1} style={section}>
-        <Grid xs={1} sm={3.25 } item>
 
+        <Grid container spacing ={1} style={section}>
+            {/* HEADER */}
+            <Grid item xs={12} md={12}>
+                <div style={section}>
+                <HeaderHome/>
+                </div>
+            </Grid>
+            {/* Letras */}
+            <Grid item xs={6} md={6}>
+            <div style={section}>
+            <Typography color ="#D1D1D1" gutterBottom variant ="h5" align="center" align="center">PERIODO ACTIVO DE INSCRIPCIÓN:</Typography>
+            </div>
+            <br/> 
+            <br/>    
+            </Grid>
+            {/* Letras */}
+            <Grid item xs={6} md={6}>
+            <div style={section}>
+            <Typography color ="#D1D1D1" gutterBottom variant ="h5" align="center" align="center">   2022/03/05     -     2020/03/15  </Typography>
+            </div>
+            </Grid>
+
+        
+        {/* Init */}
+        <Grid xs={1} sm={3.25 } item>
         </Grid>
+        <br/>
         <Grid xs={10} sm={5.5 } sx={{ bgcolor: 'rgba(60, 60, 60, 0.6)', color: 'text.primary', p: 2 }}>
             <br/>
             <Typography color ="white" gutterBottom variant ="h3"  align="center">SISTEMA ELECTIVOS PROFESIONALES</Typography>
@@ -27,7 +51,7 @@ const Home = () => {
                     width:'30rem',
                     height:'6rem',
                     fontSize:15
-                    }}   type="submit" variant="contained"   href="/Inicio"  >ADMINISTRADOR</Button>
+                    }}   type="submit" variant="contained"   href="/Login"  >ADMINISTRADOR</Button>
             </div>
             <br/>  
             <br/> 

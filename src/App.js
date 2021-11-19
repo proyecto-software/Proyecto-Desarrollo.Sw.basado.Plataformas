@@ -1,6 +1,7 @@
 import React from 'react';
 import "./styles/mobile.css"
 import Formulario from './components/pages/Formulario/Formulario';
+import Login from './components/pages/LoginAdmin/Login'
 import {
   BrowserRouter as Router,
   Switch,
@@ -17,19 +18,20 @@ function App() {
     
     <Router>
     
-      <div className="">
+      
         <Switch>
-          <Route path="/Inicio"  exact>
+          <Route path="/"  exact>
             <Inicio/>
           </Route>
-
           <Route path="/Formulario">
           <Formulario/>
           </Route>
-
+          <Route path="/Login">
+          <Login/>
+          </Route>
 
         </Switch>
-      </div>
+      
     </Router>
   );
 }
