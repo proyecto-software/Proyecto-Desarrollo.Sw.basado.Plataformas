@@ -2,7 +2,8 @@ import React from 'react';
 
 import Formulario from './components/pages/Formulario/Formulario';
 import Login from './components/pages/LoginAdmin/Login'
-import HomeAdmin from './components/pages/PanelAdmin/HomeAdmin'
+import Inicio from './components/pages/homePage/inicio';
+import Paperbase from './components/pages/PanelAdmin/PaperBase';
 import {
   BrowserRouter as Router,
   Switch,
@@ -10,7 +11,8 @@ import {
   Link,
   NavLink
 } from "react-router-dom";
-import Inicio from './components/pages/homePage/inicio';
+
+
 
 
 
@@ -18,8 +20,6 @@ function App() {
   return (
     
     <Router>
-    
-      
         <Switch>
           <Route path="/"  exact>
             <Inicio/>
@@ -30,8 +30,8 @@ function App() {
           <Route path="/Login">
           <Login/>
           </Route>
-          <Route path="/HomeAdmin">
-          <HomeAdmin/>
+          <Route path="/Paperbase">
+          <Paperbase/>
           </Route>
         </Switch>
       
