@@ -1,12 +1,41 @@
 import React,{useState} from 'react'
 import { useForm } from "react-hook-form";
+import Axios from 'axios'
 import {Button,Card,CardContent,Typography,TextField,Grid,Autocomplete,Box} from "@mui/material";
 import { alpha, styled } from "@mui/material/styles";
 
 
 const FormularioAlumno = () => {
-    //const endPoint ="http://localhost:10000/ucn/formulario"
+    const endpoint_PostFormulario ="http://localhost:10000/ucn/formulario"
+
+    function sendDataPost () {
+        
+        let successful = false
+        alert('enviando datos...' + formulario.rut)
+        const sendJson = JSON.stringify(formulario,idFormulario)
+        
+        console.log(sendJson)
+
+        Axios.post(endpoint_PostFormulario,sendJson)
+        .then(res =>{
+            console.log(res.status)
+            if(res.status === 200){
+                successful = true
+
+            }else{
+                successful = false
+
+            }
+        })
+        return {successful}
+    }
+
+    const getElectivos = () => {
+        
+    }
+
     //State
+    const idFormulario = ['rut','nombre','correo','carrera','cantidad','electivo1','electivo2','electivo3']
     const [formulario] = useState({
       rut: '',
       nombre: '',
@@ -17,7 +46,7 @@ const FormularioAlumno = () => {
       electivo2: '',
       electivo3: '',
     })
-
+    
     const color_gris_60 = "rgba(60, 60, 60, 0.1)"
     const color_green_border = "#00FF87"
     const color_white = "white"
@@ -81,9 +110,12 @@ const FormularioAlumno = () => {
     //Enviar datos
     const {handleSubmit} =  useForm();
 
-    const onSubmit = (data, event)=>{
-        console.log(data)
-        var requestSuccessful = false
+    const onSubmit = ()=>{
+        console.log("data")
+        let requestSuccessful = false
+
+        const response = sendDataPost()
+        requestSuccessful = response
         
         if(requestSuccessful){
             alert("Solicitud registrada con exito.")
