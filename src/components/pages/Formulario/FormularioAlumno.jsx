@@ -7,8 +7,9 @@ import { alpha, styled } from "@mui/material/styles";
 
 const FormularioAlumno = () => {
     const endpoint_PostFormulario ="http://localhost:10000/ucn/formulario"
+    const endpoint_PGetElectivos ="http://localhost:10000/ucn/electivos"
 
-    function sendDataPost () {
+    async function sendDataPost(){
         
         let successful = false
         alert('enviando datos...' + formulario.rut)
@@ -16,10 +17,11 @@ const FormularioAlumno = () => {
         
         console.log(sendJson)
 
-        Axios.post(endpoint_PostFormulario,sendJson)
-        .then(res =>{
+        await Axios.post(endpoint_PostFormulario,sendJson)
+        .then(async res =>{
             console.log(res.status)
             if(res.status === 200){
+                console.log("EXITO")
                 successful = true
 
             }else{
@@ -27,7 +29,30 @@ const FormularioAlumno = () => {
 
             }
         })
+
         return {successful}
+    }
+
+    async function PostData(form,struct){
+        const requestOptions = {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(form,struct)
+        };
+
+        console.log("iniciando")
+        console.log(requestOptions)
+        const response = await fetch(endpoint_PostFormulario, requestOptions);
+        const status = await response.status;
+
+        if (status===200){
+            return true
+        }else{
+            return false
+        }
+        
+        
+        
     }
 
     const getElectivos = () => {
@@ -110,21 +135,33 @@ const FormularioAlumno = () => {
     //Enviar datos
     const {handleSubmit} =  useForm();
 
-    const onSubmit = ()=>{
+    async function onSubmit (){
+        
+        /*
         console.log("data")
         let requestSuccessful = false
 
         const response = sendDataPost()
         requestSuccessful = response
+        console.log(response)
         
-        if(requestSuccessful){
+        if(response.successful){
             alert("Solicitud registrada con exito.")
-            window.location.reload();
+            //window.location.reload();
         }else{
             alert("La solicitud no se ha podido registrar, la culpa es del nico.")
         }
 
+        */
         
+        const successful = await PostData(formulario,idFormulario)
+        console.log("send data successful: ",successful)
+        if(successful){
+            alert("Solicitud registrada con exito.")
+            //window.location.reload();
+        }else{
+            alert("La solicitud no se ha podido registrar, la culpa es del nico.")
+        }
     }
     //const [selectedOptions, setSelectedOptions] = useState([]);
 
