@@ -6,14 +6,14 @@ import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 import Link from '@mui/material/Link';
 import Sidebar from './Sidebar';
-import Content from './Content';
+import Dashboard from './Dashboard';
 import Header from './Header';
-/* Tema */
+/* Tema general del home */
 let theme = createTheme({
   palette: {
     primary: {
       light: '#63ccff',
-      main: '#009be5',
+      main: '#027077',
       dark: '#006db3',
     },
   },
@@ -189,10 +189,11 @@ export default function HomeAdmin() {
             sx={{ display: { sm: 'block', xs: 'none' } }}
           />
         </Box>
+        {/* ---------SideBar----------  cambiar vista*/}
         <Box sx={{ flex: 1, display: 'flex', flexDirection: 'column' }}>
           <Header onDrawerToggle={manejorResponsive} />
           <Box component="main" sx={{ flex: 1, py: 6, px: 4, bgcolor: '#eaeff1' }}>
-            <Content />
+            <Dashboard />
           </Box>
    
         </Box>
