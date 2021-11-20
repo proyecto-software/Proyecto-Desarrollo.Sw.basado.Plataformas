@@ -21,6 +21,8 @@ import AssessmentIcon from '@mui/icons-material/Assessment';
 import AssignmentTurnedInIcon from '@mui/icons-material/AssignmentTurnedIn';
 import AttributionIcon from '@mui/icons-material/Attribution';
 import LogoutIcon from '@mui/icons-material/Logout';
+
+import logo2 from '../../../img/ucn400x112.png'
 const categories = [
   {
     id: 'Panel',
@@ -32,16 +34,14 @@ const categories = [
       },
       { id: 'Formulario', icon: <AssignmentTurnedInIcon /> },
       { id: 'Informe Curricular', icon: <AttributionIcon /> },
-      { id: 'Salir', icon: <LogoutIcon /> },
+      
       
     ],
   },
   {
-    id: 'Quality',
+    id: '',
     children: [
-      { id: 'Analytics', icon: <SettingsIcon /> },
-      { id: 'Performance', icon: <TimerIcon /> },
-      { id: 'Test Lab', icon: <PhonelinkSetupIcon /> },
+      { id: 'Salir', icon: <LogoutIcon /> },
     ],
   },
 ];
@@ -67,8 +67,13 @@ export default function Sidebar(props) {
   return (
     <Drawer variant="permanent" {...other}>
       <List disablePadding>
-        <ListItem sx={{ ...item, ...itemCategory, fontSize: 22, color: '#fff' }}>
-          Paperbase
+        <ListItem sx={{ ...item, ...itemCategory, fontSize: 85, color: '#fff' }}>
+        <div className="logo2">
+            <img 
+                src={logo2}
+                alt="logo 2"
+            />
+        </div>
         </ListItem>
         <ListItem sx={{ ...item, ...itemCategory }}>
           <ListItemIcon>

@@ -14,12 +14,14 @@ import Tabs from '@mui/material/Tabs';
 import Toolbar from '@mui/material/Toolbar';
 import Tooltip from '@mui/material/Tooltip';
 import Typography from '@mui/material/Typography';
-
+import logo1 from '../../../img/eicblanco.png'
 const lightColor = 'rgba(255, 255, 255, 0.7)';
 
 function Header(props) {
   const { onDrawerToggle } = props;
-
+  const stylelogo1 = {
+    width: '20rem',
+  };
   return (
     <React.Fragment>
       <AppBar color="primary" position="sticky" elevation={0}>
@@ -50,19 +52,15 @@ function Header(props) {
                 rel="noopener noreferrer"
                 target="_blank"
               >
-                Go to docs
+                
               </Link>
             </Grid>
             <Grid item>
-              <Tooltip title="Alerts • No alerts">
-                <IconButton color="inherit">
-                  <NotificationsIcon />
-                </IconButton>
-              </Tooltip>
+ 
             </Grid>
             <Grid item>
               <IconButton color="inherit" sx={{ p: 0.5 }}>
-                <Avatar src="/static/images/avatar/1.jpg" alt="My Avatar" />
+               
               </IconButton>
             </Grid>
           </Grid>
@@ -79,36 +77,28 @@ function Header(props) {
           <Grid container alignItems="center" spacing={1}>
             <Grid item xs>
               <Typography color="inherit" variant="h5" component="h1">
-                Authentication
+               {/* Escribir un título */}
               </Typography>
             </Grid>
             <Grid item>
-              <Button
-                sx={{ borderColor: lightColor }}
-                variant="outlined"
-                color="inherit"
-                size="small"
-              >
-                Web setup
-              </Button>
+     
             </Grid>
             <Grid item>
-              <Tooltip title="Help">
-                <IconButton color="inherit">
-                  <HelpIcon />
-                </IconButton>
-              </Tooltip>
+              
+              <img 
+                  src={logo1}
+                  alt="logo 1"
+                  style={stylelogo1}
+              />
+             
             </Grid>
           </Grid>
         </Toolbar>
       </AppBar>
       <AppBar component="div" position="static" elevation={0} sx={{ zIndex: 0 }}>
-        <Tabs value={0} textColor="inherit">
-          <Tab label="Users" />
-          <Tab label="Sign-in method" />
-          <Tab label="Templates" />
-          <Tab label="Usage" />
-        </Tabs>
+ 
+     
+      <br></br>
       </AppBar>
     </React.Fragment>
   );
