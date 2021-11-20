@@ -8,6 +8,13 @@ import Link from '@mui/material/Link';
 import Sidebar from './Sidebar';
 import Dashboard from './Dashboard';
 import Header from './Header';
+import ContentForm from './FormularioAdmin/ContentForm'
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route,
+  
+} from "react-router-dom";
 /* Tema general del home */
 let theme = createTheme({
   palette: {
@@ -198,7 +205,9 @@ export default function HomeAdmin() {
    
         </Box>
       </Box>
+
     </ThemeProvider>
+    
     
   );
 }

@@ -4,6 +4,7 @@ import Formulario from './components/pages/Formulario/Formulario';
 import Login from './components/pages/LoginAdmin/Login'
 import Inicio from './components/pages/homePage/inicio';
 import HomeAdmin from './components/pages/PanelAdmin/HomeAdmin';
+import ContentForm from './components/pages/PanelAdmin/FormularioAdmin/ContentForm'
 import {
   BrowserRouter as Router,
   Switch,
@@ -32,6 +33,9 @@ function App() {
           </Route>
           <Route path="/HomeAdmin">
           <HomeAdmin/>
+          </Route>
+          <Route path="/HomeAdmin/ContentForm">
+          <ContentForm/>
           </Route>
         </Switch>
       

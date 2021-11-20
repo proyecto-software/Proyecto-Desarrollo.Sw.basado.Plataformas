@@ -21,8 +21,15 @@ import AssessmentIcon from '@mui/icons-material/Assessment';
 import AssignmentTurnedInIcon from '@mui/icons-material/AssignmentTurnedIn';
 import AttributionIcon from '@mui/icons-material/Attribution';
 import LogoutIcon from '@mui/icons-material/Logout';
-
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route,
+  Link,
+  NavLink
+} from "react-router-dom";
 import logo2 from '../../../img/ucn400x112.png'
+import ContentForm from './FormularioAdmin/ContentForm';
 const categories = [
   {
     id: 'Panel',
@@ -30,10 +37,11 @@ const categories = [
       {
         id: 'Dashboard',
         icon: <AssessmentIcon />,
+        link:'Dashboard'
        /*  active: true, */
       },
-      { id: 'Formulario', icon: <AssignmentTurnedInIcon /> },
-      { id: 'Informe Curricular', icon: <AttributionIcon /> },
+      { id: 'Formulario', icon: <AssignmentTurnedInIcon />, link:'/ContentForm'},
+      { id: 'Informe Curricular', icon: <AttributionIcon /> , link:'/ContentCuricular'},
       
       
     ],
@@ -41,7 +49,7 @@ const categories = [
   {
     id: '',
     children: [
-      { id: 'Salir', icon: <LogoutIcon /> },
+      { id: 'Salir', icon: <LogoutIcon /> , link:'../'},
     ],
   },
 ];
@@ -81,24 +89,37 @@ export default function Sidebar(props) {
           </ListItemIcon>
           <ListItemText>Home</ListItemText>
         </ListItem>
-        {categories.map(({ id, children }) => (
+        {
+          
+          
+          
+          categories.map(({ id, children }) => (
           <Box key={id} sx={{ bgcolor: '#2C4348' }}>
             <ListItem sx={{ py: 2, px: 3 }}>
               <ListItemText sx={{ color: '#fff' }}>{id}</ListItemText>
             </ListItem>
-            {children.map(({ id: childId, icon, active }) => (
-              <ListItem disablePadding key={childId}>
-                <ListItemButton selected={active} sx={item}>
+              {children.map(({ id: childId, icon, active,link }) => (
+                <ListItem disablePadding key={childId}>
+                  <ListItemButton selected={active} sx={item}>
                   <ListItemIcon>{icon}</ListItemIcon>
-                  <ListItemText>{childId}</ListItemText>
-                </ListItemButton>
-              </ListItem>
-            ))}
+                    <Link to={link} style={{ textDecoration: 'none' }}>                  
+                    <ListItemText style={{ color:'#ffff' }}>{childId}</ListItemText>
+                    </Link>
+                  </ListItemButton>
+                </ListItem>
+              ))
+              }
 
             <Divider sx={{ mt: 2 }} />
           </Box>
-        ))}
+        ))
+        
+        }
       </List>
+
+
+
+
     </Drawer>
   );
 }

@@ -57,7 +57,7 @@ const Login = () => {
                     width:'30rem',
                     height:'6rem',
                     fontSize:15
-                    }}   type="submit" variant="contained"   href="/Login"  >Volver</Button>
+                    }}   type="submit" variant="contained"   href="/HomeAdmin"  >Entrar</Button>
             </div>
             <br/>  
             <br/> 
@@ -70,7 +70,7 @@ const Login = () => {
                     width:'30rem',
                     height:'6rem',
                     fontSize:15
-                    }}   type="submit" variant="contained" href="/Formulario" >Entrar</Button>
+                    }}   type="submit" variant="contained" href="/Formulario" >Volver</Button>
             </div>
                             
             </Grid>
