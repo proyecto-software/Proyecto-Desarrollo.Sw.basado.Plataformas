@@ -17,24 +17,23 @@ import SettingsInputComponentIcon from '@mui/icons-material/SettingsInputCompone
 import TimerIcon from '@mui/icons-material/Timer';
 import SettingsIcon from '@mui/icons-material/Settings';
 import PhonelinkSetupIcon from '@mui/icons-material/PhonelinkSetup';
-
+import AssessmentIcon from '@mui/icons-material/Assessment';
+import AssignmentTurnedInIcon from '@mui/icons-material/AssignmentTurnedIn';
+import AttributionIcon from '@mui/icons-material/Attribution';
+import LogoutIcon from '@mui/icons-material/Logout';
 const categories = [
   {
-    id: 'Build',
+    id: 'Panel',
     children: [
       {
-        id: 'Authentication',
-        icon: <PeopleIcon />,
-        active: true,
+        id: 'Dashboard',
+        icon: <AssessmentIcon />,
+       /*  active: true, */
       },
-      { id: 'Database', icon: <DnsRoundedIcon /> },
-      { id: 'Storage', icon: <PermMediaOutlinedIcon /> },
-      { id: 'Hosting', icon: <PublicIcon /> },
-      { id: 'Functions', icon: <SettingsEthernetIcon /> },
-      {
-        id: 'Machine learning',
-        icon: <SettingsInputComponentIcon />,
-      },
+      { id: 'Formulario', icon: <AssignmentTurnedInIcon /> },
+      { id: 'Informe Curricular', icon: <AttributionIcon /> },
+      { id: 'Salir', icon: <LogoutIcon /> },
+      
     ],
   },
   {
@@ -75,10 +74,10 @@ export default function Sidebar(props) {
           <ListItemIcon>
             <HomeIcon />
           </ListItemIcon>
-          <ListItemText>Project Overview</ListItemText>
+          <ListItemText>Home</ListItemText>
         </ListItem>
         {categories.map(({ id, children }) => (
-          <Box key={id} sx={{ bgcolor: '#101F33' }}>
+          <Box key={id} sx={{ bgcolor: '#2C4348' }}>
             <ListItem sx={{ py: 2, px: 3 }}>
               <ListItemText sx={{ color: '#fff' }}>{id}</ListItemText>
             </ListItem>

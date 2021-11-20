@@ -20,7 +20,7 @@ let theme = createTheme({
   typography: {
     h5: {
       fontWeight: 500,
-      fontSize: 26,
+      fontSize: 36,
       letterSpacing: 0.5,
     },
   },
@@ -47,7 +47,7 @@ theme = {
     MuiDrawer: {
       styleOverrides: {
         paper: {
-          backgroundColor: '#081627',
+          backgroundColor: '#2C4348',
         },
       },
     },
