@@ -2,6 +2,7 @@ import React,{Fragment, useState} from 'react'
 import {Box,Grid,Paper,ImageList,ImageListItem  } from '@mui/material'
 import logo1 from '../../../img/eicblanco.png'
 import logo2 from '../../../img/ucn400x112.png'
+
 const HeaderHome = () => {
     //Styles logos
     const stylelogo1 = {
