@@ -1,14 +1,30 @@
-import React,{useState} from 'react'
+import React,{useState,useEffect} from 'react'
 import { useForm } from "react-hook-form";
 import Axios from 'axios'
 import {Button,Card,CardContent,Typography,TextField,Grid,Autocomplete,Box} from "@mui/material";
 import { alpha, styled } from "@mui/material/styles";
 
 
-const FormularioAlumno = () => {
-    const endpoint_PostFormulario ="http://localhost:10000/ucn/formulario"
-    const endpoint_PGetElectivos ="http://localhost:10000/ucn/electivos"
+const FormularioAlumno = (props) => {
 
+    
+    const endpoint_PostFormulario ="http://localhost:10000/ucn/formulario"
+    const endpoint_GetElectivos ="http://localhost:10000/ucn/electivos"
+    const endpoint_ValidarRut ="http://localhost:10000/ucn/rut"
+    const arrayElectivos = props.electivos
+
+    const electivoss = [
+        { label: 'REDES DE COMPUTADORES', value: 'RC' },
+        { label: 'SISTEMAS DE RECOMENDACION', value: 'SR' },
+        { label: 'DATA SCIENCE', value: 'DS' }
+    ];
+    const [electivos,setElectivos] = useState([{
+        label: "",
+        value:""
+    }])
+
+    //console.log("array: ",arrayElectivos)
+      
     async function sendDataPost(){
         
         let successful = false
@@ -44,21 +60,40 @@ const FormularioAlumno = () => {
         console.log(requestOptions)
         const response = await fetch(endpoint_PostFormulario, requestOptions);
         const status = await response.status;
-
+        console.log("body: ",response.body)
         if (status===200){
             return true
         }else{
             return false
         }
-        
-        
-        
     }
 
-    const getElectivos = () => {
+    async function validar(event){
+        const req = {
+            "Rut": event.target.value
+          }
+        const requestOptions = {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(req)
+        };
+        console.log(requestOptions)
+        const response = await fetch(endpoint_ValidarRut, requestOptions);
+        const status = await response.status;
+        console.log("body: ",response.body)
+        console.log("resp: ",response)
+        console.log(event)
+
+        if (status===200){
+            event.target.style.backgroundColor = color_gris_60
+            return true
+        }else{
+            event.target.style.backgroundColor = color_red
+            return false
+        }
+
         
     }
-
     //State
     const idFormulario = ['rut','nombre','correo','carrera','cantidad','electivo1','electivo2','electivo3']
     const [formulario] = useState({
@@ -75,6 +110,7 @@ const FormularioAlumno = () => {
     const color_gris_60 = "rgba(60, 60, 60, 0.1)"
     const color_green_border = "#00FF87"
     const color_white = "white"
+    const color_red = "#FF0000"
     
     const CssTextField = styled(TextField)({
         "& label.Mui-focused": {
@@ -125,11 +161,7 @@ const FormularioAlumno = () => {
         { label: 'ITI', value: 'ITI' }
     ];
     //Electivos que vienen desde la api
-    const electivos = [
-        { label: 'REDES DE COMPUTADORES', value: 'RC' },
-        { label: 'SISTEMAS DE RECOMENDACION', value: 'SR' },
-        { label: 'DATA SCIENCE', value: 'DS' }
-    ];
+    
     /////////////////////////////////////////
 
     //Enviar datos
@@ -200,7 +232,7 @@ const FormularioAlumno = () => {
                     <CardContent>
                         <Grid container spacing ={1}>
                             <Grid xs={12} sm={6 } color= "green" item>
-                            <CssTextField style={{ backgroundColor: 'rgba(160, 160, 160, 0.6)'}}label="Rut" placeholder="Ingrese Rut" name="rut" variant="outlined" fullWidth required onChange={handleInputChange}
+                            <CssTextField style={{ backgroundColor: 'rgba(160, 160, 160, 0.6)'}}label="Rut" placeholder="Ingrese Rut" name="rut" variant="outlined" fullWidth required onChange={handleInputChange} onBlur={validar}
                             ></CssTextField>
                             </Grid>
                             <Grid xs={12} sm={6}item>
@@ -238,9 +270,9 @@ const FormularioAlumno = () => {
                             style={{ backgroundColor: 'rgba(160, 160, 160, 0.6)', color:'white',borderColor:' rgba(20, 221, 175, 0.91)'}}
                                         disablePortal
                                         id="electivo1"
-                                        options={electivos}
+                                        options={props.electivos}
                                         
-                                        onChange =  {(event, value) => handleAutocompleteChange("electivo1",value.value)} // prints the selected value
+                                        onChange =  {(event, value) => handleAutocompleteChange("electivo1",value.label)} // prints the selected value
                                         renderInput={params => (
                                             <CssTextField {...params} label="Electivo 1" variant="outlined" fullWidth required/>
                                         )}
@@ -251,9 +283,9 @@ const FormularioAlumno = () => {
                                         style={{ backgroundColor: 'rgba(160, 160, 160, 0.6)'}}
                                         disablePortal
                                         id="electivo2"
-                                        options={electivos}
+                                        options={props.electivos}
                                         
-                                        onChange =  {(event, value) => handleAutocompleteChange("electivo2",value.value)} // prints the selected value
+                                        onChange =  {(event, value) => handleAutocompleteChange("electivo2",value.label)} // prints the selected value
                                         renderInput={params => (
                                             <CssTextField {...params} label="Electivo 2" variant="outlined" fullWidth required/>
                                         )}
@@ -265,8 +297,8 @@ const FormularioAlumno = () => {
                                         style={{ backgroundColor: 'rgba(160, 160, 160, 0.6)'}}
                                         disablePortal
                                         id="electivo3"
-                                        options={electivos}
-                                        onChange = {(event, value) => handleAutocompleteChange("electivo3",value.value)} // prints the selected value
+                                        options={props.electivos}
+                                        onChange = {(event, value) => handleAutocompleteChange("electivo3",value.label)} // prints the selected value
                                         renderInput={params => (
                                             <CssTextField {...params} label="Electivo 3" variant="outlined" fullWidth required/>
                                         )}

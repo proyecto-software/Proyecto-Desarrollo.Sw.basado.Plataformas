@@ -12,11 +12,27 @@ import {
   NavLink
 } from "react-router-dom";
 
-
-
-
+const endpoint_GetElectivos ="http://localhost:10000/ucn/electivos"
 
 function App() {
+  const [electivos,setElectivos] = React.useState([
+    {
+        "value": 0,
+        "label": ""
+    }])
+
+  const getElectivos = async() => {
+    // GET request using fetch with async/await
+    const response = await fetch(endpoint_GetElectivos);
+    const data = await response.json();
+    console.log("e: ",data)
+    setElectivos(data)
+  }
+  
+  React.useEffect( () => {
+    getElectivos()
+  },[]);
+
   return (
     
     <Router>
@@ -25,7 +41,7 @@ function App() {
             <Inicio/>
           </Route>
           <Route path="/Formulario">
-          <Formulario/>
+          <Formulario electivos={electivos}/>
           </Route>
           <Route path="/Login">
           <Login/>
