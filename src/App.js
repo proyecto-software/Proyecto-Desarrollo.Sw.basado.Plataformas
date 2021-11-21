@@ -13,7 +13,7 @@ import {
 } from "react-router-dom";
 
 const endpoints = {
-  GetElectivos: "http://localhost:10000/ucn/carreras",
+  GetCarreras: "http://localhost:10000/ucn/carreras",
   GetElectivos: "http://localhost:10000/ucn/electivos",
   PostFormulario: "http://localhost:10000/ucn/formulario",
   ValidarRut : "http://localhost:10000/ucn/rut"
@@ -36,10 +36,10 @@ function App() {
       // GET request using fetch with async/await
       const response = await fetch(endpoint);
       const data = await response.json();
-      console.log("e: ",data)
+      console.log("Electivos Api: ",data)
       setElectivos(data)
     }catch(error){
-      console.error("Error GET-Electivos: ", error)
+      console.error("Error API GET - Electivos: ", error)
     }
   }
 
@@ -48,7 +48,7 @@ function App() {
       // GET request using fetch with async/await
       const response = await fetch(endpoint);
       const data = await response.json();
-      console.log("e: ",data)
+      console.log("Carreras Api: ",data)
       setCarreras(data)
     }catch(error){
       console.error("Error GET-Carreras: ", error)

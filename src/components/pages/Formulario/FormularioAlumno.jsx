@@ -35,7 +35,7 @@ const FormularioAlumno = (props) => {
                 return false
             }
         }catch(error){
-            console.error("Error POST-Formulario: ", error)
+            console.error("Error API POST - Formulario: ", error)
         }
     }
 
@@ -65,7 +65,7 @@ const FormularioAlumno = (props) => {
                 return false
             }
         }catch(error){
-            console.error("Error POST-Formulario: ", error)
+            console.error("Error API POST - Validar Rut: ", error)
         }
 
         
