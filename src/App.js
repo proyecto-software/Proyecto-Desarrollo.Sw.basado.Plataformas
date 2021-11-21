@@ -12,7 +12,12 @@ import {
   NavLink
 } from "react-router-dom";
 
-const endpoint_GetElectivos ="http://localhost:10000/ucn/electivos"
+const endpoints = {
+  GetElectivos: "http://localhost:10000/ucn/carreras",
+  GetElectivos: "http://localhost:10000/ucn/electivos",
+  PostFormulario: "http://localhost:10000/ucn/formulario",
+  ValidarRut : "http://localhost:10000/ucn/rut"
+}
 
 function App() {
   const [electivos,setElectivos] = React.useState([
@@ -20,17 +25,39 @@ function App() {
         "value": 0,
         "label": ""
     }])
+  const [carreras,setCarreras] = React.useState([
+    {
+        "value": "",
+        "label": ""
+    }])
 
-  const getElectivos = async() => {
-    // GET request using fetch with async/await
-    const response = await fetch(endpoint_GetElectivos);
-    const data = await response.json();
-    console.log("e: ",data)
-    setElectivos(data)
+  const getElectivos = async(endpoint) => {
+    try{
+      // GET request using fetch with async/await
+      const response = await fetch(endpoint);
+      const data = await response.json();
+      console.log("e: ",data)
+      setElectivos(data)
+    }catch(error){
+      console.error("Error GET-Electivos: ", error)
+    }
+  }
+
+  const getCarreras = async(endpoint) => {
+    try{
+      // GET request using fetch with async/await
+      const response = await fetch(endpoint);
+      const data = await response.json();
+      console.log("e: ",data)
+      setCarreras(data)
+    }catch(error){
+      console.error("Error GET-Carreras: ", error)
+    }
   }
   
   React.useEffect( () => {
-    getElectivos()
+    getElectivos(endpoints.GetElectivos)
+    getCarreras(endpoints.GetCarreras)
   },[]);
 
   return (
@@ -41,7 +68,7 @@ function App() {
             <Inicio/>
           </Route>
           <Route path="/Formulario">
-          <Formulario electivos={electivos}/>
+          <Formulario endpoint={endpoints} carreras={carreras} electivos={electivos}/>
           </Route>
           <Route path="/Login">
           <Login/>

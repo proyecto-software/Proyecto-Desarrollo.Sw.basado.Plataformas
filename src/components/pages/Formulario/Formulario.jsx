@@ -7,7 +7,7 @@ const Formulario = (props) => {
   return (
       <Fragment>
         <HeaderHome/>
-        <FormularioAlumno electivos={props.electivos}/>
+        <FormularioAlumno endpoint={props.endpoint} carreras={props.carreras} electivos={props.electivos}/>
       </Fragment>
   )
 }
