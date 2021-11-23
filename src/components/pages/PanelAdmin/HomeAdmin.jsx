@@ -8,6 +8,13 @@ import Link from '@mui/material/Link';
 import Sidebar from './Sidebar';
 import Dashboard from './Dashboard';
 import Header from './Header';
+import ContentForm from './FormularioAdmin/ContentForm'
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route,
+  
+} from "react-router-dom";
 /* Tema general del home */
 let theme = createTheme({
   palette: {
@@ -20,7 +27,7 @@ let theme = createTheme({
   typography: {
     h5: {
       fontWeight: 500,
-      fontSize: 26,
+      fontSize: 36,
       letterSpacing: 0.5,
     },
   },
@@ -47,7 +54,7 @@ theme = {
     MuiDrawer: {
       styleOverrides: {
         paper: {
-          backgroundColor: '#081627',
+          backgroundColor: '#2C4348',
         },
       },
     },
@@ -198,6 +205,9 @@ export default function HomeAdmin() {
    
         </Box>
       </Box>
+
     </ThemeProvider>
+    
+    
   );
 }
