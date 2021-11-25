@@ -3,6 +3,10 @@ import { useForm } from "react-hook-form";
 import Axios from 'axios'
 import {Button,Card,CardContent,Typography,TextField,Grid,Autocomplete,Box} from "@mui/material";
 import { alpha, styled } from "@mui/material/styles";
+import Alert from '@mui/material/Alert';
+import Dialog from '@mui/material/Dialog';
+import IconButton from '@mui/material/IconButton';
+import CloseIcon from '@mui/icons-material/Close';
 
 
 const FormularioAlumno = (props) => {
@@ -39,6 +43,8 @@ const FormularioAlumno = (props) => {
         }
     }
 
+    const [rutValido, setRutValido] = useState(true);
+    const [sendSuccessful, setsendSuccessful] = useState(false);
     async function PostValidarRut(event){
         try{
             const req = {
@@ -58,10 +64,12 @@ const FormularioAlumno = (props) => {
 
             if (status===200){
                 //event.target.style.backgroundColor = color_gris_60
+                setRutValido(true)
                 return true
             }else{
                 //event.target.style.backgroundColor = color_red
                 event.target.style.borderColor = color_red
+                setRutValido(false)
                 return false
             }
         }catch(error){
@@ -82,6 +90,8 @@ const FormularioAlumno = (props) => {
       electivo2: '',
       electivo3: '',
     })
+
+    
     
     const color_gris_60 = "rgba(60, 60, 60, 0.1)"
     const color_green_border = "#00FF87"
@@ -288,7 +298,42 @@ const FormularioAlumno = (props) => {
                 </Card>
             </form>
         </Grid>
+        
         </Box>
+        
     )
 }
 export default FormularioAlumno
+
+/*
+ {!rutValido && (
+            <Dialog open={!rutValido}>
+                <div aling="center">
+                    <Alert severity="error" sx={{ mb: 2 }}>
+                        El rut no es correcto!
+                    </Alert>
+                </div>
+            </Dialog>
+            
+            
+            )}
+
+
+{!sendSuccessful && (
+            <Dialog open={!sendSuccessful}>
+                <IconButton
+                    aria-label="close"
+                    sx={{
+                        position: 'absolute',
+                        right: 8,
+                        top: 8,
+                        //color: (theme) => theme.palette.grey[500],
+                    }}>
+                    <CloseIcon />
+                </IconButton>
+                <p>dfsd</p>
+            </Dialog>
+
+            )}
+       
+*/

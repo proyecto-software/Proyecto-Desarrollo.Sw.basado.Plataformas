@@ -28,7 +28,7 @@ export default function Dashboard() {
         </Switch>
       </div> 
     </Router>
-
+    <h1>hola</h1>
     </Paper>
   );
 }
