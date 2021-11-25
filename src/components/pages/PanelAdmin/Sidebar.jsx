@@ -8,28 +8,14 @@ import ListItemButton from '@mui/material/ListItemButton';
 import ListItemIcon from '@mui/material/ListItemIcon';
 import ListItemText from '@mui/material/ListItemText';
 import HomeIcon from '@mui/icons-material/Home';
-import PeopleIcon from '@mui/icons-material/People';
-import DnsRoundedIcon from '@mui/icons-material/DnsRounded';
-import PermMediaOutlinedIcon from '@mui/icons-material/PhotoSizeSelectActual';
-import PublicIcon from '@mui/icons-material/Public';
-import SettingsEthernetIcon from '@mui/icons-material/SettingsEthernet';
-import SettingsInputComponentIcon from '@mui/icons-material/SettingsInputComponent';
-import TimerIcon from '@mui/icons-material/Timer';
-import SettingsIcon from '@mui/icons-material/Settings';
-import PhonelinkSetupIcon from '@mui/icons-material/PhonelinkSetup';
 import AssessmentIcon from '@mui/icons-material/Assessment';
 import AssignmentTurnedInIcon from '@mui/icons-material/AssignmentTurnedIn';
 import AttributionIcon from '@mui/icons-material/Attribution';
 import LogoutIcon from '@mui/icons-material/Logout';
 import {
-  BrowserRouter as Router,
-  Switch,
-  Route,
-  Link,
-  NavLink
+  Link
 } from "react-router-dom";
 import logo2 from '../../../img/ucn400x112.png'
-import ContentForm from './FormularioAdmin/ContentForm';
 const categories = [
   {
     id: 'Panel',
@@ -37,11 +23,11 @@ const categories = [
       {
         id: 'Dashboard',
         icon: <AssessmentIcon />,
-        link:'Dashboard'
+        link:'/PanelDashBoard/'
        /*  active: true, */
       },
-      { id: 'Formulario', icon: <AssignmentTurnedInIcon />, link:'/ContentForm'},
-      { id: 'Informe Curricular', icon: <AttributionIcon /> , link:'/ContentCuricular'},
+      { id: 'Formulario', icon: <AssignmentTurnedInIcon />, link:'/ContentForm/'},
+      { id: 'Informe Curricular', icon: <AttributionIcon /> , link:'/PanelInformeCurricular/'},
       
       
     ],
@@ -102,7 +88,17 @@ export default function Sidebar(props) {
                 <ListItem disablePadding key={childId}>
                   <ListItemButton selected={active} sx={item}>
                   <ListItemIcon>{icon}</ListItemIcon>
-                    <Link to={link} style={{ textDecoration: 'none' }}>                  
+
+                    <Link to={{
+
+                        pathname: link
+                      
+
+
+                      
+                            }} 
+                    style={{ 
+                          textDecoration: 'none' }}>                  
                     <ListItemText style={{ color:'#ffff' }}>{childId}</ListItemText>
                     </Link>
                   </ListItemButton>
