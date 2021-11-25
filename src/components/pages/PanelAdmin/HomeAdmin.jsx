@@ -6,15 +6,19 @@ import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 import Link from '@mui/material/Link';
 import Sidebar from './Sidebar';
-import Dashboard from './Dashboard';
-import Header from './Header';
+import Login from '../LoginAdmin/Login'
 import ContentForm from './FormularioAdmin/ContentForm'
+import PanelDashBoard from './DashBoard/PanelDashBoard'
+import PanelInformeCurricular from './InformeCurricular/PanelInformeCurricular'
+import Header from './Header';
+import Paper from '@mui/material/Paper';
 import {
   BrowserRouter as Router,
   Switch,
   Route,
   
 } from "react-router-dom";
+import BodyAdmin from './BodyAdmin';
 /* Tema general del home */
 let theme = createTheme({
   palette: {
@@ -174,6 +178,7 @@ export default function HomeAdmin() {
   return (
     /* Aplica el método propio */
     <ThemeProvider theme={theme}>
+     <Router>
       <Box sx={{ display: 'flex', minHeight: '100vh' }}>
         <CssBaseline />
         {/* ---------SideBar---------- */}
@@ -200,12 +205,37 @@ export default function HomeAdmin() {
         <Box sx={{ flex: 1, display: 'flex', flexDirection: 'column' }}>
           <Header onDrawerToggle={manejorResponsive} />
           <Box component="main" sx={{ flex: 1, py: 6, px: 4, bgcolor: '#eaeff1' }}>
-            <Dashboard />
+          <Paper sx={{ maxWidth: 936, margin: 'auto', overflow: 'hidden'}}>
+         
+            <div >
+              <div >
+                  <Link to="/Login" className=""></Link>
+                  <Link to="/PanelDashBoard/" className="">asdasdasd</Link>
+                  <Link to="/PanelInformeCurricular/" className=""></Link>
+                  <Link to="/PanelInformeCurricular/" className=""></Link>
+              </div> 
+                <Switch>
+                  <Route path="/ContentForm" >
+                    <ContentForm/>
+                  </Route>
+                  <Route path="/PanelDashBoard" >
+                    <PanelDashBoard/>
+                  </Route>
+                  <Route path="/PanelInformeCurricular" >
+                    <PanelInformeCurricular/>
+                  </Route>
+                  <Route path="../" >
+                    <Login/>
+                  </Route>
+                </Switch>
+            </div> 
+         
+          </Paper>
           </Box>
    
         </Box>
       </Box>
-
+    </Router>
     </ThemeProvider>
     
     

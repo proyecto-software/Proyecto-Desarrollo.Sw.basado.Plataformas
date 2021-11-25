@@ -23,11 +23,11 @@ const categories = [
       {
         id: 'Dashboard',
         icon: <AssessmentIcon />,
-        link:'Dashboard'
+        link:'/PanelDashBoard/'
        /*  active: true, */
       },
-      { id: 'Formulario', icon: <AssignmentTurnedInIcon />, link:'/ContentForm'},
-      { id: 'Informe Curricular', icon: <AttributionIcon /> , link:'/ContentCuricular'},
+      { id: 'Formulario', icon: <AssignmentTurnedInIcon />, link:'/ContentForm/'},
+      { id: 'Informe Curricular', icon: <AttributionIcon /> , link:'/PanelInformeCurricular/'},
       
       
     ],
