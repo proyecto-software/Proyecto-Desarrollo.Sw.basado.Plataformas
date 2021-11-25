@@ -1,40 +1,84 @@
-import React,{useState} from 'react'
+import React,{useState,useEffect} from 'react'
 import { useForm } from "react-hook-form";
 import Axios from 'axios'
 import {Button,Card,CardContent,Typography,TextField,Grid,Autocomplete,Box} from "@mui/material";
 import { alpha, styled } from "@mui/material/styles";
+import Alert from '@mui/material/Alert';
+import Dialog from '@mui/material/Dialog';
+import IconButton from '@mui/material/IconButton';
+import CloseIcon from '@mui/icons-material/Close';
 
 
-const FormularioAlumno = () => {
-    const endpoint_PostFormulario ="http://localhost:10000/ucn/formulario"
-
-    function sendDataPost () {
-        
-        let successful = false
-        alert('enviando datos...' + formulario.rut)
-        const sendJson = JSON.stringify(formulario,idFormulario)
-        
-        console.log(sendJson)
-
-        Axios.post(endpoint_PostFormulario,sendJson)
-        .then(res =>{
-            console.log(res.status)
-            if(res.status === 200){
-                successful = true
-
+const FormularioAlumno = (props) => {
+    //emdpoints
+    const endpoint_formulario = props.endpoint.GetElectivos
+    const endpoint_rut = props.endpoint.ValidarRut
+    //options
+    const electivos = props.electivos
+    const carreras = props.carreras
+    const cantidad = [
+        { label: '1', value: 1 },
+        { label: '2', value: 2 },
+        { label: '3', value: 3 }
+    ];
+    
+    async function PostDataFormulario(endpoint,form,struct){
+        try{
+            const requestOptions = {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(form,struct)
+            };
+            console.log(requestOptions)
+            const response = await fetch(endpoint, requestOptions);
+            const status = await response.status;
+            console.log("body: ",response.body)
+            if (status===200){
+                return true
             }else{
-                successful = false
-
+                return false
             }
-        })
-        return {successful}
+        }catch(error){
+            console.error("Error API POST - Formulario: ", error)
+        }
     }
 
-    const getElectivos = () => {
+    const [rutValido, setRutValido] = useState(true);
+    const [sendSuccessful, setsendSuccessful] = useState(false);
+    async function PostValidarRut(event){
+        try{
+            const req = {
+                "Rut": event.target.value
+            }
+            const requestOptions = {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(req)
+            };
+            console.log(requestOptions)
+            const response = await fetch(endpoint_rut, requestOptions);
+            const status = await response.status;
+            console.log("body: ",response.body)
+            console.log("resp: ",response)
+            console.log(event)
+
+            if (status===200){
+                //event.target.style.backgroundColor = color_gris_60
+                setRutValido(true)
+                return true
+            }else{
+                //event.target.style.backgroundColor = color_red
+                event.target.style.borderColor = color_red
+                setRutValido(false)
+                return false
+            }
+        }catch(error){
+            console.error("Error API POST - Validar Rut: ", error)
+        }
+
         
     }
-
-    //State
+    //Formulario
     const idFormulario = ['rut','nombre','correo','carrera','cantidad','electivo1','electivo2','electivo3']
     const [formulario] = useState({
       rut: '',
@@ -46,10 +90,13 @@ const FormularioAlumno = () => {
       electivo2: '',
       electivo3: '',
     })
+
+    
     
     const color_gris_60 = "rgba(60, 60, 60, 0.1)"
     const color_green_border = "#00FF87"
     const color_white = "white"
+    const color_red = "#FF0000"
     
     const CssTextField = styled(TextField)({
         "& label.Mui-focused": {
@@ -88,43 +135,38 @@ const FormularioAlumno = () => {
 
     //GET DESDE LA API
     //Valores select
-    const cantidad = [
-        { label: '1', value: 1 },
-        { label: '2', value: 2 },
-        { label: '3', value: 3 }
-    ];
-    //Carreras que vienen desde la api
-    const carrera = [
-        { label: 'ICCI', value: 'ICCI' },
-        { label: 'ICI', value: 'ICI' },
-        { label: 'ITI', value: 'ITI' }
-    ];
-    //Electivos que vienen desde la api
-    const electivos = [
-        { label: 'REDES DE COMPUTADORES', value: 'RC' },
-        { label: 'SISTEMAS DE RECOMENDACION', value: 'SR' },
-        { label: 'DATA SCIENCE', value: 'DS' }
-    ];
-    /////////////////////////////////////////
-
+    
+    
     //Enviar datos
     const {handleSubmit} =  useForm();
 
-    const onSubmit = ()=>{
+    async function onSubmit (){
+        
+        /*
         console.log("data")
         let requestSuccessful = false
 
         const response = sendDataPost()
         requestSuccessful = response
+        console.log(response)
         
-        if(requestSuccessful){
+        if(response.successful){
             alert("Solicitud registrada con exito.")
-            window.location.reload();
+            //window.location.reload();
         }else{
             alert("La solicitud no se ha podido registrar, la culpa es del nico.")
         }
 
+        */
         
+        const successful = await PostDataFormulario(endpoint_formulario,formulario,idFormulario)
+        console.log("send data successful: ",successful)
+        if(successful){
+            alert("Solicitud registrada con exito.")
+            //window.location.reload();
+        }else{
+            alert("La solicitud no se ha podido registrar, la culpa es del nico.")
+        }
     }
     //const [selectedOptions, setSelectedOptions] = useState([]);
 
@@ -163,7 +205,7 @@ const FormularioAlumno = () => {
                     <CardContent>
                         <Grid container spacing ={1}>
                             <Grid xs={12} sm={6 } color= "green" item>
-                            <CssTextField style={{ backgroundColor: 'rgba(160, 160, 160, 0.6)'}}label="Rut" placeholder="Ingrese Rut" name="rut" variant="outlined" fullWidth required onChange={handleInputChange}
+                            <CssTextField style={{ backgroundColor: 'rgba(160, 160, 160, 0.6)'}}label="Rut" placeholder="Ingrese Rut" name="rut" variant="outlined" fullWidth required onChange={handleInputChange} onBlur={PostValidarRut}
                             ></CssTextField>
                             </Grid>
                             <Grid xs={12} sm={6}item>
@@ -177,7 +219,7 @@ const FormularioAlumno = () => {
                                         style={{ backgroundColor: 'rgba(160, 160, 160, 0.6)'}} 
                                         disablePortal
                                         id="carrera"
-                                        options={carrera}
+                                        options={carreras}
                                         onChange = {(event, value) => handleAutocompleteChange("carrera",value.value)} // prints the selected value
                                         renderInput={params => (
                                             <CssTextField {...params} label="Carrera" variant="outlined" fullWidth required/>
@@ -203,7 +245,7 @@ const FormularioAlumno = () => {
                                         id="electivo1"
                                         options={electivos}
                                         
-                                        onChange =  {(event, value) => handleAutocompleteChange("electivo1",value.value)} // prints the selected value
+                                        onChange =  {(event, value) => handleAutocompleteChange("electivo1",value.label)} // prints the selected value
                                         renderInput={params => (
                                             <CssTextField {...params} label="Electivo 1" variant="outlined" fullWidth required/>
                                         )}
@@ -216,7 +258,7 @@ const FormularioAlumno = () => {
                                         id="electivo2"
                                         options={electivos}
                                         
-                                        onChange =  {(event, value) => handleAutocompleteChange("electivo2",value.value)} // prints the selected value
+                                        onChange =  {(event, value) => handleAutocompleteChange("electivo2",value.label)} // prints the selected value
                                         renderInput={params => (
                                             <CssTextField {...params} label="Electivo 2" variant="outlined" fullWidth required/>
                                         )}
@@ -225,11 +267,12 @@ const FormularioAlumno = () => {
                             </Grid>
                             <Grid xs={12} item>
                             <Autocomplete
+                                        
                                         style={{ backgroundColor: 'rgba(160, 160, 160, 0.6)'}}
-                                        disablePortal
+                                        disabled={false}
                                         id="electivo3"
                                         options={electivos}
-                                        onChange = {(event, value) => handleAutocompleteChange("electivo3",value.value)} // prints the selected value
+                                        onChange = {(event, value) => handleAutocompleteChange("electivo3",value.label)} // prints the selected value
                                         renderInput={params => (
                                             <CssTextField {...params} label="Electivo 3" variant="outlined" fullWidth required/>
                                         )}
@@ -255,7 +298,42 @@ const FormularioAlumno = () => {
                 </Card>
             </form>
         </Grid>
+        
         </Box>
+        
     )
 }
 export default FormularioAlumno
+
+/*
+ {!rutValido && (
+            <Dialog open={!rutValido}>
+                <div aling="center">
+                    <Alert severity="error" sx={{ mb: 2 }}>
+                        El rut no es correcto!
+                    </Alert>
+                </div>
+            </Dialog>
+            
+            
+            )}
+
+
+{!sendSuccessful && (
+            <Dialog open={!sendSuccessful}>
+                <IconButton
+                    aria-label="close"
+                    sx={{
+                        position: 'absolute',
+                        right: 8,
+                        top: 8,
+                        //color: (theme) => theme.palette.grey[500],
+                    }}>
+                    <CloseIcon />
+                </IconButton>
+                <p>dfsd</p>
+            </Dialog>
+
+            )}
+       
+*/

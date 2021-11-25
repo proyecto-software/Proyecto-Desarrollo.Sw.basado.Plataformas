@@ -2,13 +2,12 @@ import React,{Fragment, useState} from 'react'
 import HeaderHome from '../homePage/HeaderHome'
 import FormularioAlumno from './FormularioAlumno'
 
-const Formulario = () => {
-  //Agregar Formulario
-  return ( 
-      
+const Formulario = (props) => {
+  
+  return (
       <Fragment>
         <HeaderHome/>
-        <FormularioAlumno/>
+        <FormularioAlumno endpoint={props.endpoint} carreras={props.carreras} electivos={props.electivos}/>
       </Fragment>
   )
 }
