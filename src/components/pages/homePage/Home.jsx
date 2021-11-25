@@ -51,7 +51,7 @@ const Home = () => {
             <div align="center">
             <Button  style={{ 
                     backgroundColor: 'rgba(160, 160, 160, 0.6)',
-                    width:'30rem',
+                    width:'20rem',
                     height:'6rem',
                     fontSize:15
                     }}   type="submit" variant="contained"   href="/Login"  >ADMINISTRADOR</Button>
@@ -64,7 +64,7 @@ const Home = () => {
             <div align="center">
             <Button  style={{ 
                     backgroundColor: 'rgba(160, 160, 160, 0.6)',
-                    width:'30rem',
+                    width:'20rem',
                     height:'6rem',
                     fontSize:15
                     }}   type="submit" variant="contained" href="/Formulario" >ALUMNO</Button>
