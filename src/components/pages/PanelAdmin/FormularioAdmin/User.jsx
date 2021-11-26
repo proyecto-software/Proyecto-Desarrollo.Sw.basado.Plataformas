@@ -1,4 +1,5 @@
 import React  from 'react';
+import Paper from '@mui/material/Paper';
 import {
     
   useParams
@@ -23,10 +24,12 @@ const User = () => {
 
     //retorno de la aplicación
     return(
-        <div>
+        <Paper sx={{ maxWidth: 936, margin: 'auto', overflow: 'hidden' }}>
+        
             <h3>{pueblo.name}</h3>
             <p>{pueblo.team_bonus}</p>
-        </div>
+      
+        </Paper>
     );
 }
 export default User
