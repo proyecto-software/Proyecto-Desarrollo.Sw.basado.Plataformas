@@ -99,13 +99,6 @@ export default function ContentForm() {
       {field:'carrera',headerName:'Carrera',width:70},
       {field:'indicador',headerName:'Indicador',width:90},
       {field:'electivo1',headerName:'Electivo1',width:90},
-<<<<<<< HEAD
-      {field:'estado1',headerName:'Estado1',width:90, editable:true, type:'boolean'},
-      {field:'electivo2',headerName:'Electivo2',width:90},
-      {field:'estado2',headerName:'Estado2',width:90, editable:true, type:'boolean'},
-      {field:'electivo3',headerName:'Electivo3',width:90},
-      {field:'estado3',headerName:'Estado3',width:90,editable:true, type:'boolean'},
-=======
       {
         field: 'estado1',
         headerName: 'Estado 1',
@@ -171,7 +164,6 @@ export default function ContentForm() {
         ),
         
       },
->>>>>>> origin/new-front-dionisio
     ];
     
 
@@ -209,22 +201,14 @@ export default function ContentForm() {
       <Alert severity="info" style={{ marginBottom: 8 }}>
         <code>editRowsModel: {JSON.stringify(editRowsModel)}</code>
       </Alert>
-
-      <DataGrid
-        
-        rows={Alumnos}
-        columns={columns}
-        pageSize={5}
-        rowsPerPageOptions={[12]}
-        //checkboxSelection
-        disableSelectionOnClick
-<<<<<<< HEAD
-        onPageChange = {handlePageChange}
-=======
-        //onCellEditStop = {async(params, event)=> console.log("e1: ",params.row)}
->>>>>>> origin/new-front-dionisio
-        
-      />
+        <DataGrid
+          
+          rows={Alumnos}
+          columns={columns}
+          pageSize={5}
+          rowsPerPageOptions={[12]}
+          disableSelectionOnClick    
+        />
       </div>
       
       
