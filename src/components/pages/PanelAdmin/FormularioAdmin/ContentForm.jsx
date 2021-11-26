@@ -1,43 +1,46 @@
-import * as React from 'react';
-import AppBar from '@mui/material/AppBar';
-import Toolbar from '@mui/material/Toolbar';
+import React, { useState } from 'react';
 import Typography from '@mui/material/Typography';
 import Paper from '@mui/material/Paper';
-import Grid from '@mui/material/Grid';
-import Button from '@mui/material/Button';
-import TextField from '@mui/material/TextField';
-import Tooltip from '@mui/material/Tooltip';
-import IconButton from '@mui/material/IconButton';
-import SearchIcon from '@mui/icons-material/Search';
-import RefreshIcon from '@mui/icons-material/Refresh';
-//import { DataGrid } from '@mui/x-data-grid';
-
-
-const endpoints = {
-  GetInfoFormulario: "http://localhost:10000/ucn/Infoformulario",
-
-}
-const [Info,setInfo] = useState([])
-const getInformacionFormularios = async() => {
-  try{
-    // GET request using fetch with async/await
-    const response = await fetch(endpoints.GetInfoFormulario);
-    const data = await response.json();
-    console.log("Formularios ",data)
-    setElectivos(data)
-  }catch(error){
-    console.error("Error API GET Formulario ", error)
-  }
-}
-
-
+import {
+  useParams,
+  Link
+  } from "react-router-dom";
 export default function ContentForm() {
+  //Params
+  const {id} = useParams();
+  console.log(id)
+  //HOOKS
+  const [Alumnos,setAlumnos] = useState([])
+  //End Poinst
+  const endpoints = {
+    GetInfoFormulario: "http://localhost:10000/ucn/Infoformulario",
+  }
+  //UseEffect
+  React.useEffect( ()=>{
+    const obtenerDatos = async() => {
+        const data = await fetch('https://age-of-empires-2-api.herokuapp.com/api/v1/civilizations')
+        const infoAlum = await data.json()
+        setAlumnos(infoAlum.civilizations)
+    }
+    obtenerDatos()
+  }, [id]);
+    
   return (
+
     <Paper sx={{ maxWidth: 936, margin: 'auto', overflow: 'hidden' }}>
-      
-      <Typography sx={{ my: 5, mx: 2 }} color="text.secondary" align="center">
-        No users for this project yet
-      </Typography>
+            <h1>Entregar información</h1>
+            <ul>
+                {
+                  Alumnos.map( item =>(
+                        <li key={item.id}>
+                            <Link to={`/ContentForm/${item.id}`}>
+                                {item.name} - {item.expansion}
+                            </Link>
+                        </li>
+                    )
+                    )
+                }
+            </ul>
       
     </Paper>
   );

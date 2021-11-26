@@ -9,6 +9,7 @@ import Sidebar from './Sidebar';
 import Login from '../LoginAdmin/Login'
 import ContentForm from './FormularioAdmin/ContentForm'
 import PanelDashBoard from './DashBoard/PanelDashBoard'
+import User from './FormularioAdmin/User'
 import PanelInformeCurricular from './InformeCurricular/PanelInformeCurricular'
 import Header from './Header';
 import Paper from '@mui/material/Paper';
@@ -210,13 +211,16 @@ export default function HomeAdmin() {
             <div >
               <div >
                   <Link to="/Login" className=""></Link>
-                  <Link to="/PanelDashBoard/" className="">asdasdasd</Link>
+                  <Link to="/PanelDashBoard/" className=""></Link>
                   <Link to="/PanelInformeCurricular/" className=""></Link>
                   <Link to="/PanelInformeCurricular/" className=""></Link>
               </div> 
                 <Switch>
                   <Route path="/ContentForm" >
                     <ContentForm/>
+                  </Route>
+                  <Route path="/ContentForm/:id" >
+                    <User/>
                   </Route>
                   <Route path="/PanelDashBoard" >
                     <PanelDashBoard/>
