@@ -14,6 +14,7 @@ const FormularioAlumno = (props) => {
     console.log(props)
     const endpoint_formulario = props.endpoint.PostFormulario
     const endpoint_rut = props.endpoint.ValidarRut
+    const endpoint_correo = props.endpoint.ValidarCorreo
     //options
     const electivos = props.electivos
     const carreras = props.carreras
@@ -72,6 +73,42 @@ const FormularioAlumno = (props) => {
                 //event.target.style.borderColor = color_red
                 
                 setRutValido(false)
+                return false
+            }
+        }catch(error){
+            console.error("Error API POST - Validar Rut: ", error)
+        }
+
+        
+    }
+    async function PostValidarCorreo(event){
+        try{
+            const req = {
+                "Correo": event.target.value
+            }
+            const requestOptions = {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(req)
+            };
+            console.log(requestOptions)
+            const response = await fetch(endpoint_correo, requestOptions);
+            const status = await response.status;
+            console.log("body: ",response.body)
+            console.log("resp: ",response)
+            console.log(event)
+
+            if (status===200){
+                //event.target.style.backgroundColor = color_gris_60
+                //event.target.style.borderColor = color_red
+                setCorreoValido(true)
+                return true
+            }else{
+                //event.target.style.backgroundColor = color_red
+                //event.target.style.borderWidth = 10
+                //event.target.style.borderColor = color_red
+                
+                setCorreoValido(false)
                 return false
             }
         }catch(error){
@@ -224,8 +261,16 @@ const FormularioAlumno = (props) => {
                             <CssTextField style={{ backgroundColor: 'rgba(160, 160, 160, 0.6)'}} label="Nombre" placeholder="Ingrese Nombre" name="nombre" variant="outlined" fullWidth required onChange={handleInputChange}></CssTextField>
                             </Grid>
                             <Grid xs={12}item>
-                            <CssTextField style={{ backgroundColor: 'rgba(160, 160, 160, 0.6)'}} type="email" label="Correo" placeholder="Ingrese alumnos.ucn.cl" name="correo" variant="outlined" fullWidth required onChange={handleInputChange}></CssTextField>
+                            <CssTextField style={{ backgroundColor: 'rgba(160, 160, 160, 0.6)'}} type="email" label="Correo" placeholder="Ingrese alumnos.ucn.cl" name="correo" variant="outlined" fullWidth required onChange={handleInputChange} onBlur={PostValidarCorreo} error={!correoValido} ></CssTextField>
+                            {!correoValido && (
+                                <div aling="center">
+                                <Alert severity="error" sx={{ mb: 2 }}>
+                                    El correo no es correcto!
+                                </Alert>
+                            </div>   
+                            )}
                             </Grid>
+                            
                             <Grid xs={6}  item>
                                 <Autocomplete 
                                         style={{ backgroundColor: 'rgba(160, 160, 160, 0.6)'}} 
@@ -301,7 +346,7 @@ const FormularioAlumno = (props) => {
                                         fontSize:15
                                         }}
                                 onClick={handleSubmit}
-                                disabled={!rutValido}
+                                disabled={!(rutValido && correoValido)}
                                 type="submit" variant="contained" >Enviar</Button>
                                 </div>
                             
