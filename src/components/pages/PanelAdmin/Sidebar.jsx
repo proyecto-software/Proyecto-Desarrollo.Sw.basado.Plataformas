@@ -12,6 +12,7 @@ import AssessmentIcon from '@mui/icons-material/Assessment';
 import AssignmentTurnedInIcon from '@mui/icons-material/AssignmentTurnedIn';
 import AttributionIcon from '@mui/icons-material/Attribution';
 import LogoutIcon from '@mui/icons-material/Logout';
+import {Button } from '@mui/material';
 import {
   Link
 } from "react-router-dom";
@@ -30,12 +31,6 @@ const categories = [
       { id: 'Informe Curricular', icon: <AttributionIcon /> , link:'/HomeAdmin/PanelInformeCurricular/'},
       
       
-    ],
-  },
-  {
-    id: '',
-    children: [
-      { id: 'Salir', icon: <LogoutIcon /> , link:'../'},
     ],
   },
 ];
@@ -108,14 +103,17 @@ export default function Sidebar(props) {
 
             <Divider sx={{ mt: 2 }} />
           </Box>
+          
         ))
         
         }
       </List>
-
-
-
-
+      <div align="center">
+            <Button  style={{ 
+                    color: '#ffffff',
+                    fontSize:15,
+                    }}   href="/" ><LogoutIcon sx={{ mr: 2 }}/>Salir</Button>
+            </div>
     </Drawer>
   );
 }

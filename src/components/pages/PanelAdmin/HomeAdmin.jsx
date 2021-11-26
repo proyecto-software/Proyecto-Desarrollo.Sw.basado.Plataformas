@@ -209,6 +209,7 @@ export default function HomeAdmin() {
          
             <div >
               <div >
+                  <Link to="/" className=""></Link>
                   <Link to="/HomeAdmin/Login" className=""></Link>
                   <Link to="/HomeAdmin/PanelDashBoard/" className="">asdasdasd</Link>
                   <Link to="/HomeAdmin/PanelInformeCurricular/" className=""></Link>
@@ -224,7 +225,7 @@ export default function HomeAdmin() {
                   <Route path="/HomeAdmin/PanelInformeCurricular" >
                     <PanelInformeCurricular/>
                   </Route>
-                  <Route path="../" >
+                  <Route path="/" exact> 
                     <Login/>
                   </Route>
                 </Switch>
