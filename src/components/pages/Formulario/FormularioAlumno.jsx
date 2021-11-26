@@ -105,7 +105,7 @@ const FormularioAlumno = (props) => {
             alert("Solicitud registrada con exito.")
             //window.location.reload();
         }else{
-            alert("La solicitud no se ha podido registrar, la culpa es del nico.")
+            alert("La solicitud no se ha podido registrar.")
         }
     }
 

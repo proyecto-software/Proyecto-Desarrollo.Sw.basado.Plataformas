@@ -211,7 +211,7 @@ export default function HomeAdmin() {
               <div >
                   <Link to="/" className=""></Link>
                   <Link to="/HomeAdmin/Login" className=""></Link>
-                  <Link to="/HomeAdmin/PanelDashBoard/" className="">asdasdasd</Link>
+                  <Link to="/HomeAdmin/PanelDashBoard/" className=""></Link>
                   <Link to="/HomeAdmin/PanelInformeCurricular/" className=""></Link>
                   <Link to="/HomeAdmin/PanelInformeCurricular/" className=""></Link>
               </div> 

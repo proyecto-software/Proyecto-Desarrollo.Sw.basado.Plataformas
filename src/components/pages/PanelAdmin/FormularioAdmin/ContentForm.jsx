@@ -173,7 +173,6 @@ export default function ContentForm() {
   return (
     <Router>
     <Paper sx={{ maxWidth: 936, margin: 'auto', overflow: 'hidden'}}>
-    <Button type="submit" onClick={handleChange}>ENVIAR SOLICITUD</Button>
     <Typography sx={{ my: 2, mx: 2,fontSize:30 }} color="text.secondary" align="center">
         Formulario
       </Typography>
@@ -197,10 +196,6 @@ export default function ContentForm() {
             
             */}
       <div style={{height: 500, width: '100%' }}>
-
-      <Alert severity="info" style={{ marginBottom: 8 }}>
-        <code>editRowsModel: {JSON.stringify(editRowsModel)}</code>
-      </Alert>
 
       <DataGrid
         sx={{fontSize:20}}
