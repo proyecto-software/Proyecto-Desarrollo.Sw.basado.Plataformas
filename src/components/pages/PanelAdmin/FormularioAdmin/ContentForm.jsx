@@ -17,26 +17,23 @@ export default function ContentForm() {
   //HOOKS
   const [Alumnos,setAlumnos] = useState([])
   //End Poinst
-  const endpoints = {
-    GetInfoFormulario: "http://localhost:10000/ucn/Infoformulario",
-  }
+
   //UseEffect
   React.useEffect( ()=>{
     const obtenerDatos = async() => {
-        const data = await fetch('https://age-of-empires-2-api.herokuapp.com/api/v1/civilizations')
+        const data = await fetch('http://localhost:10000/ucn/solicitudes')
         const infoAlum = await data.json()
-        setAlumnos(infoAlum.civilizations)
+        setAlumnos(infoAlum)
     }
     obtenerDatos()
   }, [id]);
     //Variables Para GRID
 
     const columns = [
-      { field: 'id', headerName: 'ID', width: 90 },
-      {field:'rut',headerName:'Rut',width:90},
+      {field:'rut_alumno',headerName:'Rut',width:90},
       {field:'carrera',headerName:'Carrera',width:90},
       {field:'indicador',headerName:'Indicador',width:90},
-      {field:'electivo',headerName:'Electivo',width:90},
+      {electivo:'electivo',headerName:'Electivo',width:90},
       {
         field: 'estado',
         headerName: 'Estado',
@@ -45,22 +42,14 @@ export default function ContentForm() {
       }
     ];
     
-    const rows = [
-      { id: 1, lastName: 'Snow', firstName: 'Jon', age: 35 },
-      { id: 2, lastName: 'Lannister', firstName: 'Cersei', age: 42 },
-      { id: 3, lastName: 'Lannister', firstName: 'Jaime', age: 45 },
-      { id: 4, lastName: 'Stark', firstName: 'Arya', age: 16 },
-      { id: 5, lastName: 'Targaryen', firstName: 'Daenerys', age: null },
-      { id: 6, lastName: 'Melisandre', firstName: null, age: 150 },
-      { id: 7, lastName: 'Clifford', firstName: 'Ferrara', age: 44 },
-      { id: 8, lastName: 'Frances', firstName: 'Rossini', age: 36 },
-      { id: 9, lastName: 'Roxie', firstName: 'Harvey', age: 65 },
-    ];
+
 
   return (
     <Router>
-    <Paper sx={{ maxWidth: 936, margin: 'auto', overflow: 'hidden' }}>
-            <h1>Entregar información</h1>
+    <Paper sx={{ maxWidth: 936, margin: 'auto', overflow: 'hidden'}}>
+    <Typography sx={{ my: 2, mx: 2,fontSize:30 }} color="text.secondary" align="center">
+        Formulario
+      </Typography>
 {/*             <ul>
                 {
                   Alumnos.map( item =>(
@@ -82,7 +71,7 @@ export default function ContentForm() {
             */}
       <div style={{height: 400, width: '100%' }}>
       <DataGrid
-
+        sx={{fontSize:20}}
         rows={Alumnos}
         columns={columns}
         pageSize={5}
