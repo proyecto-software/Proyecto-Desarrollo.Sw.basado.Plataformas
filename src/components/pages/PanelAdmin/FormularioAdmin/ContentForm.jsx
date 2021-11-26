@@ -197,19 +197,6 @@ export default function ContentForm() {
             */}
       <div style={{height: 500, width: '100%' }}>
 
-<<<<<<< HEAD
-      <Alert severity="info" style={{ marginBottom: 8 }}>
-        <code>editRowsModel: {JSON.stringify(editRowsModel)}</code>
-      </Alert>
-        <DataGrid
-          
-          rows={Alumnos}
-          columns={columns}
-          pageSize={5}
-          rowsPerPageOptions={[12]}
-          disableSelectionOnClick    
-        />
-=======
       <DataGrid
         sx={{fontSize:20}}
         rows={Alumnos}
@@ -221,7 +208,6 @@ export default function ContentForm() {
         //onCellEditStop = {async(params, event)=> console.log("e1: ",params.row)}
         
       />
->>>>>>> origin/new-front-dionisio
       </div>
       
       
