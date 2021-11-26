@@ -36,32 +36,11 @@ export default function ContentForm() {
       {field:'carrera',headerName:'Carrera',width:90},
       {field:'indicador',headerName:'Indicador',width:90},
       {field:'electivo1',headerName:'Electivo1',width:90},
-<<<<<<< HEAD
-=======
-      {
-        field: 'estado1',
-        headerName: 'Estado 1',
-        width: 90,
-        editable: true,
-        type: 'boolean',
-      },
+      {field:'estado1',headerName:'Estado1',width:90, editable:true, type:'boolean'},
       {field:'electivo2',headerName:'Electivo2',width:90},
-      {
-        field: 'estado2',
-        headerName: 'estado2 ',
-        width: 90,
-        editable: true,
-        type: 'boolean',
-      },
+      {field:'estado2',headerName:'Estado2',width:90, editable:true, type:'boolean'},
       {field:'electivo3',headerName:'Electivo3',width:90},
-      {
-        field: 'estado3',
-        headerName: 'Estado3',
-        width: 90,
-        editable: true,
-        type: 'boolean',
-      }
->>>>>>> origin/new-front-dionisio
+      {field:'estado3',headerName:'Estado3',width:90,editable:true, type:'boolean'},
     ];
     
 
@@ -102,7 +81,8 @@ export default function ContentForm() {
         rowsPerPageOptions={[5]}
         checkboxSelection
         disableSelectionOnClick
-        onPageChange = {console.log(Alumnos)}
+        onPageChange = {handlePageChange}
+        
       />
 
       </div>
