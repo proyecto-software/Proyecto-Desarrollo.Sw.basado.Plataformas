@@ -173,7 +173,6 @@ export default function ContentForm() {
   return (
     <Router>
     <Paper sx={{ maxWidth: 936, margin: 'auto', overflow: 'hidden'}}>
-    <Button type="submit" onClick={handleChange}>ENVIAR SOLICITUD</Button>
     <Typography sx={{ my: 2, mx: 2,fontSize:30 }} color="text.secondary" align="center">
         Formulario
       </Typography>
@@ -198,6 +197,7 @@ export default function ContentForm() {
             */}
       <div style={{height: 500, width: '100%' }}>
 
+<<<<<<< HEAD
       <Alert severity="info" style={{ marginBottom: 8 }}>
         <code>editRowsModel: {JSON.stringify(editRowsModel)}</code>
       </Alert>
@@ -209,6 +209,19 @@ export default function ContentForm() {
           rowsPerPageOptions={[12]}
           disableSelectionOnClick    
         />
+=======
+      <DataGrid
+        sx={{fontSize:20}}
+        rows={Alumnos}
+        columns={columns}
+        pageSize={5}
+        rowsPerPageOptions={[12]}
+        //checkboxSelection
+        disableSelectionOnClick
+        //onCellEditStop = {async(params, event)=> console.log("e1: ",params.row)}
+        
+      />
+>>>>>>> origin/new-front-dionisio
       </div>
       
       
