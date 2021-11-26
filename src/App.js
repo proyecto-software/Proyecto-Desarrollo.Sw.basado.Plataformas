@@ -15,7 +15,8 @@ const endpoints = {
   GetCarreras: "http://localhost:10000/ucn/carreras",
   GetElectivos: "http://localhost:10000/ucn/electivos",
   PostFormulario: "http://localhost:10000/ucn/formulario",
-  ValidarRut : "http://localhost:10000/ucn/rut"
+  ValidarRut : "http://localhost:10000/ucn/rut",
+  ValidarCorreo : "http://localhost:10000/ucn/correo"
 }
 
 function App() {
