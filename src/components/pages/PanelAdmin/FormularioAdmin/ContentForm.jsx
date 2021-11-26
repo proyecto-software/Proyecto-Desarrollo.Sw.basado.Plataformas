@@ -3,6 +3,7 @@ import Typography from '@mui/material/Typography';
 import Paper from '@mui/material/Paper';
 import User from './User'
 import { DataGrid } from '@mui/x-data-grid';
+import {Button} from "@mui/material";
 import {
   BrowserRouter as Router,
   Route,
@@ -35,10 +36,38 @@ export default function ContentForm() {
       {field:'carrera',headerName:'Carrera',width:90},
       {field:'indicador',headerName:'Indicador',width:90},
       {field:'electivo1',headerName:'Electivo1',width:90},
+<<<<<<< HEAD
+=======
+      {
+        field: 'estado1',
+        headerName: 'Estado 1',
+        width: 90,
+        editable: true,
+        type: 'boolean',
+      },
+      {field:'electivo2',headerName:'Electivo2',width:90},
+      {
+        field: 'estado2',
+        headerName: 'estado2 ',
+        width: 90,
+        editable: true,
+        type: 'boolean',
+      },
+      {field:'electivo3',headerName:'Electivo3',width:90},
+      {
+        field: 'estado3',
+        headerName: 'Estado3',
+        width: 90,
+        editable: true,
+        type: 'boolean',
+      }
+>>>>>>> origin/new-front-dionisio
     ];
     
 
-
+  const handleChange = () => {
+    console.log(Alumnos)
+  }
   return (
     <Router>
     <Paper sx={{ maxWidth: 936, margin: 'auto', overflow: 'hidden'}}>
@@ -73,9 +102,12 @@ export default function ContentForm() {
         rowsPerPageOptions={[5]}
         checkboxSelection
         disableSelectionOnClick
+        onPageChange = {console.log(Alumnos)}
       />
 
       </div>
+
+      <Button type="submit" onClick={handleChange}></Button>
     </Paper>
     </Router>
   );
