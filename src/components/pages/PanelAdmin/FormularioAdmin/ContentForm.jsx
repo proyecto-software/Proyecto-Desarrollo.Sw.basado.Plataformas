@@ -30,6 +30,7 @@ export default function ContentForm() {
     //Variables Para GRID
 
     const columns = [
+     
       {field:'rut_alumno',headerName:'Rut',width:90},
       {field:'carrera',headerName:'Carrera',width:90},
       {field:'indicador',headerName:'Indicador',width:90},
