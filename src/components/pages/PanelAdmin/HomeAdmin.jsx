@@ -209,19 +209,19 @@ export default function HomeAdmin() {
          
             <div >
               <div >
-                  <Link to="/Login" className=""></Link>
-                  <Link to="/PanelDashBoard/" className="">asdasdasd</Link>
-                  <Link to="/PanelInformeCurricular/" className=""></Link>
-                  <Link to="/PanelInformeCurricular/" className=""></Link>
+                  <Link to="/HomeAdmin/Login" className=""></Link>
+                  <Link to="/HomeAdmin/PanelDashBoard/" className="">asdasdasd</Link>
+                  <Link to="/HomeAdmin/PanelInformeCurricular/" className=""></Link>
+                  <Link to="/HomeAdmin/PanelInformeCurricular/" className=""></Link>
               </div> 
                 <Switch>
-                  <Route path="/ContentForm" >
+                  <Route path="/HomeAdmin/ContentForm" >
                     <ContentForm/>
                   </Route>
-                  <Route path="/PanelDashBoard" >
+                  <Route path="/HomeAdmin/PanelDashBoard" >
                     <PanelDashBoard/>
                   </Route>
-                  <Route path="/PanelInformeCurricular" >
+                  <Route path="/HomeAdmin/PanelInformeCurricular" >
                     <PanelInformeCurricular/>
                   </Route>
                   <Route path="../" >

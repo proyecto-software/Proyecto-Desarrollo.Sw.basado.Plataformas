@@ -68,13 +68,13 @@ function App() {
             <Inicio/>
           </Route>
           <Route path="/Formulario">
-          <Formulario endpoint={endpoints} carreras={carreras} electivos={electivos}/>
+            <Formulario endpoint={endpoints} carreras={carreras} electivos={electivos}/>
           </Route>
           <Route path="/Login">
-          <Login/>
+            <Login/>
           </Route>
           <Route path="/HomeAdmin">
-          <HomeAdmin/>
+            <HomeAdmin/>
           </Route>
        {/*  </Switch> */}
      
