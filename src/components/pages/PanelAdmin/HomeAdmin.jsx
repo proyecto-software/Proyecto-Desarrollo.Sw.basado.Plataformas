@@ -12,7 +12,6 @@ import PanelDashBoard from './DashBoard/PanelDashBoard'
 import PanelInformeCurricular from './InformeCurricular/PanelInformeCurricular'
 import Header from './Header';
 import Paper from '@mui/material/Paper';
-import User from './FormularioAdmin/User'
 import {
   BrowserRouter as Router,
   Switch,
@@ -210,8 +209,9 @@ export default function HomeAdmin() {
          
             <div >
               <div >
+                  <Link to="/" className=""></Link>
                   <Link to="/HomeAdmin/Login" className=""></Link>
-                  <Link to="/HomeAdmin/PanelDashBoard/" className=""></Link>
+                  <Link to="/HomeAdmin/PanelDashBoard/" className="">asdasdasd</Link>
                   <Link to="/HomeAdmin/PanelInformeCurricular/" className=""></Link>
                   <Link to="/HomeAdmin/PanelInformeCurricular/" className=""></Link>
               </div> 
@@ -225,7 +225,7 @@ export default function HomeAdmin() {
                   <Route path="/HomeAdmin/PanelInformeCurricular" >
                     <PanelInformeCurricular/>
                   </Route>
-                  <Route path="../" >
+                  <Route path="/" exact> 
                     <Login/>
                   </Route>
                 </Switch>
