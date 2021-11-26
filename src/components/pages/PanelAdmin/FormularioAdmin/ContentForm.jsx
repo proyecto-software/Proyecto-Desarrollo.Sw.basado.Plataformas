@@ -30,17 +30,30 @@ export default function ContentForm() {
     //Variables Para GRID
 
     const columns = [
-     
+      {field:'id',headerName:'Id',width:90},
       {field:'rut_alumno',headerName:'Rut',width:90},
       {field:'carrera',headerName:'Carrera',width:90},
       {field:'indicador',headerName:'Indicador',width:90},
-      {field:'electivo',headerName:'Electivo',width:90},
+      {field:'electivo1',headerName:'Electivo1',width:90},
       {
-        field: 'estado',
-        headerName: 'Estado',
+        field: 'estado1',
+        headerName: 'Estado 1',
         width: 90,
         editable: true,
-        type:'boolean',
+      },
+      {field:'electivo2',headerName:'Electivo2',width:90},
+      {
+        field: 'estado2',
+        headerName: 'estado2 ',
+        width: 90,
+        editable: true,
+      },
+      {field:'electivo3',headerName:'Electivo3',width:90},
+      {
+        field: 'estado3',
+        headerName: 'Estado3',
+        width: 90,
+        editable: true,
       }
     ];
     
@@ -71,7 +84,7 @@ export default function ContentForm() {
             </Switch>
             
             */}
-      <div style={{height: 400, width: '100%' }}>
+      <div style={{height: 500, width: '100%' }}>
       <DataGrid
         sx={{fontSize:20}}
         rows={Alumnos}
