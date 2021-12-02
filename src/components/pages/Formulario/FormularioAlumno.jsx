@@ -267,7 +267,7 @@ const FormularioAlumno = (props) => {
                                 <Alert severity="error" sx={{ mb: 2 }}>
                                     El correo no es correcto!
                                 </Alert>
-                            </div>   
+                                </div>   
                             )}
                             </Grid>
                             
