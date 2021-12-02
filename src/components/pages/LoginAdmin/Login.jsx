@@ -1,92 +1,128 @@
-import React from 'react'
-import {Box,Grid,Typography,Button } from '@mui/material';
-import HeaderHome from '../homePage/HeaderHome'
+import React,{useState,useEffect} from 'react'
+import { useForm } from "react-hook-form";
+import {Button,Card,CardContent,Typography,TextField,Grid,Autocomplete,Box} from "@mui/material";
+import { alpha, styled } from "@mui/material/styles";
+import Alert from '@mui/material/Alert';
 
-const Login = () => {
-  
-  //Agregar Formulario
-  const section = {
-    height: '100%',
-    backgroundColor: "transparent"
-  };
-  return ( 
+
+
+const Login = (props) => {
     
-            <Box sx={{ flexGrow: 1 }}>
-              <Grid container spacing={1}  minHeight="40vh">
-                {/* HEADER */}
-                <Grid item xs={12} md={12}>
-                    <div style={section}>
-                    <HeaderHome/>
-                    </div>
-                </Grid>
-                {/* Letras */}
-                <Grid item xs={6} md={6}>
-                <div style={section}>
-                <Typography color ="#D1D1D1" gutterBottom variant ="h5" align="center" align="center">PERIODO ACTIVO DE INSCRIPCIÓN:</Typography>
-                </div>
-                </Grid>
-                {/* Letras */}
-                <Grid item xs={6} md={6}>
-                <div style={section}>
-                <Typography color ="#D1D1D1" gutterBottom variant ="h5" align="center" align="center">   2022/03/05     -     2020/03/15  </Typography>
-                </div>
-                </Grid>
-                
-                {/* Login Inicio */}
-                <Grid item xs={12} md={12}>
-                <div style={section}>
-                <br/>
-                <br/>
-                <br/>
-                
-                </div>
-                </Grid>
-                   {/* Init */}
-        <Grid xs={1} sm={3.25 } item>
-        </Grid>
-        <br/>
-        <Grid xs={10} sm={5.5 } sx={{ bgcolor: 'rgba(60, 60, 60, 0.6)', color: 'text.primary', p: 2 }}>
-            <br/>
-            <Typography color ="white" gutterBottom variant ="h3"  align="center">ADMINISTRADOR</Typography>
-            <br/>
-            <br/>
-            <Grid xs={12} item>
-            <div align="center">
-            <Button  style={{ 
-                    backgroundColor: 'rgba(160, 160, 160, 0.6)',
-                    width:'20rem',
-                    height:'6rem',
-                    fontSize:15
-                    }}   type="submit" variant="contained"   href="/HomeAdmin"  >Entrar</Button>
-            </div>
-            <br/>  
-            <br/> 
-            <br/>    
-            </Grid>
-            <Grid xs={12} item>
-            <div align="center">
-            <Button  style={{ 
-                    backgroundColor: 'rgba(160, 160, 160, 0.6)',
-                    width:'20rem',
-                    height:'6rem',
-                    fontSize:15
-                    }}   type="submit" variant="contained" href="/" >Volver</Button>
-            </div>
-                            
-            </Grid>
-            <br/>
-            <br/>
-            <br/>
-            
-        </Grid>
-        <Grid xs={1} sm={3.25 }  >
-        
-        </Grid>
-        
-              </Grid>
-            </Box>
-      
-  )
-}
+  
+    const [rutValido, setRutValido] = useState(true);
+    const [correoValido, setCorreoValido] = useState(true);
 
+    //Formulario
+    const idFormulario = ['correo','pass']
+
+    
+    const color_gris_60 = "rgba(60, 60, 60, 0.1)"
+    const color_green_border = "#00FF87"
+    const color_white = "white"
+    const color_red = "#FF0000"
+    
+    const CssTextField = styled(TextField)({
+        "& label.Mui-focused": {
+          color: "white",
+          fontSize: 12
+        },
+        "& .MuiInputBase-input": {
+            backgroundColor: color_gris_60,
+            color: "white",
+            fontSize: 12
+        },
+        "& .MuiInput-underline:after": {
+          //borderBottomColor: "white"
+        },
+        "& .MuiOutlinedInput-root": {
+            color: "white",
+            backgroundColor: color_gris_60,
+            "& fieldset": {
+                //borderColor: "white",
+                color: "white",
+            },
+            "&:hover fieldset": {
+                borderColor: color_white,
+                color: "white"
+            },
+            "&.Mui-focused fieldset": {
+                borderColor: color_green_border,
+            },
+            "& input:invalid": {
+                borderColor: "red",
+                borderWidth: 2
+            }
+        
+        }
+      });
+
+
+
+    return (
+      
+        <Box
+        display="flex"
+        justifyContent="center"
+        alignItems="center"
+        minHeight="80vh"
+        
+        >
+        <Grid xs={12} sm={6} item 
+        alignItems='center'
+        justify='center'
+        style={{
+            boxShadow:`${alpha("#00FF87  ", 1)} 0 0 0 2px`,
+            borderColor: "#00FF87" }}
+            >
+           
+            <form >
+                <Card sx={{ bgcolor: 'rgba(60, 60, 60, 0.6)', color: 'text.primary', p: 2 }}>
+                    <Typography color ="white" gutterBottom variant ="h3" align="center" align="center">Login Administrador</Typography>
+                    <CardContent>
+                        <Grid container spacing ={1}>
+                            <Grid xs={12}item>
+                            <CssTextField style={{ backgroundColor: 'rgba(160, 160, 160, 0.6)'}} type="email" label="Correo" placeholder="Ingrese alumnos.ucn.cl" name="correo" variant="outlined" fullWidth required ></CssTextField>
+                            {!correoValido && (
+                                <div aling="center">
+                                <Alert severity="error" sx={{ mb: 2 }}>
+                                    El correo no es correcto!
+                                </Alert>
+                            </div>   
+                            )}
+                            </Grid>
+                            <Grid xs={12}item>
+                            <CssTextField style={{ backgroundColor: 'rgba(160, 160, 160, 0.6)'}} type="password" label="Contraseña" placeholder="Ingrese password" name="pass" variant="outlined" fullWidth required ></CssTextField>
+                            {!correoValido && (
+                                <div aling="center">
+                                <Alert severity="error" sx={{ mb: 2 }}>
+                                    El correo no es correcto!
+                                </Alert>
+                            </div>   
+                            )}
+                            </Grid>                          
+                            
+      
+                            <Grid xs={12} item>
+                                <div align="center">
+                                <Button  
+                                style={{ 
+                                        backgroundColor: 'rgba(160, 160, 160, 0.6)',
+                                        width:'30rem',
+                                        height:'6rem',
+                                        fontSize:15
+                                        }}
+                          
+                                type="submit" variant="contained" >Enviar</Button>
+                                </div>
+                            </Grid>
+                        </Grid>
+                    </CardContent>
+                </Card>
+            </form>
+        </Grid>
+        
+        </Box>
+        
+    )
+}
 export default Login

@@ -1,7 +1,7 @@
 import React from 'react';
 
 import Formulario from './components/pages/Formulario/Formulario';
-import Login from './components/pages/LoginAdmin/Login'
+import Session from './components/pages/LoginAdmin/Session'
 import Inicio from './components/pages/homePage/inicio';
 import HomeAdmin from './components/pages/PanelAdmin/HomeAdmin';
 
@@ -71,8 +71,8 @@ function App() {
           <Route path="/Formulario">
             <Formulario endpoint={endpoints} carreras={carreras} electivos={electivos}/>
           </Route>
-          <Route path="/Login">
-            <Login/>
+          <Route path="/Session">
+            <Session/>
           </Route>
           <Route path="/HomeAdmin">
             <HomeAdmin/>

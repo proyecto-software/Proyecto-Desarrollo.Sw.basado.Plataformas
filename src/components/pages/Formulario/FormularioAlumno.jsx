@@ -362,36 +362,3 @@ const FormularioAlumno = (props) => {
     )
 }
 export default FormularioAlumno
-
-/*
- {!rutValido && (
-            <Dialog open={!rutValido}>
-                <div aling="center">
-                    <Alert severity="error" sx={{ mb: 2 }}>
-                        El rut no es correcto!
-                    </Alert>
-                </div>
-            </Dialog>
-            
-            
-            )}
-
-
-{!sendSuccessful && (
-            <Dialog open={!sendSuccessful}>
-                <IconButton
-                    aria-label="close"
-                    sx={{
-                        position: 'absolute',
-                        right: 8,
-                        top: 8,
-                        //color: (theme) => theme.palette.grey[500],
-                    }}>
-                    <CloseIcon />
-                </IconButton>
-                <p>dfsd</p>
-            </Dialog>
-
-            )}
-       
-*/
