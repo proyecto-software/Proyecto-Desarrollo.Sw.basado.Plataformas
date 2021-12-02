@@ -54,7 +54,7 @@ const Home = () => {
                     width:'20rem',
                     height:'6rem',
                     fontSize:15
-                    }}   type="submit" variant="contained"   href="/Login"  >ADMINISTRADOR</Button>
+                    }}   type="submit" variant="contained"   href="/Session"  >ADMINISTRADOR</Button>
             </div>
             <br/>  
             <br/> 
