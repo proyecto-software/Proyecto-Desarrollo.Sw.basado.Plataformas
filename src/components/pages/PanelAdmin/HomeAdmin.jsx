@@ -205,7 +205,7 @@ export default function HomeAdmin() {
         <Box sx={{ flex: 1, display: 'flex', flexDirection: 'column' }}>
           <Header onDrawerToggle={manejorResponsive} />
           <Box component="main" sx={{ flex: 1, py: 6, px: 4, bgcolor: '#eaeff1' }}>
-          <Paper sx={{ maxWidth: 936, margin: 'auto', overflow: 'hidden'}}>
+          <Paper sx={{ maxWidth: '100%', margin: 'auto', overflow: 'hidden'}}>
          
             <div >
               <div >
@@ -214,7 +214,7 @@ export default function HomeAdmin() {
                   <Link to="/HomeAdmin/PanelDashBoard/" className=""></Link>
                   <Link to="/HomeAdmin/PanelInformeCurricular/" className=""></Link>
                   <Link to="/HomeAdmin/PanelInformeCurricular/" className=""></Link>
-              </div> 
+              </div > 
                 <Switch>
                   <Route path="/HomeAdmin/ContentForm" >
                     <ContentForm/>

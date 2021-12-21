@@ -26,9 +26,13 @@ export default function ContentForm() {
   //UseEffect
   React.useEffect( ()=>{
     const obtenerDatos = async() => {
+      try{
         const data = await fetch('http://localhost:10000/ucn/solicitudes')
         const infoAlum = await data.json()
         setAlumnos(infoAlum)
+      }catch(error){
+        console.error("Error API GET - Content Form: ", error)
+    }
     }
     obtenerDatos()
   }, [id]);
@@ -94,11 +98,11 @@ export default function ContentForm() {
       }
     }
     const columns = [
-      {field:'id',headerName:'Id',width:90},
+      //{field:'id',headerName:'Id',width:90},
       {field:'rut_alumno',headerName:'Rut',width:90},
-      {field:'carrera',headerName:'Carrera',width:70},
-      {field:'indicador',headerName:'Indicador',width:90},
-      {field:'electivo1',headerName:'Electivo1',width:90},
+      {field:'carrera',headerName:'Carrera',width:70, align: 'center'},
+      {field:'indicador',headerName:'Indicador',width:90, align: 'center', headerAlign: 'center'},
+      {field:'electivo1',headerName:'Electivo1',width:'100'},
       {
         field: 'estado1',
         headerName: 'Estado 1',
@@ -118,6 +122,9 @@ export default function ContentForm() {
         field: 'estado2',
         headerName: 'estado2 ',
         width: 90,
+        border: `50px solid 'green'`,
+        borderRadius: 2,
+        display: 'table',
         editable: true,
         type: 'boolean',
         preProcessEditCellProps : (params) => {
@@ -172,7 +179,7 @@ export default function ContentForm() {
   }
   return (
     <Router>
-    <Paper sx={{ maxWidth: 936, margin: 'auto', overflow: 'hidden'}}>
+    <Paper sx={{ maxWidth: '100%', margin: 'auto', overflow: 'hidden'}}>
     <Typography sx={{ my: 2, mx: 2,fontSize:30 }} color="text.secondary" align="center">
         Formulario
       </Typography>
@@ -195,7 +202,7 @@ export default function ContentForm() {
             </Switch>
             
             */}
-      <div style={{height: 500, width: '100%' }}>
+      <div style={{height: 400, width: '100%' }}>
 
       <DataGrid
         sx={{fontSize:20}}
@@ -205,6 +212,7 @@ export default function ContentForm() {
         rowsPerPageOptions={[12]}
         //checkboxSelection
         disableSelectionOnClick
+        
         //onCellEditStop = {async(params, event)=> console.log("e1: ",params.row)}
         
       />
