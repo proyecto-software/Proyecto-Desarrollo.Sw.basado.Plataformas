@@ -1,5 +1,4 @@
 import React from 'react';
-import {AuthProvider} from './context/AuthContext';
 
 import Formulario from './components/pages/Formulario/Formulario';
 import Session from './components/pages/LoginAdmin/Session'
@@ -8,8 +7,7 @@ import HomeAdmin from './components/pages/PanelAdmin/HomeAdmin';
 
 import {
   BrowserRouter as Router,
-  Route,
-  Routes
+  Route
 } from "react-router-dom";
 
 const endpoints = {
