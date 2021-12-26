@@ -1,10 +1,9 @@
 import React from 'react';
-
 import Formulario from './components/pages/Formulario/Formulario';
 import Session from './components/pages/LoginAdmin/Session'
 import Inicio from './components/pages/homePage/inicio';
 import HomeAdmin from './components/pages/PanelAdmin/HomeAdmin';
-
+import {PrivateRoute} from './components/PrivateRoute/PrivateRoute';
 import {
   BrowserRouter as Router,
   Route
@@ -73,9 +72,9 @@ function App() {
           <Route path="/Session">
             <Session/>
           </Route>
-          <Route path="/HomeAdmin">
+          <PrivateRoute path="/HomeAdmin">
             <HomeAdmin/>
-          </Route>
+          </PrivateRoute>
        {/*  </Switch> */}
      
     </Router>

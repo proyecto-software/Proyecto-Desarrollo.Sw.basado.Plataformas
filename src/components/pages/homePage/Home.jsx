@@ -9,9 +9,7 @@ const Home = () => {
       const section = {
         backgroundColor: "transparent"
       };
-      const centrar = {
-          align:"center"
-      }
+    
     return (
         <Fragment>
 

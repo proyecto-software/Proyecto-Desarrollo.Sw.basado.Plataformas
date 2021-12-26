@@ -112,7 +112,7 @@ export default function Sidebar(props) {
             <Button  style={{ 
                     color: '#ffffff',
                     fontSize:15,
-                    }}   href="/" ><LogoutIcon sx={{ mr: 2 }}/>Salir</Button>
+                    }}   onClick={props.handleLogout} ><LogoutIcon sx={{ mr: 2 }}/    >Salir</Button>
             </div>
     </Drawer>
   );
