@@ -86,11 +86,11 @@ const Login = () => {
                 boxShadow:`${alpha("#00FF87  ", 1)} 0 0 0 2px`,
                 borderColor: "#00FF87" }}
                 >
-                <form>
+                
                     <Card sx={{ bgcolor: 'rgba(60, 60, 60, 0.6)', color: 'text.primary', p: 2 }}>
                     <Typography color ="white" gutterBottom 
                     variant ="h3" align="center" align="center">Log In</Typography>
-                        <form unSubmit={handleSubmit}>
+                        <form onSubmit={handleSubmit}>
                         <CardContent>
                             <Grid container spacing ={1}>
                                 <Grid xs={12} sm={12}>
@@ -116,7 +116,7 @@ const Login = () => {
                         </form>
 
                     </Card>
-                </form>
+                
             </Grid>
         </Box>
     )

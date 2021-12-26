@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React, { useState } from 'react';
 import Divider from '@mui/material/Divider';
 import Drawer from '@mui/material/Drawer';
 import List from '@mui/material/List';
@@ -13,10 +13,12 @@ import AssignmentTurnedInIcon from '@mui/icons-material/AssignmentTurnedIn';
 import AttributionIcon from '@mui/icons-material/Attribution';
 import LogoutIcon from '@mui/icons-material/Logout';
 import {Button } from '@mui/material';
+
 import {
   Link
 } from "react-router-dom";
 import logo2 from '../../../img/ucn400x112.png'
+
 const categories = [
   {
     id: 'Panel',
@@ -52,8 +54,9 @@ const itemCategory = {
 
 export default function Sidebar(props) {
   const { ...other } = props;
-
+  const {salir} = props;
   return (
+ 
     <Drawer variant="permanent" {...other}>
       <List disablePadding>
         <ListItem sx={{ ...item, ...itemCategory, fontSize: 85, color: '#fff' }}>
@@ -112,8 +115,15 @@ export default function Sidebar(props) {
             <Button  style={{ 
                     color: '#ffffff',
                     fontSize:15,
-                    }}   onClick={props.handleLogout} ><LogoutIcon sx={{ mr: 2 }}/    >Salir</Button>
-            </div>
+                    }}
+                    onSubmit= {salir}
+                   
+                    
+            >
+            <LogoutIcon sx={{ mr: 2 }}/>
+            Salir
+            </Button>
+      </div>
     </Drawer>
   );
 }

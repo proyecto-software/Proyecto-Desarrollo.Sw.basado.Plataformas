@@ -14,6 +14,7 @@ import Paper from '@mui/material/Paper';
 import BodyAdmin from './BodyAdmin'
 import {useAuth} from '../../../context/AuthContext';
 import {PrivateRoute} from '../../PrivateRoute/PrivateRoute';
+import AuthProvider from '../../../context/AuthContext';
 import {
   BrowserRouter as Router,
   Switch,
@@ -167,7 +168,7 @@ theme = {
 /* Tamanio del width */
 const tamanoWidth = 256;
 
-export default function HomeAdmin() {
+export default function HomeAdmin(props) {
   /* Aca definimos el LOG */
   const[error, setError] = useState('');
   const {currentUser,logout} = useAuth();
@@ -179,19 +180,17 @@ export default function HomeAdmin() {
   const manejorResponsive = () => {
     setResponsiveMobile(!ResponsiveMobile);
   };
-  const handleLogout = async()=>{
+   const handlelogout = async()=>{
     try{
       await logout();
     } catch(error) {
       setError('Server Error');
     }
   }
-  
-
-
   return (
     /* Aplica el método propio */
     <ThemeProvider theme={theme}>
+    <AuthProvider>
      <Router>
       <Box sx={{ display: 'flex', minHeight: '100vh' }}>
         <CssBaseline />
@@ -207,14 +206,14 @@ export default function HomeAdmin() {
               variant="temporary"
               open={ResponsiveMobile}
               onClose={manejorResponsive}
-              handleLogout={handleLogout}
+              salir={handlelogout}
             />
           )}
          {/* ---------SideBar----------  cambiar vista*/}
           <Sidebar
             PaperProps={{ style: { width: tamanoWidth } }}
             sx={{ display: { sm: 'block', xs: 'none' } }}
-            handleLogout={handleLogout}
+            salir={handlelogout}
           />
         </Box>
         {/* ---------SideBar----------  cambiar vista*/}
@@ -249,10 +248,11 @@ export default function HomeAdmin() {
          
           </Paper>
           </Box>
-          <BodyAdmin email={currentUser.email} ></BodyAdmin>
+          <BodyAdmin ></BodyAdmin>
         </Box>
       </Box>
     </Router>
+    </AuthProvider>
     </ThemeProvider>
     
     

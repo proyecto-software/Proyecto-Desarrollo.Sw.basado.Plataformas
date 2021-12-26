@@ -5,7 +5,7 @@ const AuthContext = createContext();
 
 export const useAuth = () => useContext(AuthContext);
 
-export const AuthProvider = (props) => {
+export default function AuthProvider  (props) {
 
   const [currentUser, setCurrentUser] = useState({});
 
@@ -14,10 +14,6 @@ export const AuthProvider = (props) => {
       setCurrentUser(user);
     })
   }, [])
-
-  const signup = (email, password) => {
-    return auth.createUserWithEmailAndPassword(email, password);
-  }
 
   const login = (email, password) => {
     return auth.signInWithEmailAndPassword(email, password);
@@ -28,8 +24,7 @@ export const AuthProvider = (props) => {
   const value = {
     currentUser,
     login,
-    logout,
-    signup
+    logout
   };
   return (
     <AuthContext.Provider value={value}>
