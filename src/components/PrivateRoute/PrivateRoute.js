@@ -5,12 +5,13 @@ import { auth } from '../../firebase';
 export const PrivateRoute = ({ component: Component, ...rest }) => {
   const { currentUser } = useAuth();
   console.log('user', currentUser)
+  const user = currentUser!==null
 
   return (
     <Route
       {...rest}
       render={props => {
-        return currentUser ? <Component {...props} /> : <Redirect to='/' />
+        return {user} ? <Component {...props} /> : <Redirect to='/' />
       }}
     >
 

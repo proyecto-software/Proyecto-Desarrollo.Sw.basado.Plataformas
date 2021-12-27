@@ -24,11 +24,7 @@ const categories = [
     id: 'Panel',
     children: [
       {
-        id: 'Dashboard',
-        icon: <AssessmentIcon />,
-        link:'/HomeAdmin/PanelDashBoard/'
-       /*  active: true, */
-      },
+        id: 'Dashboard', icon: <AssessmentIcon />, link:'/HomeAdmin/PanelDashBoard/' /*  active: true, */},
       { id: 'Formulario', icon: <AssignmentTurnedInIcon />, link:'/HomeAdmin/ContentForm/'},
       { id: 'Informe Curricular', icon: <AttributionIcon /> , link:'/HomeAdmin/PanelInformeCurricular/'},
       
@@ -54,7 +50,7 @@ const itemCategory = {
 
 export default function Sidebar(props) {
   const { ...other } = props;
-  const {salir} = props;
+  const salir = props.salir;
   return (
  
     <Drawer variant="permanent" {...other}>
@@ -116,7 +112,8 @@ export default function Sidebar(props) {
                     color: '#ffffff',
                     fontSize:15,
                     }}
-                    onSubmit= {salir}
+                    onClick= {salir}
+                    href = "/Session"
                    
                     
             >

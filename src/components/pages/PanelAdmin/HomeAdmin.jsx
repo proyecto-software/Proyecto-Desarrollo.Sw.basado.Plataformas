@@ -19,6 +19,7 @@ import {
   BrowserRouter as Router,
   Switch,
   Route,
+  Redirect,
   
 } from "react-router-dom";
 
@@ -189,9 +190,13 @@ export default function HomeAdmin(props) {
   }
   return (
     /* Aplica el método propio */
+    
     <ThemeProvider theme={theme}>
     <AuthProvider>
-     <Router>
+    {currentUser==null && 
+      (<Redirect to="/Session" />)
+    }
+     <Router>      
       <Box sx={{ display: 'flex', minHeight: '100vh' }}>
         <CssBaseline />
         {/* ---------SideBar---------- */}
@@ -224,7 +229,7 @@ export default function HomeAdmin(props) {
          
             <div >
               <div >
-                  <Link to="/" className=""></Link>
+                  <Link to="/Session" className=""></Link>
                   <Link to="/HomeAdmin/Login" className=""></Link>
                   <Link to="/HomeAdmin/PanelDashBoard/" className=""></Link>
                   <Link to="/HomeAdmin/PanelInformeCurricular/" className=""></Link>
@@ -240,7 +245,7 @@ export default function HomeAdmin(props) {
                   <PrivateRoute path="/HomeAdmin/PanelInformeCurricular" >
                     <PanelInformeCurricular/>
                   </PrivateRoute>
-                  <Route path="/" exact> 
+                  <Route path="/Session" exact> 
                     <Login/>
                   </Route>
                 </Switch>
@@ -252,6 +257,7 @@ export default function HomeAdmin(props) {
         </Box>
       </Box>
     </Router>
+   
     </AuthProvider>
     </ThemeProvider>
     
