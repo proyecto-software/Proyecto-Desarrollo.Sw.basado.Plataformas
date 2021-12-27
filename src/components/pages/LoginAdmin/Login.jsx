@@ -3,12 +3,13 @@ import { useForm } from "react-hook-form";
 import {Input,Button,Card,CardContent,Typography,TextField,Grid,Autocomplete,Box} from "@mui/material";
 import { alpha, styled } from "@mui/material/styles";
 import Alert from '@mui/material/Alert';
-
-import {Link,useHistory} from 'react-router-dom';
+import CircularProgress from '@mui/material/CircularProgress';
+import {useHistory} from 'react-router-dom';
 import {useAuth} from '../../../context/AuthContext'
 const Login = () => {
     const{login}=useAuth();
     const [error, setError] = useState(null);
+    const[loading,setLoading] = useState(false);
     const[email, setEmail]=useState('');
     const[password, setPassword]=useState('');
     
@@ -19,12 +20,16 @@ const Login = () => {
 
     const handleSubmit = async (e) =>{
         e.preventDefault();
+        setLoading(true);
         try{
             await login(email,password);
+            setLoading(false);
             history.push('/HomeAdmin');
         } catch(error) {
             setError('Credenciales Incorrectas');
+            setTimeout(()=>  setLoading(false),2500);
             setTimeout(()=> setError(''),2500);
+            
         }
     }
   
@@ -76,9 +81,7 @@ const Login = () => {
         justifyContent="center"
         alignItems="center"
         minHeight="80vh">
-        <div className='card-header'>
-            {error && <p className="error">{error}</p>}
-        </div>
+
         <Grid xs={12} sm={6} item 
             alignItems='center'
             justify='center'
@@ -89,32 +92,73 @@ const Login = () => {
                 
                     <Card sx={{ bgcolor: 'rgba(60, 60, 60, 0.6)', color: 'text.primary', p: 2 }}>
                     <Typography color ="white" gutterBottom 
-                    variant ="h3" align="center" align="center">Log In</Typography>
-                        <form onSubmit={handleSubmit}>
+                    variant ="h3" align="center">Log In</Typography>
+                    <br/>
+                    <br/>
+                    <Grid xs={12} item>
+                    <div align="center">
+                    <form onSubmit={handleSubmit}>
                         <CardContent>
-                            <Grid container spacing ={1}>
+                           
                                 <Grid xs={12} sm={12}>
-                                <label>
-                                    Email:
-                                    <Input 
+                                
+            {error && <p className="error">{error}</p>}
+                           
+                                </Grid>
+                                <Grid xs={20} sm={20}>
+                                <TextField id="Email" label="Email" variant="outlined" 
                                     type='email'
                                     placeholder='Ingrese su correo'
                                     className=''
+                                    style={{ 
+                                            backgroundColor: 'rgba(160, 160, 160, 0.6)',
+                                            width:'20rem',
+                                            height:'4.5rem',
+                                            fontSize:15
+                                            }}
                                     onChange={handleEmail}
+
+
                                 />
-                                </label>
                                 </Grid>
+                                <br></br>
+                               
+                                <Grid xs={20} sm={20}>
+                                <TextField id="Email" label="Password" variant="outlined" 
+                                    type='Password'
+                                    placeholder='Ingrese su clave'
+                                    className=''
+                                   
+                                    style={{ 
+                                            backgroundColor: 'rgba(160, 160, 160, 0.6)',
+                                            width:'20rem',
+                                            height:'4.5rem',
+                                            fontSize:15
+                                            }}
+
+
+                                    onChange={handlePassword}
+
+                                />
+                                </Grid>
+                                <br></br><br></br>
                                 <Grid>
-                                <Input type='password' placeholder='Password'  onChange={handlePassword} />
+                                
+                                <Button  style={{ 
+                    backgroundColor: 'rgba(160, 160, 160, 0.6)',
+                    width:'20rem',
+                    height:'5rem',
+                    fontSize:15
+                    }}   type="password" variant="contained"  onChange={handlePassword}  >Entrar</Button>
                                 </Grid>
-                                <Grid>
-                                <input type='submit' value='Entrar' />
-                                </Grid>
-                            </Grid>
+                           
            
                         </CardContent>
-                        </form>
-
+                    </form>
+                        {loading && <CircularProgress />}
+                   
+                    </div>
+                    </Grid>
                     </Card>
                 
             </Grid>

@@ -7,7 +7,7 @@ const Session = (props) => {
   return (
       <Fragment>
         <HeaderHome/>
-        <Login/>
+        <Login />
       </Fragment>
   )
 }

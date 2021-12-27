@@ -4,7 +4,7 @@ import Session from './components/pages/LoginAdmin/Session'
 import Inicio from './components/pages/homePage/inicio';
 import HomeAdmin from './components/pages/PanelAdmin/HomeAdmin';
 import {PrivateRoute} from './components/PrivateRoute/PrivateRoute';
-import AuthProvider from './context/AuthContext'
+import AuthProvider from './context/AuthContext';
 import {
   BrowserRouter as Router,
   Route
@@ -60,6 +60,7 @@ function App() {
   },[]);
 
   return (
+    <>
     <AuthProvider>
     <Router>
        {/*  <Switch> */}
@@ -80,6 +81,7 @@ function App() {
      
     </Router>
     </AuthProvider>
+    </>
   );
 }
 
