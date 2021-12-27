@@ -54,7 +54,7 @@ const itemCategory = {
 
 export default function Sidebar(props) {
   const { ...other } = props;
-  const {salir} = props;
+  const {handlelogout} = props;
   return (
  
     <Drawer variant="permanent" {...other}>
@@ -116,8 +116,8 @@ export default function Sidebar(props) {
                     color: '#ffffff',
                     fontSize:15,
                     }}
-                    onSubmit= {salir}
-                   
+                    onSubmit= {handlelogout}
+                   href='/'
                     
             >
             <LogoutIcon sx={{ mr: 2 }}/>

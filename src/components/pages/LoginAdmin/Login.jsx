@@ -3,12 +3,13 @@ import { useForm } from "react-hook-form";
 import {Input,Button,Card,CardContent,Typography,TextField,Grid,Autocomplete,Box} from "@mui/material";
 import { alpha, styled } from "@mui/material/styles";
 import Alert from '@mui/material/Alert';
-
-import {Link,useHistory} from 'react-router-dom';
+import Spinner from '../../../img/spinner.svg';
+import {useHistory} from 'react-router-dom';
 import {useAuth} from '../../../context/AuthContext'
 const Login = () => {
     const{login}=useAuth();
     const [error, setError] = useState(null);
+    const[loading,setLoading] = useState(false);
     const[email, setEmail]=useState('');
     const[password, setPassword]=useState('');
     
@@ -19,8 +20,10 @@ const Login = () => {
 
     const handleSubmit = async (e) =>{
         e.preventDefault();
+        setLoading(true);
         try{
             await login(email,password);
+            setLoading(false);
             history.push('/HomeAdmin');
         } catch(error) {
             setError('Credenciales Incorrectas');
@@ -114,7 +117,7 @@ const Login = () => {
            
                         </CardContent>
                         </form>
-
+                        {loading && <img src={Spinner} alt='Loading' />}
                     </Card>
                 
             </Grid>

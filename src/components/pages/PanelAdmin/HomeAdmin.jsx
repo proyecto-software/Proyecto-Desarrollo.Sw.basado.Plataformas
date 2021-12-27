@@ -168,7 +168,7 @@ theme = {
 /* Tamanio del width */
 const tamanoWidth = 256;
 
-export default function HomeAdmin(props) {
+export default function HomeAdmin() {
   /* Aca definimos el LOG */
   const[error, setError] = useState('');
   const {currentUser,logout} = useAuth();
@@ -180,7 +180,7 @@ export default function HomeAdmin(props) {
   const manejorResponsive = () => {
     setResponsiveMobile(!ResponsiveMobile);
   };
-   const handlelogout = async()=>{
+  const handlelogout = async()=>{
     try{
       await logout();
     } catch(error) {
@@ -189,8 +189,9 @@ export default function HomeAdmin(props) {
   }
   return (
     /* Aplica el método propio */
-    <ThemeProvider theme={theme}>
     <AuthProvider>
+    <ThemeProvider theme={theme}>
+    
      <Router>
       <Box sx={{ display: 'flex', minHeight: '100vh' }}>
         <CssBaseline />
@@ -206,14 +207,14 @@ export default function HomeAdmin(props) {
               variant="temporary"
               open={ResponsiveMobile}
               onClose={manejorResponsive}
-              salir={handlelogout}
+              handlelogout={handlelogout}
             />
           )}
          {/* ---------SideBar----------  cambiar vista*/}
           <Sidebar
             PaperProps={{ style: { width: tamanoWidth } }}
             sx={{ display: { sm: 'block', xs: 'none' } }}
-            salir={handlelogout}
+            handlelogout={handlelogout}
           />
         </Box>
         {/* ---------SideBar----------  cambiar vista*/}
@@ -252,9 +253,9 @@ export default function HomeAdmin(props) {
         </Box>
       </Box>
     </Router>
-    </AuthProvider>
-    </ThemeProvider>
     
+    </ThemeProvider>
+    </AuthProvider>
     
   );
 }
