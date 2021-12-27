@@ -19,6 +19,7 @@ import {
   BrowserRouter as Router,
   Switch,
   Route,
+  Redirect
   
 } from "react-router-dom";
 
@@ -189,6 +190,8 @@ export default function HomeAdmin() {
   }
   return (
     /* Aplica el método propio */
+   
+    
     <AuthProvider>
     <ThemeProvider theme={theme}>
     
@@ -253,9 +256,10 @@ export default function HomeAdmin() {
         </Box>
       </Box>
     </Router>
-    
     </ThemeProvider>
+    <Redirect to='/' />
     </AuthProvider>
     
+
   );
 }
