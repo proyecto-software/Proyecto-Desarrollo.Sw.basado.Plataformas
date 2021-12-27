@@ -1,4 +1,4 @@
-import React,{Fragment, useState} from 'react'
+import React,{Fragment} from 'react'
 import HeaderHome from '../homePage/HeaderHome'
 import FormularioAlumno from './FormularioAlumno'
 

@@ -1,12 +1,9 @@
-import React,{useState,useEffect} from 'react'
+import React,{useState} from 'react'
 import { useForm } from "react-hook-form";
-import Axios from 'axios'
+
 import {Button,Card,CardContent,Typography,TextField,Grid,Autocomplete,Box} from "@mui/material";
 import { alpha, styled } from "@mui/material/styles";
 import Alert from '@mui/material/Alert';
-import Dialog from '@mui/material/Dialog';
-import IconButton from '@mui/material/IconButton';
-import CloseIcon from '@mui/icons-material/Close';
 
 
 const FormularioAlumno = (props) => {
@@ -267,7 +264,7 @@ const FormularioAlumno = (props) => {
                                 <Alert severity="error" sx={{ mb: 2 }}>
                                     El correo no es correcto!
                                 </Alert>
-                            </div>   
+                                </div>   
                             )}
                             </Grid>
                             
@@ -362,36 +359,3 @@ const FormularioAlumno = (props) => {
     )
 }
 export default FormularioAlumno
-
-/*
- {!rutValido && (
-            <Dialog open={!rutValido}>
-                <div aling="center">
-                    <Alert severity="error" sx={{ mb: 2 }}>
-                        El rut no es correcto!
-                    </Alert>
-                </div>
-            </Dialog>
-            
-            
-            )}
-
-
-{!sendSuccessful && (
-            <Dialog open={!sendSuccessful}>
-                <IconButton
-                    aria-label="close"
-                    sx={{
-                        position: 'absolute',
-                        right: 8,
-                        top: 8,
-                        //color: (theme) => theme.palette.grey[500],
-                    }}>
-                    <CloseIcon />
-                </IconButton>
-                <p>dfsd</p>
-            </Dialog>
-
-            )}
-       
-*/

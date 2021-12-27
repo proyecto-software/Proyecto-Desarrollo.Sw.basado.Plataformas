@@ -1,9 +1,8 @@
-import * as React from 'react';
+import React, { useState } from 'react';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import useMediaQuery from '@mui/material/useMediaQuery';
 import CssBaseline from '@mui/material/CssBaseline';
 import Box from '@mui/material/Box';
-import Typography from '@mui/material/Typography';
 import Link from '@mui/material/Link';
 import Sidebar from './Sidebar';
 import Login from '../LoginAdmin/Login'
@@ -12,13 +11,17 @@ import PanelDashBoard from './DashBoard/PanelDashBoard'
 import PanelInformeCurricular from './InformeCurricular/PanelInformeCurricular'
 import Header from './Header';
 import Paper from '@mui/material/Paper';
+import BodyAdmin from './BodyAdmin'
+import {useAuth} from '../../../context/AuthContext';
+import {PrivateRoute} from '../../PrivateRoute/PrivateRoute';
+import AuthProvider from '../../../context/AuthContext';
 import {
   BrowserRouter as Router,
   Switch,
   Route,
   
 } from "react-router-dom";
-import BodyAdmin from './BodyAdmin';
+
 /* Tema general del home */
 let theme = createTheme({
   palette: {
@@ -165,7 +168,10 @@ theme = {
 /* Tamanio del width */
 const tamanoWidth = 256;
 
-export default function HomeAdmin() {
+export default function HomeAdmin(props) {
+  /* Aca definimos el LOG */
+  const[error, setError] = useState('');
+  const {currentUser,logout} = useAuth();
   /* Responsive design del pantalla celular */
   const [ResponsiveMobile, setResponsiveMobile] = React.useState(false);
   /* Es el cambio  de sm a sx con breakpoints*/
@@ -174,10 +180,17 @@ export default function HomeAdmin() {
   const manejorResponsive = () => {
     setResponsiveMobile(!ResponsiveMobile);
   };
-
+   const handlelogout = async()=>{
+    try{
+      await logout();
+    } catch(error) {
+      setError('Server Error');
+    }
+  }
   return (
     /* Aplica el método propio */
     <ThemeProvider theme={theme}>
+    <AuthProvider>
      <Router>
       <Box sx={{ display: 'flex', minHeight: '100vh' }}>
         <CssBaseline />
@@ -193,12 +206,14 @@ export default function HomeAdmin() {
               variant="temporary"
               open={ResponsiveMobile}
               onClose={manejorResponsive}
+              salir={handlelogout}
             />
           )}
          {/* ---------SideBar----------  cambiar vista*/}
           <Sidebar
             PaperProps={{ style: { width: tamanoWidth } }}
             sx={{ display: { sm: 'block', xs: 'none' } }}
+            salir={handlelogout}
           />
         </Box>
         {/* ---------SideBar----------  cambiar vista*/}
@@ -216,15 +231,15 @@ export default function HomeAdmin() {
                   <Link to="/HomeAdmin/PanelInformeCurricular/" className=""></Link>
               </div > 
                 <Switch>
-                  <Route path="/HomeAdmin/ContentForm" >
+                  <PrivateRoute path="/HomeAdmin/ContentForm" >
                     <ContentForm/>
-                  </Route>
-                  <Route path="/HomeAdmin/PanelDashBoard" >
+                  </PrivateRoute>
+                  <PrivateRoute path="/HomeAdmin/PanelDashBoard" >
                     <PanelDashBoard/>
-                  </Route>
-                  <Route path="/HomeAdmin/PanelInformeCurricular" >
+                  </PrivateRoute>
+                  <PrivateRoute path="/HomeAdmin/PanelInformeCurricular" >
                     <PanelInformeCurricular/>
-                  </Route>
+                  </PrivateRoute>
                   <Route path="/" exact> 
                     <Login/>
                   </Route>
@@ -233,10 +248,11 @@ export default function HomeAdmin() {
          
           </Paper>
           </Box>
-   
+          <BodyAdmin ></BodyAdmin>
         </Box>
       </Box>
     </Router>
+    </AuthProvider>
     </ThemeProvider>
     
     

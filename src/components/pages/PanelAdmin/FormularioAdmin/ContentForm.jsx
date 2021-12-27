@@ -1,18 +1,12 @@
 import React, { useState } from 'react';
 import Typography from '@mui/material/Typography';
 import Paper from '@mui/material/Paper';
-import User from './User'
 import { DataGrid } from '@mui/x-data-grid';
 import {Button} from "@mui/material";
-import Alert from "@mui/material/Alert";
-import { GridCellParams } from '@mui/x-data-grid';
-import { GridRowParams } from '@mui/x-data-grid';
+
 import {
   BrowserRouter as Router,
-  Route,
-  useParams,
-  Link,
-  Switch
+  useParams
   } from "react-router-dom";
 export default function ContentForm() {
   const endpoint_estado_solicitud = 'http://localhost:10000/ucn/AprobarPostulacion'

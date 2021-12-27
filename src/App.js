@@ -1,14 +1,13 @@
 import React from 'react';
-
 import Formulario from './components/pages/Formulario/Formulario';
-import Login from './components/pages/LoginAdmin/Login'
+import Session from './components/pages/LoginAdmin/Session'
 import Inicio from './components/pages/homePage/inicio';
 import HomeAdmin from './components/pages/PanelAdmin/HomeAdmin';
-
+import {PrivateRoute} from './components/PrivateRoute/PrivateRoute';
+import AuthProvider from './context/AuthContext'
 import {
   BrowserRouter as Router,
-  Route,
-  Routes
+  Route
 } from "react-router-dom";
 
 const endpoints = {
@@ -61,7 +60,7 @@ function App() {
   },[]);
 
   return (
-    
+    <AuthProvider>
     <Router>
        {/*  <Switch> */}
     
@@ -71,15 +70,16 @@ function App() {
           <Route path="/Formulario">
             <Formulario endpoint={endpoints} carreras={carreras} electivos={electivos}/>
           </Route>
-          <Route path="/Login">
-            <Login/>
+          <Route path="/Session">
+            <Session/>
           </Route>
-          <Route path="/HomeAdmin">
+          <PrivateRoute path="/HomeAdmin">
             <HomeAdmin/>
-          </Route>
+          </PrivateRoute>
        {/*  </Switch> */}
      
     </Router>
+    </AuthProvider>
   );
 }
 
