@@ -196,6 +196,8 @@ export default function HomeAdmin(props) {
     {currentUser==null && 
       (<Redirect to="/Session" />)
     }
+    {currentUser!=null && 
+    (
      <Router>      
       <Box sx={{ display: 'flex', minHeight: '100vh' }}>
         <CssBaseline />
@@ -257,6 +259,7 @@ export default function HomeAdmin(props) {
         </Box>
       </Box>
     </Router>
+    )}
    
     </AuthProvider>
     </ThemeProvider>
