@@ -8,7 +8,7 @@ import {useHistory} from 'react-router-dom';
 import {useAuth} from '../../../context/AuthContext'
 const Login = () => {
     const{login}=useAuth();
-    const [error, setError] = useState(null);
+    const [error, setError] = useState(false);
     const[loading,setLoading] = useState(false);
     const[email, setEmail]=useState('');
     const[password, setPassword]=useState('');
@@ -26,9 +26,9 @@ const Login = () => {
             setLoading(false);
             history.push('/HomeAdmin');
         } catch(error) {
-            setError('Credenciales Incorrectas');
+            setError(true);
             setTimeout(()=>  setLoading(false),2500);
-            setTimeout(()=> setError(''),2500);
+            setTimeout(()=> setError(false),5000);
             
         }
     }
@@ -102,7 +102,15 @@ const Login = () => {
                            
                                 <Grid xs={12} sm={12}>
                                 
-            {error && <p className="error">{error}</p>}
+            
+                {error && (
+                    <div aling="center">
+                    <Alert severity="error" sx={{ mb: 2 }}>
+                        Las credenciales son incorrectas.
+                    </Alert>
+                    </div>   
+                )}
+            
                            
                                 </Grid>
                                 <Grid xs={20} sm={20}>
