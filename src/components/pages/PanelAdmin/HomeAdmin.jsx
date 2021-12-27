@@ -19,7 +19,7 @@ import {
   BrowserRouter as Router,
   Switch,
   Route,
-  Redirect
+  Redirect,
   
 } from "react-router-dom";
 
@@ -169,7 +169,7 @@ theme = {
 /* Tamanio del width */
 const tamanoWidth = 256;
 
-export default function HomeAdmin() {
+export default function HomeAdmin(props) {
   /* Aca definimos el LOG */
   const[error, setError] = useState('');
   const {currentUser,logout} = useAuth();
@@ -181,7 +181,7 @@ export default function HomeAdmin() {
   const manejorResponsive = () => {
     setResponsiveMobile(!ResponsiveMobile);
   };
-  const handlelogout = async()=>{
+   const handlelogout = async()=>{
     try{
       await logout();
     } catch(error) {
@@ -190,12 +190,13 @@ export default function HomeAdmin() {
   }
   return (
     /* Aplica el método propio */
-   
     
-    <AuthProvider>
     <ThemeProvider theme={theme}>
-    
-     <Router>
+    <AuthProvider>
+    {currentUser==null && 
+      (<Redirect to="/Session" />)
+    }
+     <Router>      
       <Box sx={{ display: 'flex', minHeight: '100vh' }}>
         <CssBaseline />
         {/* ---------SideBar---------- */}
@@ -210,14 +211,14 @@ export default function HomeAdmin() {
               variant="temporary"
               open={ResponsiveMobile}
               onClose={manejorResponsive}
-              handlelogout={handlelogout}
+              salir={handlelogout}
             />
           )}
          {/* ---------SideBar----------  cambiar vista*/}
           <Sidebar
             PaperProps={{ style: { width: tamanoWidth } }}
             sx={{ display: { sm: 'block', xs: 'none' } }}
-            handlelogout={handlelogout}
+            salir={handlelogout}
           />
         </Box>
         {/* ---------SideBar----------  cambiar vista*/}
@@ -228,7 +229,7 @@ export default function HomeAdmin() {
          
             <div >
               <div >
-                  <Link to="/" className=""></Link>
+                  <Link to="/Session" className=""></Link>
                   <Link to="/HomeAdmin/Login" className=""></Link>
                   <Link to="/HomeAdmin/PanelDashBoard/" className=""></Link>
                   <Link to="/HomeAdmin/PanelInformeCurricular/" className=""></Link>
@@ -244,7 +245,7 @@ export default function HomeAdmin() {
                   <PrivateRoute path="/HomeAdmin/PanelInformeCurricular" >
                     <PanelInformeCurricular/>
                   </PrivateRoute>
-                  <Route path="/" exact> 
+                  <Route path="/Session" exact> 
                     <Login/>
                   </Route>
                 </Switch>
@@ -256,10 +257,10 @@ export default function HomeAdmin() {
         </Box>
       </Box>
     </Router>
-    </ThemeProvider>
-    <Redirect to='/' />
+   
     </AuthProvider>
+    </ThemeProvider>
     
-
+    
   );
 }
