@@ -33,7 +33,7 @@ import {
   Switch
   } from "react-router-dom";
 
-  const endpoint_dashboard = "http://localhost:10000/ucn/Dashboard?semestre=2021-1"
+  const endpoint_dashboard = "https://backend-electives.herokuapp.com/ucn/Dashboard?semestre=2021-1"
 
   
   const electivos = [

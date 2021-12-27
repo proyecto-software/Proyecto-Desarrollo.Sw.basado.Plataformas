@@ -9,7 +9,7 @@ import {
   useParams
   } from "react-router-dom";
 export default function ContentForm() {
-  const endpoint_estado_solicitud = 'http://localhost:10000/ucn/AprobarPostulacion'
+  const endpoint_estado_solicitud = 'https://backend-electives.herokuapp.com/ucn/AprobarPostulacion'
   //Params
   const {id} = useParams();
   console.log(id)
@@ -21,9 +21,10 @@ export default function ContentForm() {
   React.useEffect( ()=>{
     const obtenerDatos = async() => {
       try{
-        const data = await fetch('http://localhost:10000/ucn/solicitudes')
+        const data = await fetch('https://backend-electives.herokuapp.com/ucn/solicitudes')
         const infoAlum = await data.json()
         setAlumnos(infoAlum)
+        console.log("Formulario: ",infoAlum)
       }catch(error){
         console.error("Error API GET - Content Form: ", error)
     }
@@ -96,7 +97,7 @@ export default function ContentForm() {
       {field:'rut_alumno',headerName:'Rut',width:90},
       {field:'carrera',headerName:'Carrera',width:70, align: 'center'},
       {field:'indicador',headerName:'Indicador',width:90, align: 'center', headerAlign: 'center'},
-      {field:'electivo1',headerName:'Electivo1',width:'100'},
+      {field:'electivo1',headerName:'Electivo1',width:'100', editable:true},
       {
         field: 'estado1',
         headerName: 'Estado 1',
@@ -155,7 +156,7 @@ export default function ContentForm() {
               color="primary"
               size="small"
               //onClick = {console.log("row: ",params.row)}
-              disabled = {!(params.row.estado1 || params.row.estado2 || params.row.estado3)}
+              disabled = {!(params.row.estado1 || params.row.estado2 || params.row.estado3 || true)}
               onClick = {postSavePostulacion(params.row)}
               style={{ marginLeft: 16 }}
             >
