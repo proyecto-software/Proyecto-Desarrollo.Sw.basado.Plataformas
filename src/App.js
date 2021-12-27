@@ -11,11 +11,11 @@ import {
 } from "react-router-dom";
 
 const endpoints = {
-  GetCarreras: "http://localhost:10000/ucn/carreras",
-  GetElectivos: "http://localhost:10000/ucn/electivos",
-  PostFormulario: "http://localhost:10000/ucn/formulario",
-  ValidarRut : "http://localhost:10000/ucn/rut",
-  ValidarCorreo : "http://localhost:10000/ucn/correo"
+  GetCarreras: "https://backend-electives.herokuapp.com/ucn/carreras",
+  GetElectivos: "https://backend-electives.herokuapp.com/ucn/electivos",
+  PostFormulario: "https://backend-electives.herokuapp.com/ucn/formulario",
+  ValidarRut : "https://backend-electives.herokuapp.com/ucn/rut",
+  ValidarCorreo : "https://backend-electives.herokuapp.com/ucn/correo"
 }
 
 function App() {
