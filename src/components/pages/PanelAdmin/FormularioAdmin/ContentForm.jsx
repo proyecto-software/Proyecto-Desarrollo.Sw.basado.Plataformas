@@ -200,7 +200,7 @@ export default function ContentForm() {
       <div style={{height: 400, width: '100%' }}>
 
       <DataGrid
-        sx={{fontSize:20}}
+        sx={{fontSize:10}}
         rows={Alumnos}
         columns={columns}
         pageSize={5}
