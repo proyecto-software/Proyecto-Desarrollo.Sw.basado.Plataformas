@@ -23,11 +23,14 @@ const HeaderHome = () => {
                 item xs={12} md={6}
             >
             <div className="logo1">
+            <a href='https://www.ucn.cl/'>
             <img 
                 src={logo2}
                 alt="logo 2"
                 style={stylelogo1}
+               
             />
+            </a>
             </div>
             
             </Grid>
@@ -35,11 +38,13 @@ const HeaderHome = () => {
             item xs={12} md={6}
             >
             <div className="logo2">
+            <a href='https://eic.ucn.cl/'>
             <img 
                 src={logo1}
                 alt="logo 1"
                 style={stylelogo2}
             />
+            </a>
             </div>
             </Grid>
         </Grid>
