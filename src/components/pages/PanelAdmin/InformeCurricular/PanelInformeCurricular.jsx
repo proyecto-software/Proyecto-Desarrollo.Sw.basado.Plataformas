@@ -13,7 +13,7 @@ export default function PanelInformeCurricular() {
       <Typography sx={{ my: 2, mx: 2,fontSize:30 }} color="text.secondary" align="center">
       Informe Curricular
     </Typography>
-
+{/*  */}
     <Grid container spacing={3} align="center" alignItems="center" justifyContent="center" marginTop={3}>
 
     <Stack direction="row" spacing={2}>
