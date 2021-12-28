@@ -46,16 +46,6 @@ export default function PanelInformeCurricular() {
       <Typography sx={{ my: 2, mx: 2,fontSize:30 }} color="text.secondary" align="center">
       Informe Curricular
     </Typography>
-<<<<<<< HEAD
-{/*  */}
-    <Grid container spacing={3} align="center" alignItems="center" justifyContent="center" marginTop={3}>
-
-    <Stack direction="row" spacing={2}>
-      
-      <Avatar src="/broken-image.jpg" />
-    </Stack>
-    </Grid>
-=======
     
     <Grid container spacing={1}  justifyContent="center" marginTop={32} margin="5%" maxWidth="90%">
       <div >
@@ -112,7 +102,6 @@ export default function PanelInformeCurricular() {
       </div>
   </Grid>
 
->>>>>>> new-front-dionisio
   </Paper>
   );
 }
