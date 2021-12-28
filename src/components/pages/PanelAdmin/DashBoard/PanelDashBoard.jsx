@@ -1,24 +1,3 @@
-/*
-import * as React from 'react';
-import Typography from '@mui/material/Typography';
-import Paper from '@mui/material/Paper';
-
-
-export default function PanelDashBoard() {
-  return (
-    <Paper sx={{ maxWidth: '100%', margin: 'auto', overflow: 'hidden' }}>
-      
-      <Typography sx={{ my: 5, mx: 2 }} color="text.secondary" align="center">
-        DASHBOARD
-      </Typography>
-    </Paper>
-  );
-}
-
-*/
-
-/////
-
 import React,{useState,useEffect} from 'react'
 import {Grid} from '@mui/material';
 import Cards from './CardDashboard';
