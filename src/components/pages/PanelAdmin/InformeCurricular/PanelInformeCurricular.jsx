@@ -10,6 +10,8 @@ import IconButton from '@mui/material/IconButton';
 import MenuIcon from '@mui/icons-material/Menu';
 import SearchIcon from '@mui/icons-material/Search';
 import DirectionsIcon from '@mui/icons-material/Directions';
+import AccountBoxIcon from '@mui/icons-material/AccountBox';
+import PersonIcon from '@mui/icons-material/Person';
 
 
 export default function PanelInformeCurricular() {
@@ -69,36 +71,28 @@ export default function PanelInformeCurricular() {
       </div>
       </Grid>
       <Grid container spacing={1}  justifyContent="center" direction="column" marginTop={32} margin="5%" maxWidth="90%">
-      <div>
+
+      <Grid container justifyContent="center" >
+        <AccountBoxIcon sx={{ fontSize: '10rem'}}></AccountBoxIcon>
+        <PersonIcon sx={{ fontSize: '10rem' }}></PersonIcon>
+      </Grid>
+      
+      
+      
       <Divider sx={{ height: 28, m: 0.5 }} orientation="vertical"/>
       {infoAlumno!==null && (
+        <div>
         <Typography sx={{ my: 2, mx: 2,fontSize:20 }} color="text.secondary">Alumno: {infoAlumno.nombre}</Typography>
-      )}
-      </div>
-      <div>
-      <Divider sx={{ height: 28, m: 0.5 }} orientation="vertical"/>
-      {infoAlumno!==null && (
+        <Divider sx={{ height: 28, m: 0.5 }} orientation="vertical"/>
         <Typography sx={{ my: 2, mx: 2,fontSize:20 }} color="text.secondary">Rut: {infoAlumno.rut}</Typography>
-      )}
-      </div>
-      <div>
-      <Divider sx={{ height: 28, m: 0.5 }} orientation="vertical"/>
-      {infoAlumno!==null && (
+        <Divider sx={{ height: 28, m: 0.5 }} orientation="vertical"/>
         <Typography sx={{ my: 2, mx: 2,fontSize:20 }} color="text.secondary">Correo: {infoAlumno.correo}</Typography>
-      )}
-      </div>
-      <div>
-      <Divider sx={{ height: 28, m: 0.5 }} orientation="vertical"/>
-      {infoAlumno!==null && (
-        <Typography sx={{ my: 2, mx: 2,fontSize:20 }} color="text.secondary">Carrera: {infoAlumno.id_carrera}</Typography>
-      )}
-      </div>
-      <div>
-      <Divider sx={{ height: 28, m: 0.5 }} orientation="vertical"/>
-      {infoAlumno!==null && (
+        <Divider sx={{ height: 28, m: 0.5 }} orientation="vertical"/>
+        <Typography sx={{ my: 2, mx: 2,fontSize:20 }} color="text.secondary">Carrera: {infoAlumno.id_carrera}</Typography>      
+        <Divider sx={{ height: 28, m: 0.5 }} orientation="vertical"/>
         <Typography sx={{ my: 2, mx: 2,fontSize:20 }} color="text.secondary">Semestre incompleto: {infoAlumno.semetre_incompleto}</Typography>
+        </div>
       )}
-      </div>
   </Grid>
 
   </Paper>
