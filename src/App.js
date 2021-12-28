@@ -19,6 +19,7 @@ const endpoints = {
 }
 
 function App() {
+  /* eslint-disable */ 
   const [electivos,setElectivos] = React.useState([
     {
         "value": 0,
