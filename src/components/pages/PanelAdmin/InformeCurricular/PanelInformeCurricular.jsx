@@ -1,11 +1,6 @@
 import * as React from 'react';
 import Typography from '@mui/material/Typography';
 import Paper from '@mui/material/Paper';
-<<<<<<< HEAD
-import {Grid} from '@mui/material';
-import Avatar from '@mui/material/Avatar';
-import Stack from '@mui/material/Stack';
-=======
 import {Button, Grid,Box} from '@mui/material';
 import TextField from '@mui/material/TextField';
 
@@ -15,7 +10,6 @@ import IconButton from '@mui/material/IconButton';
 import MenuIcon from '@mui/icons-material/Menu';
 import SearchIcon from '@mui/icons-material/Search';
 import DirectionsIcon from '@mui/icons-material/Directions';
->>>>>>> new-front-dionisio
 
 const endpoint_infoCurricular = "";
 
