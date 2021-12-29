@@ -15,7 +15,8 @@ const endpoints = {
   GetElectivos: "https://backend-electives.herokuapp.com/ucn/electivos",
   PostFormulario: "https://backend-electives.herokuapp.com/ucn/formulario",
   ValidarRut : "https://backend-electives.herokuapp.com/ucn/rut",
-  ValidarCorreo : "https://backend-electives.herokuapp.com/ucn/correo"
+  ValidarCorreo : "https://backend-electives.herokuapp.com/ucn/correo",
+  Semestres : "https://backend-electives.herokuapp.com/ucn/semestres"
 }
 
 function App() {
@@ -30,6 +31,14 @@ function App() {
         "value": "",
         "label": ""
     }])
+
+  const [semestres,setSemestres] = React.useState(
+    [
+    {
+        "semestre": "",
+        "label": ""
+    }
+  ])
 
   const getElectivos = async(endpoint) => {
     try{
@@ -54,10 +63,24 @@ function App() {
       console.error("Error GET-Carreras: ", error)
     }
   }
+
+  const getSemestres = async(endpoint) => {
+    try{
+      // GET request using fetch with async/await
+      const response = await fetch(endpoint);
+      const data = await response.json();
+      console.log("Semestres Api: ",data)
+      setSemestres(data)
+    }catch(error){
+      setSemestres(null)
+      console.error("Error GET-Semstres: ", error)
+    }
+  }
   
   React.useEffect( () => {
     getElectivos(endpoints.GetElectivos)
     getCarreras(endpoints.GetCarreras)
+    getSemestres(endpoints.Semestres)
   },[]);
 
   return (
@@ -76,7 +99,7 @@ function App() {
             <Session/>
           </Route>
           <PrivateRoute path="/HomeAdmin">
-            <HomeAdmin/>
+            <HomeAdmin semestres={semestres}/>
           </PrivateRoute>
        {/*  </Switch> */}
      

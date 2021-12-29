@@ -2,8 +2,7 @@ import React, { useState } from 'react';
 import Typography from '@mui/material/Typography';
 import Paper from '@mui/material/Paper';
 import { DataGrid } from '@mui/x-data-grid';
-import {Button} from "@mui/material";
-/* eslint-disable */ 
+import {Button, Grid} from "@mui/material";
 import {
   BrowserRouter as Router,
   useParams
@@ -176,7 +175,7 @@ export default function ContentForm() {
     <Router>
     <Paper sx={{ maxWidth: '100%', margin: 'auto', overflow: 'hidden'}}>
     <Typography sx={{ my: 2, mx: 2,fontSize:30 }} color="text.secondary" align="center">
-        Formulario
+        FORMULARIO
       </Typography>
 {/*             <ul>
                 {
@@ -197,20 +196,21 @@ export default function ContentForm() {
             </Switch>
             
             */}
-      <div style={{height: 400, width: '100%' }}>
-
-      <DataGrid
-        sx={{fontSize:10}}
-        rows={Alumnos}
-        columns={columns}
-        pageSize={5}
-        rowsPerPageOptions={[12]}
-        //checkboxSelection
-        disableSelectionOnClick
-        
-        //onCellEditStop = {async(params, event)=> console.log("e1: ",params.row)}
-        
-      />
+      <div style={{height: 400, width: '100%' }} align="center">
+      <Grid container maxWidth="95%" marginTop={5} height= {'95%'} justifyContent="space-between">
+        <DataGrid
+          sx={{fontSize:20}}
+          rows={Alumnos}
+          columns={columns}
+          pageSize={5}
+          rowsPerPageOptions={[12]}
+          //checkboxSelection
+          disableSelectionOnClick
+          
+          //onCellEditStop = {async(params, event)=> console.log("e1: ",params.row)}
+          
+        />
+      </Grid>
       </div>
       
       

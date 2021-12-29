@@ -2,7 +2,8 @@ import React, { useState } from 'react';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import useMediaQuery from '@mui/material/useMediaQuery';
 import CssBaseline from '@mui/material/CssBaseline';
-import Box from '@mui/material/Box';
+import Typography from '@mui/material/Typography';
+import {Button, Grid,Box} from '@mui/material';
 import Link from '@mui/material/Link';
 import Sidebar from './Sidebar';
 import Login from '../LoginAdmin/Login'
@@ -199,6 +200,9 @@ export default function HomeAdmin(props) {
     }
     {currentUser!=null && 
     (
+
+      <div>
+      
      <Router>      
       <Box sx={{ display: 'flex', minHeight: '100vh' }}>
         <CssBaseline />
@@ -233,17 +237,19 @@ export default function HomeAdmin(props) {
             <div >
               <div >
                   <Link to="/Session" className=""></Link>
+                  <Link to="/HomeAdmin" className=""></Link>
                   <Link to="/HomeAdmin/Login" className=""></Link>
                   <Link to="/HomeAdmin/PanelDashBoard/" className=""></Link>
                   <Link to="/HomeAdmin/PanelInformeCurricular/" className=""></Link>
                   <Link to="/HomeAdmin/PanelInformeCurricular/" className=""></Link>
               </div > 
                 <Switch>
+                
                   <PrivateRoute path="/HomeAdmin/ContentForm" >
                     <ContentForm/>
                   </PrivateRoute>
                   <PrivateRoute path="/HomeAdmin/PanelDashBoard" >
-                    <PanelDashBoard/>
+                    <PanelDashBoard semestres={props.semestres}/>
                   </PrivateRoute>
                   <PrivateRoute path="/HomeAdmin/PanelInformeCurricular" >
                     <PanelInformeCurricular/>
@@ -251,15 +257,23 @@ export default function HomeAdmin(props) {
                   <Route path="/Session" exact> 
                     <Login/>
                   </Route>
+                  <Route path="/HomeAdmin" >
+                    <div>
+                      <Grid container direction="row" alignItems="center" justifyContent="space-between" alignContent="center">
+                          <Typography sx={{ my: 2, mx: 2,fontSize:'5rem' }} color="text.secondary">¡Bienvenid@!</Typography>
+                      </Grid>
+                    </div>
+                  </Route>
                 </Switch>
             </div> 
-         
           </Paper>
           </Box>
           <BodyAdmin ></BodyAdmin>
         </Box>
+        
       </Box>
     </Router>
+    </div>
     )}
    
     </AuthProvider>
