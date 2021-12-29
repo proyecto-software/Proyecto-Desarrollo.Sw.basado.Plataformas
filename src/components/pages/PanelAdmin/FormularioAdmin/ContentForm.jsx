@@ -31,7 +31,7 @@ export default function ContentForm() {
   const PostEstadoSolicitud = async(row) => {
     try{
       const req = {
-        "Rut": row.rut,
+        "rut": row.rut_alumno,
         "electivo1": row.electivo1,
         "estado1": row.estado1,
         "electivo2": row.electivo2,
@@ -39,12 +39,15 @@ export default function ContentForm() {
         "electivo3": row.electivo3,
         "estado3": row.estado3
       }
+      console.log("req: ",req)
       const requestOptions = {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(req)
       };
-      const response = await fetch('https://backend-electives.herokuapp.com/ucn/',requestOptions)
+
+      console.log("req: ",requestOptions)
+      const response = await fetch('https://backend-electives.herokuapp.com/ucn/AprobarPostulacion',requestOptions)
       const status = await response.status;
       console.log("body: ",response.body)
       console.log("resp: ",response)
