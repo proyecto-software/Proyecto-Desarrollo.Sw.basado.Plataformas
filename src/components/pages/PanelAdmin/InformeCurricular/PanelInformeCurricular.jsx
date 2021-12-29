@@ -10,13 +10,10 @@ import IconButton from '@mui/material/IconButton';
 import MenuIcon from '@mui/icons-material/Menu';
 import SearchIcon from '@mui/icons-material/Search';
 import DirectionsIcon from '@mui/icons-material/Directions';
-<<<<<<< HEAD
-=======
 import AccountBoxIcon from '@mui/icons-material/AccountBox';
 import PersonIcon from '@mui/icons-material/Person';
 import { borderBottom, fontSize } from '@mui/system';
 import { DataGrid } from '@mui/x-data-grid';
->>>>>>> new-front-dionisio
 
 
 export default function PanelInformeCurricular() {
