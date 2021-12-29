@@ -22,6 +22,7 @@ export default function PanelInformeCurricular() {
   const [search, setSearch] = React.useState("");
   const [infoAlumno, setinfoAlumno] = React.useState(null);
   const [tablaInfoAlumno, setTablaInfoAlumno] = React.useState(null);
+  const [alumnoInfoCorrecta, setAlumnoInfoCorrecta] = React.useState(true);
   const columns = [
     {field:'nrc',headerName:'NRC',width:70, align: 'center', flex: 1},
     {field:'nombre_ramo',headerName:'Ramo', flex: 3},
@@ -42,11 +43,16 @@ export default function PanelInformeCurricular() {
       let endpoint = "https://backend-electives.herokuapp.com/ucn/InformeCurricular?rut="+rut
       console.log(endpoint)
       const data = await fetch(endpoint);
+      if(data.status >= 400){
+        setAlumnoInfoCorrecta(false)
+      }
       const data_json = await data.json()
-      if(data_json.nombre !== ""){
+      if(data_json !== null){
         setinfoAlumno(data_json)
+        setAlumnoInfoCorrecta(true)
       }else{
         setinfoAlumno(null)
+        setAlumnoInfoCorrecta(false)
       }
       console.error(data_json)
     }catch(error){
@@ -60,11 +66,16 @@ export default function PanelInformeCurricular() {
       let endpoint = "https://backend-electives.herokuapp.com/ucn/TablaInformeCurricular?rut="+rut
       console.log(endpoint)
       const data = await fetch(endpoint);
+      if(data.status >= 400){
+        setAlumnoInfoCorrecta(false)
+      }
       const data_json = await data.json()
       if(data_json !== null){
         setTablaInfoAlumno(data_json)
+        setAlumnoInfoCorrecta(true)
       }else{
         setTablaInfoAlumno(null)
+        setAlumnoInfoCorrecta(false)
       }
       console.error(data_json)
     }catch(error){
@@ -93,17 +104,16 @@ export default function PanelInformeCurricular() {
           sx={{ ml: 2, flex: 1 }}
           placeholder="Buscar RUT alumno"
           onChange={handleInputChange}
-          fontSize={10}
           
           style={{ 
-            color: '#787878',
-            fontSize:'2rem',
+            color: '#000000',
+            fontSize:'1.5rem',
             
             }}
           //inputProps={{ 'aria-label': 'search google maps' }}
         />
         <IconButton type="submit"  aria-label="search" onClick={requestInfoAlumno} align="right">
-          <SearchIcon sx={{ fontSize: '2.5rem' }} align="right"/>
+          <SearchIcon sx={{ fontSize: '3rem' }} align="right"/>
         </IconButton>
         </Box>
       </div>
@@ -125,30 +135,30 @@ export default function PanelInformeCurricular() {
                 <Grid direction="column" justifyContent="space-between" alignItems="center">
                   
                   <Grid container direction="row" justifyContent="space-between" >
-                    <Typography sx={{ my: 2, mx: 2,fontSize:20 }} color="text.secondary">Alumno: </Typography>
-                    <Typography sx={{ my: 2, mx: 2,fontSize:20 }} color="text.secondary">{infoAlumno.nombre}</Typography>
+                    <Typography sx={{ my: 2, mx: 2,fontSize:'1.7rem' }} color="text.secondary">Alumno: </Typography>
+                    <Typography sx={{ my: 2, mx: 2,fontSize:'1.7rem' }} color="text.secondary">{infoAlumno.nombre}</Typography>
                   </Grid>
                   <Grid container direction="row" justifyContent="space-between" >
-                    <Typography  sx={{ my: 2, mx: 2,fontSize:20 }} color="text.secondary">Rut: </Typography>
-                    <Typography sx={{ my: 2, mx: 2,fontSize:20 }} color="text.secondary">{infoAlumno.rut}</Typography>
+                    <Typography  sx={{ my: 2, mx: 2,fontSize:'1.7rem' }} color="text.secondary">Rut: </Typography>
+                    <Typography sx={{ my: 2, mx: 2,fontSize:'1.7rem' }} color="text.secondary">{infoAlumno.rut}</Typography>
                   </Grid>
                 </Grid>
             </Grid>
           </Grid>
           <Divider variant="middle" component="" />
           <Grid container direction="row" alignItems="center" justifyContent="space-between" alignContent="center">
-              <Typography  sx={{ my: 2, mx: 2,fontSize:20 }} color="text.secondary">Correo: </Typography>
-              <Typography sx={{ my: 2, mx: 2,fontSize:20 }} color="text.secondary">{infoAlumno.correo}</Typography>
+              <Typography  sx={{ my: 2, mx: 2,fontSize:'1.7rem' }} color="text.secondary">Correo: </Typography>
+              <Typography sx={{ my: 2, mx: 2,fontSize:'1.7rem' }} color="text.secondary">{infoAlumno.correo}</Typography>
           </Grid>
           <Divider variant="middle" component="" />
           <Grid container direction="row" alignItems="center" justifyContent="space-between" alignContent="center">
-              <Typography sx={{ my: 2, mx: 2,fontSize:20 }} color="text.secondary">Carrera: </Typography>
-              <Typography sx={{ my: 2, mx: 2,fontSize:20 }} color="text.secondary">{infoAlumno.carrera}</Typography>
+              <Typography sx={{ my: 2, mx: 2,fontSize:'1.7rem' }} color="text.secondary">Carrera: </Typography>
+              <Typography sx={{ my: 2, mx: 2,fontSize:'1.7rem' }} color="text.secondary">{infoAlumno.carrera}</Typography>
           </Grid>
           <Divider variant="middle" component="" />
           <Grid container direction="row" alignItems="center" justifyContent="space-between" alignContent="center">
-              <Typography  sx={{ my: 2, mx: 2,fontSize:20 }} color="text.secondary">Semestre incompleto: </Typography>
-              <Typography sx={{ my: 2, mx: 2,fontSize:20 }} color="text.secondary">{infoAlumno.semetre_incompleto}</Typography>
+              <Typography  sx={{ my: 2, mx: 2,fontSize:'1.7rem' }} color="text.secondary">Semestre incompleto: </Typography>
+              <Typography sx={{ my: 2, mx: 2,fontSize:'1.7rem' }} color="text.secondary">{infoAlumno.semetre_incompleto}</Typography>
           </Grid>
         </Grid>
         <Divider variant="middle" component=""/>
@@ -159,10 +169,11 @@ export default function PanelInformeCurricular() {
             maxWidth="50%"
               rows={tablaInfoAlumno}
               columns={columns}
-              pageSize={5}
+              pageSize={3}
               rowsPerPageOptions={[12]}
               //checkboxSelection
               disableSelectionOnClick
+              
               
               //onCellEditStop = {async(params, event)=> console.log("e1: ",params.row)}
               
@@ -170,15 +181,16 @@ export default function PanelInformeCurricular() {
             </Grid>
           </div>
         )}
-
-        {(tablaInfoAlumno!==null && infoAlumno!==null) && (
-          <Grid container direction="row" alignItems="center" justifyContent="space-between" alignContent="center">
-            <Typography  sx={{ my: 2, mx: 2,fontSize:20 }} color="text.secondary">No se encuentra contenido</Typography>
-          </Grid>
-        )}
         </Box>
         </div>
       )}
+      <div align="center">
+      {(!alumnoInfoCorrecta) && (
+          <Grid item direction="row" alignItems="center" justifyContent="space-between" alignContent="center">
+            <Typography  sx={{ my: 2, mx: 2,fontSize:20 }} color="text.secondary">No se encuentra contenido del alumno.</Typography>
+          </Grid>
+        )}
+        </div>
   </Grid>
 
   </Paper>

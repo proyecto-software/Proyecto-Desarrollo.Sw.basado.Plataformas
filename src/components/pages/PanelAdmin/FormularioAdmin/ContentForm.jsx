@@ -3,6 +3,7 @@ import Typography from '@mui/material/Typography';
 import Paper from '@mui/material/Paper';
 import { DataGrid } from '@mui/x-data-grid';
 import {Button, Grid} from "@mui/material";
+import Alert from '@mui/material/Alert';
 import {
   BrowserRouter as Router,
   useParams
@@ -16,9 +17,7 @@ export default function ContentForm() {
   const [Alumnos,setAlumnos] = useState([])
   //End Poinst
 
-  //UseEffect
-  React.useEffect( ()=>{
-    const obtenerDatos = async() => {
+  const obtenerDatos = async() => {
       try{
         const data = await fetch('https://backend-electives.herokuapp.com/ucn/solicitudes')
         const infoAlum = await data.json()
@@ -27,7 +26,41 @@ export default function ContentForm() {
       }catch(error){
         console.error("Error API GET - Content Form: ", error)
     }
+  }
+
+  const PostEstadoSolicitud = async(row) => {
+    try{
+      const req = {
+        "Rut": row.rut,
+        "electivo1": row.electivo1,
+        "estado1": row.estado1,
+        "electivo2": row.electivo2,
+        "estado2": row.estado2,
+        "electivo3": row.electivo3,
+        "estado3": row.estado3
+      }
+      const requestOptions = {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(req)
+      };
+      const response = await fetch('https://backend-electives.herokuapp.com/ucn/',requestOptions)
+      const status = await response.status;
+      console.log("body: ",response.body)
+      console.log("resp: ",response)
+    }catch(error){
+        console.error("Error API POST - Content Form: ", error)
     }
+  }
+  //UseEffect
+
+  const refreshForm = async(row) => {
+    await PostEstadoSolicitud(row)
+    await obtenerDatos()
+    
+  }
+
+  React.useEffect( ()=>{
     obtenerDatos()
   }, [id]);
     //Variables Para GRID
@@ -37,7 +70,6 @@ export default function ContentForm() {
       console.log("cambio estado: ", value)
     }
 
-  
     const [editRowsModel, setEditRowsModel] = React.useState({});
 
     const handleEditRowsModelChange = React.useCallback((model) => {
@@ -59,6 +91,13 @@ export default function ContentForm() {
       const estado3 = row.estado3
 
       //console.log(rut,estado1,estado2,estado3)
+    }
+
+    async function verificarCantidadElectivos(row){
+      let verificar = ([row.estado1, row.estado2, row.estado3].filter((v) => v).length <= row.cantidad_electivos)
+      console.log("Verificar: ", verificar)
+      console.log(row.estado1, row.estado2, row.estado3,row.cantidad_electivos)
+      return verificar
     }
 
     async function PostCambiarEstadoSolicitud(rut,electivo){
@@ -93,44 +132,60 @@ export default function ContentForm() {
     }
     const columns = [
       //{field:'id',headerName:'Id',width:90},
-      {field:'rut_alumno',headerName:'Rut',width:90},
-      {field:'carrera',headerName:'Carrera',width:70, align: 'center'},
-      {field:'indicador',headerName:'Indicador',width:90, align: 'center', headerAlign: 'center'},
-      {field:'electivo1',headerName:'Electivo1',width:'100', editable:true},
-      {
-        field: 'estado1',
-        headerName: 'Estado 1',
-        width: 90,
-        editable: true,
-        type: 'boolean',
-        preProcessEditCellProps : (params) => {
-          console.log("e1: ",params.props.value)
-          if(params.props.value !== params.row.estado1){
-            PostCambiarEstadoSolicitud(params.row.rut_alumno,params.row.electivo1)
-          }
-          return { ...params.props, error: false };
-        },
+      {field:'rut_alumno',headerName:'Rut',minWidth:90, flex:0.4,},
+      {field:'carrera',headerName:'Carrera',width:70, align: 'center', flex:0.3,},
+      {field:'indicador',headerName:'Indicador',width:90, align: 'center', headerAlign: 'center', flex:0.3,},
+      {field:'cantidad_electivos',headerName:'Cantidad',width:90, align: 'center', headerAlign: 'center', flex:0.3, editable:true, },
+      //{field:'electivo1',headerName:'Electivo1',width:'100', editable:true},
+      {field:'electivo1',headerName:'Electivo 1', flex:1,
+        renderCell: (params) => (
+          <strong>
+            
+            <Button
+              variant="contained"
+              color={(params.row.estado1)?"info":"inherit"}
+              size="small"
+              style={{ marginLeft: 16 }}
+              onClick={ () => (params.row.estado1 = !params.row.estado1)}
+            >
+              {params.value}
+            </Button>
+          </strong>
+        ),
       },
-      {field:'electivo2',headerName:'Electivo2',width:90},
-      {
-        field: 'estado2',
-        headerName: 'estado2 ',
-        width: 90,
-        border: `50px solid 'green'`,
-        borderRadius: 2,
-        display: 'table',
-        editable: true,
-        type: 'boolean',
-        preProcessEditCellProps : (params) => {
-          console.log("e2: ",params.props.value)
-          if(params.props.value !== params.row.estado2){
-            PostCambiarEstadoSolicitud(params.row.rut_alumno,params.row.electivo2)
-          }
-          return { ...params.props, error: false };
-        },
+      {field:'electivo2',headerName:'Electivo 2', flex:1,
+        renderCell: (params) => (
+          <strong>
+            
+            <Button
+              variant="contained"
+              color={(params.row.estado2)?"info":"inherit"}
+              size="small"
+              style={{ marginLeft: 16 }}
+              onClick={ () => (params.row.estado2 = !params.row.estado2)}
+            >
+              {params.value}
+            </Button>
+          </strong>
+        ),
       },
-      {field:'electivo3',headerName:'Electivo3',width:90},
-      {
+      {field:'electivo3',headerName:'Electivo 3', flex:1,
+        renderCell: (params) => (
+          <strong>
+            
+            <Button
+              variant="contained"
+              color={(params.row.estado3)?"info":"inherit"}
+              size="small"
+              style={{ marginLeft: 16 }}
+              onClick={ () => (params.row.estado3 = !params.row.estado3)}
+            >
+              {params.value}
+            </Button>
+          </strong>
+        ),
+      },
+      /*{
         field: 'estado3',
         headerName: 'Estado3',
         width: 90,
@@ -144,30 +199,30 @@ export default function ContentForm() {
           return { ...params.props, error: false };
         },
       },
+      */
       {
         field: 'save',
         headerName: '',
-        width: 150,
+        width: 100,
         renderCell: (params) => (
           <strong>
+            <div align="center">
             <Button
               variant="contained"
               color="primary"
               size="small"
-              //onClick = {console.log("row: ",params.row)}
-              disabled = {!(params.row.estado1 || params.row.estado2 || params.row.estado3 || true)}
-              onClick = {postSavePostulacion(params.row)}
+              onClick = {() => refreshForm(params.row)} 
+              disabled = {!([params.row.estado1, params.row.estado2, params.row.estado3].filter((v) => v).length <= params.row.cantidad_electivos)}
+              //onClick = {}
               style={{ marginLeft: 16 }}
             >
               SAVE
             </Button>
+            </div>
           </strong>
         ),
-        
       },
     ];
-    
-
   const handleChange = () => {
     console.log(Alumnos)
   }
@@ -177,44 +232,40 @@ export default function ContentForm() {
     <Typography sx={{ my: 2, mx: 2,fontSize:30 }} color="text.secondary" align="center">
         FORMULARIO
       </Typography>
-{/*             <ul>
-                {
-                  Alumnos.map( item =>(
-                        <li key={item.id}>
-                            <Link to={`/HomeAdmin/ContentForm/${item.id}`}>
-                                {item.name} - {item.expansion} - {item.army_type}
-                            </Link>
-                        </li>
+  {/*             <ul>
+                  {
+                    Alumnos.map( item =>(
+                          <li key={item.id}>
+                              <Link to={`/HomeAdmin/ContentForm/${item.id}`}>
+                                  {item.name} - {item.expansion} - {item.army_type}
+                              </Link>
+                          </li>
+                      )
                     )
-                  )
-                }
-            </ul> 
-                        <Switch>
-            <Route path="/HomeAdmin/ContentForm/:id" >
-                    <User/>
-            </Route>
-            </Switch>
+                  }
+              </ul> 
+                          <Switch>
+              <Route path="/HomeAdmin/ContentForm/:id" >
+                      <User/>
+              </Route>
+              </Switch>
+              */}
+        <div style={{height: 400, width: '100%' }} align="center">
+        <Grid container maxWidth="95%" marginTop={5} height= {'95%'} justifyContent="space-between">
+          <DataGrid
+            sx={{fontSize:20}}
+            rows={Alumnos}
+            columns={columns}
+            pageSize={5}
+            rowsPerPageOptions={[12]}
+            //checkboxSelection
+            disableSelectionOnClick
             
-            */}
-      <div style={{height: 400, width: '100%' }} align="center">
-      <Grid container maxWidth="95%" marginTop={5} height= {'95%'} justifyContent="space-between">
-        <DataGrid
-          sx={{fontSize:20}}
-          rows={Alumnos}
-          columns={columns}
-          pageSize={5}
-          rowsPerPageOptions={[12]}
-          //checkboxSelection
-          disableSelectionOnClick
-          
-          //onCellEditStop = {async(params, event)=> console.log("e1: ",params.row)}
-          
-        />
-      </Grid>
-      </div>
-      
-      
-    </Paper>
-    </Router>
-  );
+            //onCellEditStop = {async(params, event)=> console.log("e1: ",params.row)}
+          />
+        </Grid>
+        </div>
+      </Paper>
+      </Router>
+    );
 }
