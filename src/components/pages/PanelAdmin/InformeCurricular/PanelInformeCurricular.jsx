@@ -12,6 +12,7 @@ import SearchIcon from '@mui/icons-material/Search';
 import DirectionsIcon from '@mui/icons-material/Directions';
 import AccountBoxIcon from '@mui/icons-material/AccountBox';
 import PersonIcon from '@mui/icons-material/Person';
+import { borderBottom } from '@mui/system';
 
 
 export default function PanelInformeCurricular() {
@@ -19,6 +20,8 @@ export default function PanelInformeCurricular() {
 
   const [search, setSearch] = React.useState("");
   const [infoAlumno, setinfoAlumno] = React.useState(null);
+  const [tablaInfoAlumno, setTablaInfoAlumno] = React.useState(null);
+
   const handleInputChange = (event) => {
     setSearch(event.target.value)
     console.log(search)
@@ -42,6 +45,24 @@ export default function PanelInformeCurricular() {
     }
   }
 
+  const requestTablaInfoCurricular = async() => {
+    try{
+      let rut = search
+      let endpoint = "https://backend-electives.herokuapp.com/ucn/TablaInformeCurricular?rut="+rut
+      console.log(endpoint)
+      const data = await fetch(endpoint);
+      const data_json = await data.json()
+      if(data_json.nombre !== ""){
+        setTablaInfoAlumno(data_json)
+      }else{
+        setTablaInfoAlumno(null)
+      }
+      console.error(data_json)
+    }catch(error){
+        console.error("Error API POST - Info Curricular: ", error)
+    }
+  }
+
   return (
     <Paper sx={{ maxWidth: '100%', margin: 'auto', overflow: 'hidden' }} >
       <Typography sx={{ my: 2, mx: 2,fontSize:30 }} color="text.secondary" align="center">
@@ -50,7 +71,7 @@ export default function PanelInformeCurricular() {
     
     <Grid container spacing={1}  justifyContent="center" marginTop={32} margin="5%" maxWidth="90%">
       <div >
-        <Box sx={{ p: 0.5, border: 'inset' }} > 
+        <Box  sx={{ borderRadius: 15, p: 0.5, border: 1 }}> 
         <InputBase 
           sx={{ ml: 2, flex: 1 }}
           placeholder="Buscar RUT alumno"
@@ -72,25 +93,48 @@ export default function PanelInformeCurricular() {
       </Grid>
       <Grid container spacing={1}  justifyContent="center" direction="column" marginTop={32} margin="5%" maxWidth="90%">
 
-      <Grid container justifyContent="center" >
-        <AccountBoxIcon sx={{ fontSize: '10rem'}}></AccountBoxIcon>
-        <PersonIcon sx={{ fontSize: '10rem' }}></PersonIcon>
-      </Grid>
-      
-      
-      
       <Divider sx={{ height: 28, m: 0.5 }} orientation="vertical"/>
       {infoAlumno!==null && (
-        <div>
-        <Typography sx={{ my: 2, mx: 2,fontSize:20 }} color="text.secondary">Alumno: {infoAlumno.nombre}</Typography>
-        <Divider sx={{ height: 28, m: 0.5 }} orientation="vertical"/>
-        <Typography sx={{ my: 2, mx: 2,fontSize:20 }} color="text.secondary">Rut: {infoAlumno.rut}</Typography>
-        <Divider sx={{ height: 28, m: 0.5 }} orientation="vertical"/>
-        <Typography sx={{ my: 2, mx: 2,fontSize:20 }} color="text.secondary">Correo: {infoAlumno.correo}</Typography>
-        <Divider sx={{ height: 28, m: 0.5 }} orientation="vertical"/>
-        <Typography sx={{ my: 2, mx: 2,fontSize:20 }} color="text.secondary">Carrera: {infoAlumno.id_carrera}</Typography>      
-        <Divider sx={{ height: 28, m: 0.5 }} orientation="vertical"/>
-        <Typography sx={{ my: 2, mx: 2,fontSize:20 }} color="text.secondary">Semestre incompleto: {infoAlumno.semetre_incompleto}</Typography>
+        <div align="center">
+        
+        <Box sx={{ p: 0.5, border:'' }} >
+        <Grid container direction="column" justifyContent="space-between" maxWidth="80%">
+          <Grid justifyContent="center" >
+            <Grid container direction="row" justifyContent="space-around">
+                <Grid alignContent="center" direction="column" justifyContent="space-between" >
+                    <PersonIcon sx={{ fontSize: '10rem', marginTop:1}} ></PersonIcon>
+                </Grid>
+                <Divider orientation="vertical" variant="middle" flexItem component="" />
+                <Grid direction="column" justifyContent="space-between" alignItems="center">
+                  
+                  <Grid container direction="row" justifyContent="space-between" >
+                    <Typography sx={{ my: 2, mx: 2,fontSize:20 }} color="text.secondary">Alumno: </Typography>
+                    <Typography sx={{ my: 2, mx: 2,fontSize:20 }} color="text.secondary">{infoAlumno.nombre}</Typography>
+                  </Grid>
+                  <Grid container direction="row" justifyContent="space-between" >
+                    <Typography  sx={{ my: 2, mx: 2,fontSize:20 }} color="text.secondary">Rut: </Typography>
+                    <Typography sx={{ my: 2, mx: 2,fontSize:20 }} color="text.secondary">{infoAlumno.rut}</Typography>
+                  </Grid>
+                </Grid>
+            </Grid>
+          </Grid>
+          <Divider variant="middle" component="" />
+          <Grid container direction="row" alignItems="center" justifyContent="space-between" alignContent="center">
+              <Typography  sx={{ my: 2, mx: 2,fontSize:20 }} color="text.secondary">Correo: </Typography>
+              <Typography sx={{ my: 2, mx: 2,fontSize:20 }} color="text.secondary">{infoAlumno.correo}</Typography>
+          </Grid>
+          <Divider variant="middle" component="" />
+          <Grid container direction="row" alignItems="center" justifyContent="space-between" alignContent="center">
+              <Typography sx={{ my: 2, mx: 2,fontSize:20 }} color="text.secondary">Carrera: </Typography>
+              <Typography sx={{ my: 2, mx: 2,fontSize:20 }} color="text.secondary">{infoAlumno.id_carrera}</Typography>
+          </Grid>
+          <Divider variant="middle" component="" />
+          <Grid container direction="row" alignItems="center" justifyContent="space-between" alignContent="center">
+              <Typography  sx={{ my: 2, mx: 2,fontSize:20 }} color="text.secondary">Semestre incompleto: </Typography>
+              <Typography sx={{ my: 2, mx: 2,fontSize:20 }} color="text.secondary">{infoAlumno.semetre_incompleto}</Typography>
+          </Grid>
+        </Grid>
+        </Box>
         </div>
       )}
   </Grid>
