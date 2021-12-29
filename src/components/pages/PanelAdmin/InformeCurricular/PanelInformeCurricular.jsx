@@ -83,7 +83,7 @@ export default function PanelInformeCurricular() {
   return (
     <Paper sx={{ maxWidth: '100%', margin: 'auto', overflow: 'hidden' }} >
       <Typography sx={{ my: 2, mx: 2,fontSize:30 }} color="text.secondary" align="center">
-      Informe Curricular
+      INFORME CURRICULAR
     </Typography>
     
     <Grid container spacing={1}  justifyContent="center" marginTop={32} margin="5%" maxWidth="90%">
@@ -171,6 +171,11 @@ export default function PanelInformeCurricular() {
           </div>
         )}
 
+        {(tablaInfoAlumno!==null && infoAlumno!==null) && (
+          <Grid container direction="row" alignItems="center" justifyContent="space-between" alignContent="center">
+            <Typography  sx={{ my: 2, mx: 2,fontSize:20 }} color="text.secondary">No se encuentra contenido</Typography>
+          </Grid>
+        )}
         </Box>
         </div>
       )}

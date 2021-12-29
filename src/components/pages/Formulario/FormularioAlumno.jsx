@@ -234,9 +234,7 @@ const FormularioAlumno = (props) => {
         justify='center'
         style={{
             boxShadow:`${alpha("#00FF87  ", 1)} 0 0 0 2px`,
-            borderColor: "#00FF87" }}
-            >
-           
+            borderColor: "#00FF87" }}>
             <form onSubmit={handleSubmit(onSubmit)}>
                 <Card sx={{ bgcolor: 'rgba(60, 60, 60, 0.6)', color: 'text.primary', p: 2 }}>
                     <Typography color ="white" gutterBottom variant ="h3" align="center" align="center">Formulario Alumno</Typography>
@@ -271,6 +269,7 @@ const FormularioAlumno = (props) => {
                                 <Autocomplete 
                                         style={{ backgroundColor: 'rgba(160, 160, 160, 0.6)'}} 
                                         disablePortal
+                                        disableClearable
                                         id="carrera"
                                         options={carreras}
                                         onChange = {(event, value) => handleAutocompleteChange("carrera",value.label)} // prints the selected value
@@ -283,6 +282,7 @@ const FormularioAlumno = (props) => {
                                 <Autocomplete
                                        style={{ backgroundColor: 'rgba(160, 160, 160, 0.6)'}}
                                         disablePortal
+                                        disableClearable
                                         id="cantidad"
                                         options={cantidad}
                                         onChange =  {(event, value) => handleAutocompleteChange("cantidad",value.value)} // prints the selected value
@@ -295,6 +295,7 @@ const FormularioAlumno = (props) => {
                             <Autocomplete
                             style={{ backgroundColor: 'rgba(160, 160, 160, 0.6)', color:'white',borderColor:' rgba(20, 221, 175, 0.91)'}}
                                         disablePortal
+                                        disableClearable
                                         id="electivo1"
                                         options={electivos}
                                         
@@ -308,6 +309,7 @@ const FormularioAlumno = (props) => {
                             <Autocomplete
                                         style={{ backgroundColor: 'rgba(160, 160, 160, 0.6)'}}
                                         disablePortal
+                                        disableClearable
                                         id="electivo2"
                                         options={electivos}
                                         
@@ -323,6 +325,7 @@ const FormularioAlumno = (props) => {
                                         
                                         style={{ backgroundColor: 'rgba(160, 160, 160, 0.6)'}}
                                         disabled={false}
+                                        disableClearable
                                         id="electivo3"
                                         options={electivos}
                                         onChange = {(event, value) => handleAutocompleteChange("electivo3",value.label)} // prints the selected value
