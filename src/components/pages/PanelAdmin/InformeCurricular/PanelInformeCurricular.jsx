@@ -12,7 +12,8 @@ import SearchIcon from '@mui/icons-material/Search';
 import DirectionsIcon from '@mui/icons-material/Directions';
 import AccountBoxIcon from '@mui/icons-material/AccountBox';
 import PersonIcon from '@mui/icons-material/Person';
-import { borderBottom } from '@mui/system';
+import { borderBottom, fontSize } from '@mui/system';
+import { DataGrid } from '@mui/x-data-grid';
 
 
 export default function PanelInformeCurricular() {
@@ -21,12 +22,20 @@ export default function PanelInformeCurricular() {
   const [search, setSearch] = React.useState("");
   const [infoAlumno, setinfoAlumno] = React.useState(null);
   const [tablaInfoAlumno, setTablaInfoAlumno] = React.useState(null);
+  const columns = [
+    {field:'nrc',headerName:'NRC',width:70, align: 'center', flex: 1},
+    {field:'nombre_ramo',headerName:'Ramo', flex: 3},
+    
+    {field:'semestre',headerName:'Semestre',width:70, align: 'center', flex: 1},
+    {field:'nota',headerName:'Promedio',width:70, align: 'center', flex: 1},
+    {field:'oportunidad',headerName:'Oportunidad',width:70, align: 'center', flex: 1.5},
+  ]
+  
 
   const handleInputChange = (event) => {
     setSearch(event.target.value)
     console.log(search)
   }
-
   const requestInfoCurricular = async() => {
     try{
       let rut = search
@@ -52,15 +61,23 @@ export default function PanelInformeCurricular() {
       console.log(endpoint)
       const data = await fetch(endpoint);
       const data_json = await data.json()
-      if(data_json.nombre !== ""){
+      if(data_json !== null){
         setTablaInfoAlumno(data_json)
       }else{
         setTablaInfoAlumno(null)
       }
       console.error(data_json)
     }catch(error){
-        console.error("Error API POST - Info Curricular: ", error)
+        console.error("Error API POST - Tabla Info Curricular: ", error)
     }
+  }
+
+  const requestInfoAlumno = async() => {
+    await requestInfoCurricular()
+    await requestTablaInfoCurricular()
+
+    console.log("info: ",infoAlumno)
+    console.log("tabla info: ",tablaInfoAlumno)
   }
 
   return (
@@ -85,7 +102,7 @@ export default function PanelInformeCurricular() {
             }}
           //inputProps={{ 'aria-label': 'search google maps' }}
         />
-        <IconButton type="submit"  aria-label="search" onClick={requestInfoCurricular} align="right">
+        <IconButton type="submit"  aria-label="search" onClick={requestInfoAlumno} align="right">
           <SearchIcon sx={{ fontSize: '2.5rem' }} align="right"/>
         </IconButton>
         </Box>
@@ -126,7 +143,7 @@ export default function PanelInformeCurricular() {
           <Divider variant="middle" component="" />
           <Grid container direction="row" alignItems="center" justifyContent="space-between" alignContent="center">
               <Typography sx={{ my: 2, mx: 2,fontSize:20 }} color="text.secondary">Carrera: </Typography>
-              <Typography sx={{ my: 2, mx: 2,fontSize:20 }} color="text.secondary">{infoAlumno.id_carrera}</Typography>
+              <Typography sx={{ my: 2, mx: 2,fontSize:20 }} color="text.secondary">{infoAlumno.carrera}</Typography>
           </Grid>
           <Divider variant="middle" component="" />
           <Grid container direction="row" alignItems="center" justifyContent="space-between" alignContent="center">
@@ -134,6 +151,26 @@ export default function PanelInformeCurricular() {
               <Typography sx={{ my: 2, mx: 2,fontSize:20 }} color="text.secondary">{infoAlumno.semetre_incompleto}</Typography>
           </Grid>
         </Grid>
+        <Divider variant="middle" component=""/>
+        {tablaInfoAlumno!==null && (
+          <div style={{fontSize:2}}>
+            <Grid maxWidth="80%" marginTop={5} height= {250}>
+            <DataGrid
+            maxWidth="50%"
+              rows={tablaInfoAlumno}
+              columns={columns}
+              pageSize={5}
+              rowsPerPageOptions={[12]}
+              //checkboxSelection
+              disableSelectionOnClick
+              
+              //onCellEditStop = {async(params, event)=> console.log("e1: ",params.row)}
+              
+            />
+            </Grid>
+          </div>
+        )}
+
         </Box>
         </div>
       )}
