@@ -233,7 +233,6 @@ export default function HomeAdmin(props) {
           <Header onDrawerToggle={manejorResponsive} />
           <Box component="main" sx={{ flex: 1, py: 6, px: 4, bgcolor: '#eaeff1' }}>
           <Paper sx={{ maxWidth: '100%', margin: 'auto', overflow: 'hidden'}}>
-         
             <div >
               <div >
                   <Link to="/Session" className=""></Link>
