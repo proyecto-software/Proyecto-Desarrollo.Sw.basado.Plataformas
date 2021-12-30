@@ -32,6 +32,23 @@ const categories = [
     ],
   },
 ];
+const categories1 = [
+  {
+    id: 'Home',
+    children: [
+      {
+        id: 'Home', icon: <HomeIcon />, link:'/HomeAdmin/'},  
+      
+    ],
+  },
+];
+
+
+
+
+
+
+
 
 const item = {
   py: '2px',
@@ -63,16 +80,47 @@ export default function Sidebar(props) {
             />
         </div>
         </ListItem>
-        <ListItem sx={{ ...item, ...itemCategory }}>
-          <ListItemIcon>
-            <HomeIcon />
-          </ListItemIcon>
-          <ListItemText>Home</ListItemText>
-        </ListItem>
+        <ListItem disablePadding sx={{ ...item, ...itemCategory }}>
         {
-          
-          
-          
+          categories1.map(({id,children}) => (
+            <>
+            {children.map(({ id: childId, icon, active,link }) => (
+                <ListItem disablePadding key={childId}>
+                  <ListItemButton selected={active} sx={item}>
+                  <ListItemIcon>{icon}</ListItemIcon>
+
+                    <Link to={{
+
+                        pathname: link
+                      
+
+
+                      
+                            }} 
+                    style={{ 
+                          textDecoration: 'none' }}>                  
+                    <ListItemText style={{ color:'#ffff' }}>{childId}</ListItemText>
+                    </Link>
+                  </ListItemButton>
+                </ListItem>
+              ))
+              }
+            </>
+
+
+          ))
+
+        }
+
+
+
+
+
+
+        </ListItem>
+
+
+        {
           categories.map(({ id, children }) => (
           <Box key={id} sx={{ bgcolor: '#2C4348' }}>
             <ListItem sx={{ py: 2, px: 3 }}>
@@ -104,7 +152,7 @@ export default function Sidebar(props) {
           </Box>
           
         ))
-        
+
         }
       </List>
       <div align="center">
