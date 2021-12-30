@@ -4,13 +4,14 @@ import Paper from '@mui/material/Paper';
 import { DataGrid } from '@mui/x-data-grid';
 import {Button, Grid} from "@mui/material";
 import Modal from '@mui/material/Modal';
-import Alert from '@mui/material/Alert';
+import Box from '@mui/material/Box';
+
 import {
   BrowserRouter as Router,
   useParams
   } from "react-router-dom";
 export default function ContentForm() {
-  const endpoint_estado_solicitud = 'https://backend-electives.herokuapp.com/ucn/AprobarPostulacion'
+  
   //Params
   const {id} = useParams();
   console.log(id)
@@ -56,95 +57,68 @@ export default function ContentForm() {
         console.error("Error API POST - Content Form: ", error)
     }
   }
-  //UseEffect
+
+
+  //CAMBIOS EN EL MODAL
+    /* MODAL  */
+  const [open, setOpen] = React.useState(false);
+  const handleOpen = () => setOpen(true);
+  const handleClose = () => setOpen(false);
+
+    /* style modal */
+  const style = {
+    position: 'absolute',
+    top: '50%',
+    left: '50%',
+    transform: 'translate(-50%, -50%)',
+    width: 400,
+    bgcolor: 'background.paper',
+    border: '2px solid #000',
+    boxShadow: 24,
+    p: 4,
+  };
+
+const modal = async()=>{
+    <Modal
+    open={open}
+    onClose={handleClose}
+    aria-labelledby="modal-modal-title"
+    aria-describedby="modal-modal-description">
+    <Box sx={style}>
+      <Typography id="modal-modal-title" variant="h6" component="h2">
+        Text in a modal
+      </Typography>
+      <Typography id="modal-modal-description" sx={{ mt: 2 }}>
+        Duis mollis, est non commodo luctus, nisi erat porttitor ligula.
+      </Typography>
+    </Box>
+    </Modal>
+  
+}
+
 
   const refreshForm = async(row) => {
     await PostEstadoSolicitud(row)
     await obtenerDatos()
-    
+    handleOpen()
+    await modal()
   }
 
+  //USE EFFECT
   React.useEffect( ()=>{
     obtenerDatos()
   }, [id]);
     //Variables Para GRID
+ 
 
-    function getValue(params) {
-      const value = params.getValue(params.id, 'estado1')
-      console.log("cambio estado: ", value)
-    }
 
-    const [editRowsModel, setEditRowsModel] = React.useState({});
 
-    const handleEditRowsModelChange = React.useCallback((model) => {
-      setEditRowsModel(model);
-      if(model.length === 0){
-
-      }else{
-        //console.log("model: ",model)
-        //console.log("alumnos: ",Alumnos)
-        //console.log("x: ",editRowsModel)
-      }
-      
-    }, []);
-
-    function postSavePostulacion(row){
-      const rut = row.rut_alumno
-      const estado1 = row.estado1
-      const estado2 = row.estado2
-      const estado3 = row.estado3
-
-      //console.log(rut,estado1,estado2,estado3)
-    }
-
-    async function verificarCantidadElectivos(row){
-      let verificar = ([row.estado1, row.estado2, row.estado3].filter((v) => v).length <= row.cantidad_electivos)
-      console.log("Verificar: ", verificar)
-      console.log(row.estado1, row.estado2, row.estado3,row.cantidad_electivos)
-      return verificar
-    }
-
-    async function PostCambiarEstadoSolicitud(rut,electivo){
-      try{
-          const req = {
-            rut_alumno: "",
-            nombre_electivo: ""
-          }
-
-          req.rut_alumno = rut
-          req.nombre_electivo = electivo
-
-          console.log(req)
-          const structReq = ['rut_alumno','nombre_electivo']
-          const requestOptions = {
-              method: 'POST',
-              headers: { 'Content-Type': 'application/json' },
-              body: JSON.stringify(req,structReq)
-          };
-          console.log(requestOptions)
-          const response = await fetch(endpoint_estado_solicitud, requestOptions);
-          const status = await response.status;
-          console.log("body: ",response.body)
-          if (status===200){
-              return true
-          }else{
-              return false
-          }
-      }catch(error){
-          console.error("Error API POST - Formulario: ", error)
-      }
-    }
-    /* MODAL  */
-
-    
-    /*  */
 
     const columns = [
       {field:'rut_alumno',headerName:'Rut',minWidth:90, flex:0.4,},
       {field:'carrera',headerName:'Carrera',width:70, align: 'center', flex:0.3,},
       {field:'indicador',headerName:'Indicador',width:90, align: 'center', headerAlign: 'center', flex:0.3,},
       {field:'cantidad_electivos',headerName:'Cantidad',width:90, align: 'center', headerAlign: 'center', flex:0.3, editable:true, },
-      //{field:'electivo1',headerName:'Electivo1',width:'100', editable:true},
       {field:'electivo1',headerName:'Electivo 1', flex:1,
         renderCell: (params) => (
           <strong> 
