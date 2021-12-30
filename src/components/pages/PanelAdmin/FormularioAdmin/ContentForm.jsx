@@ -214,7 +214,7 @@ export default function ContentForm() {
               style={{ marginLeft: 16 }}
               sx={{fontSize:'1.3rem'}}
             >
-              SAVE
+              ENVIAR
             </Button>
             </div>
           </strong>
@@ -228,7 +228,7 @@ export default function ContentForm() {
     <Router>
     <Paper sx={{ maxWidth: '100%', margin: 'auto', overflow: 'hidden'}}>
     <Typography sx={{ my: 2, mx: 2,fontSize:30 }} color="text.secondary" align="center">
-        FORMULARIO
+        SOLICITUDES
     </Typography>
         <div style={{height: 400, width: '100%' }} align="center">
           <Grid container maxWidth="95%" marginTop={5} height= {'95%'} justifyContent="space-between">

@@ -25,7 +25,7 @@ const categories = [
     children: [
       {
         id: 'Dashboard', icon: <AssessmentIcon />, link:'/HomeAdmin/PanelDashBoard/' /*  active: true, */},
-      { id: 'Formulario', icon: <AssignmentTurnedInIcon />, link:'/HomeAdmin/ContentForm/'},
+      { id: 'Solicitudes', icon: <AssignmentTurnedInIcon />, link:'/HomeAdmin/ContentForm/'},
       { id: 'Informe Curricular', icon: <AttributionIcon /> , link:'/HomeAdmin/PanelInformeCurricular/'},
       
       
