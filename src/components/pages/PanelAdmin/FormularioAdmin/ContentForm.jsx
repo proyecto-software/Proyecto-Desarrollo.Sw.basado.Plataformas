@@ -3,6 +3,7 @@ import Typography from '@mui/material/Typography';
 import Paper from '@mui/material/Paper';
 import { DataGrid } from '@mui/x-data-grid';
 import {Button, Grid} from "@mui/material";
+import Modal from '@mui/material/Modal';
 import Alert from '@mui/material/Alert';
 import {
   BrowserRouter as Router,
@@ -133,8 +134,12 @@ export default function ContentForm() {
           console.error("Error API POST - Formulario: ", error)
       }
     }
+    /* MODAL  */
+
+    
+    /*  */
+
     const columns = [
-      //{field:'id',headerName:'Id',width:90},
       {field:'rut_alumno',headerName:'Rut',minWidth:90, flex:0.4,},
       {field:'carrera',headerName:'Carrera',width:70, align: 'center', flex:0.3,},
       {field:'indicador',headerName:'Indicador',width:90, align: 'center', headerAlign: 'center', flex:0.3,},
@@ -142,8 +147,7 @@ export default function ContentForm() {
       //{field:'electivo1',headerName:'Electivo1',width:'100', editable:true},
       {field:'electivo1',headerName:'Electivo 1', flex:1,
         renderCell: (params) => (
-          <strong>
-            
+          <strong> 
             <Button
               variant="contained"
               color={(params.row.estado1)?"info":"inherit"}
@@ -151,7 +155,7 @@ export default function ContentForm() {
               style={{ marginLeft: 16 }}
               onClick={ () => (params.row.estado1 = !params.row.estado1)}
             >
-              {params.value}
+            {params.value}
             </Button>
           </strong>
         ),
@@ -188,21 +192,6 @@ export default function ContentForm() {
           </strong>
         ),
       },
-      /*{
-        field: 'estado3',
-        headerName: 'Estado3',
-        width: 90,
-        editable: true,
-        type: 'boolean',
-        preProcessEditCellProps : (params) => {
-          console.log("e3: ",params.props.value,params.row.estado3)
-          if(params.props.value !== params.row.estado3){
-            PostCambiarEstadoSolicitud(params.row.rut_alumno,params.row.electivo3)
-          }
-          return { ...params.props, error: false };
-        },
-      },
-      */
       {
         field: 'save',
         headerName: '',
@@ -234,39 +223,21 @@ export default function ContentForm() {
     <Paper sx={{ maxWidth: '100%', margin: 'auto', overflow: 'hidden'}}>
     <Typography sx={{ my: 2, mx: 2,fontSize:30 }} color="text.secondary" align="center">
         FORMULARIO
-      </Typography>
-  {/*             <ul>
-                  {
-                    Alumnos.map( item =>(
-                          <li key={item.id}>
-                              <Link to={`/HomeAdmin/ContentForm/${item.id}`}>
-                                  {item.name} - {item.expansion} - {item.army_type}
-                              </Link>
-                          </li>
-                      )
-                    )
-                  }
-              </ul> 
-                          <Switch>
-              <Route path="/HomeAdmin/ContentForm/:id" >
-                      <User/>
-              </Route>
-              </Switch>
-              */}
+    </Typography>
         <div style={{height: 400, width: '100%' }} align="center">
-        <Grid container maxWidth="95%" marginTop={5} height= {'95%'} justifyContent="space-between">
-          <DataGrid
-            sx={{fontSize:20}}
-            rows={Alumnos}
-            columns={columns}
-            pageSize={5}
-            rowsPerPageOptions={[12]}
-            //checkboxSelection
-            disableSelectionOnClick
-            
-            //onCellEditStop = {async(params, event)=> console.log("e1: ",params.row)}
-          />
-        </Grid>
+          <Grid container maxWidth="95%" marginTop={5} height= {'95%'} justifyContent="space-between">
+            <DataGrid
+              sx={{fontSize:20}}
+              rows={Alumnos}
+              columns={columns}
+              pageSize={5}
+              rowsPerPageOptions={[12]}
+              //checkboxSelection
+              disableSelectionOnClick
+              
+              //onCellEditStop = {async(params, event)=> console.log("e1: ",params.row)}
+            />
+          </Grid>
         </div>
       </Paper>
       </Router>

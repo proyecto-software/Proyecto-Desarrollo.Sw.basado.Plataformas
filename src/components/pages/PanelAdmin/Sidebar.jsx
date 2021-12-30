@@ -37,7 +37,7 @@ const categories1 = [
     id: 'Home',
     children: [
       {
-        id: 'Home', icon: <HomeIcon />, link:'/HomeAdmin/',active: true},  
+        id: 'Home', icon: <HomeIcon />, link:'/HomeAdmin/'},  
       
     ],
   },
