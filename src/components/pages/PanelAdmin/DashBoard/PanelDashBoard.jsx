@@ -3,7 +3,7 @@ import {Grid, TextField, Autocomplete} from '@mui/material';
 import Cards from './CardDashboard';
 import Paper from '@mui/material/Paper';
 import Typography from '@mui/material/Typography';
-
+import Divider from '@mui/material/Divider';
 
   const endpoint_dashboard = "https://backend-electives.herokuapp.com/ucn/Dashboard?semestre="
 
@@ -50,6 +50,9 @@ import Typography from '@mui/material/Typography';
         <Typography sx={{ my: 2, mx: 2,fontSize:30 }} color="text.secondary" align="center">
         DASHBOARD
         </Typography>
+        <Divider variant="middle" component="" />
+    <Divider sx={{ mt: 2 }} />
+    <br></br>
       <div align="center" margin= 'auto'>
         
         <Grid container direction="column" justifyContent="space-between" maxWidth="70%" >

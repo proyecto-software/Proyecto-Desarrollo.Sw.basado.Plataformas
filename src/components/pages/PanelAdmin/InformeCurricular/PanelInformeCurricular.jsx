@@ -93,14 +93,17 @@ export default function PanelInformeCurricular() {
 
   return (
     <Paper sx={{ maxWidth: '100%', margin: 'auto', overflow: 'hidden' }} >
+    <br></br>
     <Grid  container spacing={1}  justifyContent="center"  maxWidth="90%">
     <Typography justifyContent="center"  sx={{ my: 2, mx: 2,fontSize:30 }} color="text.secondary" align="center">
       INFORME CURRICULAR
      </Typography>
     </Grid>
-    
+    <Divider variant="middle" component="" />
+    <Divider sx={{ mt: 2 }} />
+    <br></br>
     <Grid container spacing={1}  justifyContent="center"  maxWidth="90%">
-        <Box  sx={{ borderRadius: 15, p: 0.5, border: 1 }}> 
+        <Box  sx={{ borderRadius: 15, p: 0.5, border: 1}}> 
         <InputBase 
           sx={{ ml: 2, flex: 1 }}
           placeholder="Buscar RUT alumno"
