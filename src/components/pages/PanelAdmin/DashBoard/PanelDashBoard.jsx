@@ -58,8 +58,9 @@ import {
         <Typography sx={{ my: 2, mx: 2,fontSize:30 }} color="text.secondary" align="center">
         DASHBOARD
         </Typography>
-      <div align="center">
-        <Grid container direction="column" justifyContent="space-between" maxWidth="80%">
+      <div align="center" margin= 'auto'>
+        
+        <Grid container direction="column" justifyContent="space-between" maxWidth="70%" >
           <Grid container spacing={3} marginTop={3}>
             <Grid>
               <Typography sx={{ my: 2, mx: 2,fontSize:20 }} color="text.secondary">Semestre: {semestre}</Typography>
@@ -80,18 +81,17 @@ import {
             </Grid>
 
             {semestre!==null &&(
-              <div>
-              <Grid container spacing={3} align="center" alignItems="center" justifyContent="center" marginTop={3}>
+              
+              <Grid item spacing={3} align="center" alignItems="center" justifyContent="center" marginTop={3}>
                 <Grid container spacing={3} align="center" alignItems="center" justifyContent="center" elevation={20}>
                   {Array.from(Array(dashboard.length)).map((_, index) => (
                     
                     <Grid item xs={12} sm={5} md={5} lg={5} xl={5} key={index} elevation={20} marginBottom={3}>
-                        <Cards titulo={dashboard[index].nombre} texto={dashboard[index].cantidad_alumnos}/>
+                        <Cards titulo={dashboard[index].nombre} texto={dashboard[index].cantidad_alumnos + " alumnos"}/>
                     </Grid>
                   ))}
                 </Grid>
               </Grid>
-              </div>
               )}
           </Grid>
         </Grid>
