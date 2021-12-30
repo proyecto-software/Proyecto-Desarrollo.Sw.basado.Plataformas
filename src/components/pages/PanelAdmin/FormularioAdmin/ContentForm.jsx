@@ -5,6 +5,7 @@ import { DataGrid } from '@mui/x-data-grid';
 import {Button, Grid} from "@mui/material";
 import Modal from '@mui/material/Modal';
 import Alert from '@mui/material/Alert';
+import Divider from '@mui/material/Divider';
 import {
   BrowserRouter as Router,
   useParams
@@ -230,6 +231,9 @@ export default function ContentForm() {
     <Typography sx={{ my: 2, mx: 2,fontSize:30 }} color="text.secondary" align="center">
         SOLICITUDES
     </Typography>
+    <Divider variant="middle" component="" />
+    
+   
         <div style={{height: 400, width: '100%' }} align="center">
           <Grid container maxWidth="95%" marginTop={5} height= {'95%'} justifyContent="space-between">
             <DataGrid

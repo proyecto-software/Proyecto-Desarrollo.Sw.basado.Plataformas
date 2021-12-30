@@ -216,7 +216,7 @@ export default function HomeAdmin(props) {
     {currentUser!=null && 
     (
 
-      <div>
+    <div>
       
      <Router>      
       <Box sx={{ display: 'flex', minHeight: '100vh' }}>
@@ -275,7 +275,7 @@ export default function HomeAdmin(props) {
                     <div align="center">
                       <Grid sx={{ my: 2, mx: 2}} className={Classes.appBar} >
                       <Typography className={Classes.appBar} sx={{fontSize:'5rem'}} color="text.secondary">    ¡Bienvenid@ al nuevo sistema </Typography>
-                      <Typography className={Classes.appBar} sx={{fontSize:'5rem'}} color="text.secondary">    de administrador de electivos !</Typography>
+                      <Typography className={Classes.appBar} sx={{fontSize:'5rem'}} color="text.secondary">    de administrador de electivos!</Typography>
                     </Grid>
                     </div>
                   </Route>
