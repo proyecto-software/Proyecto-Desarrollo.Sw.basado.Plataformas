@@ -42,17 +42,9 @@ const categories1 = [
     ],
   },
 ];
-
-
-
-
-
-
-
-
 const item = {
-  py: '2px',
-  px: 3,
+  py: 1,
+  px: 6,
   color: 'rgba(255, 255, 255, 0.7)',
   '&:hover, &:focus': {
     bgcolor: 'rgba(255, 255, 255, 0.08)',
@@ -69,7 +61,6 @@ export default function Sidebar(props) {
   const { ...other } = props;
   const salir = props.salir;
   return (
- 
     <Drawer variant="permanent" {...other}>
       <List disablePadding>
         <ListItem sx={{ ...item, ...itemCategory, fontSize: 85, color: '#fff' }}>
@@ -80,7 +71,7 @@ export default function Sidebar(props) {
             />
         </div>
         </ListItem>
-        <ListItem disablePadding sx={{ ...item, ...itemCategory }}>
+        <ListItem sx={{ ...item, ...itemCategory,fontSize: 85, color: '#fff' }}>
         {
           categories1.map(({id,children}) => (
             <>
@@ -111,26 +102,21 @@ export default function Sidebar(props) {
           ))
 
         }
-
-
-
-
-
-
         </ListItem>
-
-
         {
           categories.map(({ id, children }) => (
+          
           <Box key={id} sx={{ bgcolor: '#2C4348' }}>
             <ListItem sx={{ py: 2, px: 3 }}>
               <ListItemText sx={{ color: '#fff' }}>{id}</ListItemText>
             </ListItem>
               {children.map(({ id: childId, icon, active,link }) => (
+               
                 <ListItem disablePadding key={childId}>
                   <ListItemButton selected={active} sx={item}>
+                 
                   <ListItemIcon>{icon}</ListItemIcon>
-
+                  
                     <Link to={{
 
                         pathname: link
@@ -140,35 +126,46 @@ export default function Sidebar(props) {
                       
                             }} 
                     style={{ 
-                          textDecoration: 'none' }}>                  
+                          textDecoration: 'none',
+                          align:'center'
+                           }}>
+                                  
                     <ListItemText style={{ color:'#ffff' }}>{childId}</ListItemText>
+                    
                     </Link>
+                 
                   </ListItemButton>
+                  
                 </ListItem>
+                
               ))
               }
 
-            <Divider sx={{ mt: 2 }} />
+          <Divider sx={{ mt: 2 }} />
           </Box>
           
-        ))
-
+          ))
         }
-      </List>
-      <div align="center">
+        <ListItem sx={{ ...item, ...itemCategory,fontSize: 85, color: '#fff' }}>
+          <ListItemIcon sx={item}>
             <Button  style={{ 
                     color: '#ffffff',
                     fontSize:15,
                     }}
                     onClick= {salir}
                     href = "/Session"
-                   
+                    
                     
             >
-            <LogoutIcon sx={{ mr: 2 }}/>
+            <LogoutIcon sx={{ mr: 1.5 }}/>
             Salir
-            </Button>
-      </div>
+            </Button> 
+          </ListItemIcon>
+      </ListItem>
+
+
+      </List>
+
     </Drawer>
   );
 }

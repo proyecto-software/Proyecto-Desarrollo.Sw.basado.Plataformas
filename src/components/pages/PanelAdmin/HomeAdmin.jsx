@@ -16,7 +16,7 @@ import BodyAdmin from './BodyAdmin'
 import {useAuth} from '../../../context/AuthContext';
 import {PrivateRoute} from '../../PrivateRoute/PrivateRoute';
 import AuthProvider from '../../../context/AuthContext';
-
+import {makeStyles} from '@mui/styles';
 import {
   BrowserRouter as Router,
   Switch,
@@ -24,6 +24,7 @@ import {
   Redirect,
   
 } from "react-router-dom";
+import { ClassNames } from '@emotion/react';
 
 /* Tema general del home */
 let theme = createTheme({
@@ -169,9 +170,23 @@ theme = {
   },
 };
 /* Tamanio del width */
-const tamanoWidth = 256;
+const tamanoWidth = 300;
+const useStyles = makeStyles(theme => ({
+  appBar: {
+    top: "auto",
+    bottom: 0,
+    textAlign:"center"
+  },
+  footer: {
+    display:"flex",
+    justifyContent:"center",
+  }
+}));
+
+
 
 export default function HomeAdmin(props) {
+  const Classes = useStyles();
   /* Aca definimos el LOG */
   const[error, setError] = useState('');
   const {currentUser,logout} = useAuth();
@@ -234,7 +249,7 @@ export default function HomeAdmin(props) {
           <Box component="main" sx={{ flex: 1, py: 6, px: 4, bgcolor: '#eaeff1' }}>
           <Paper sx={{ maxWidth: '100%', margin: 'auto', overflow: 'hidden'}}>
             <div >
-              <div >
+              <div align="center" >
                   <Link to="/Session" className=""></Link>
                   <Link to="/HomeAdmin" className=""></Link>
                   <Link to="/HomeAdmin/Login" className=""></Link>
@@ -256,11 +271,12 @@ export default function HomeAdmin(props) {
                   <Route path="/Session" exact> 
                     <Login/>
                   </Route>
-                  <Route path="/HomeAdmin" >
-                    <div>
-                      <Grid container direction="row" alignItems="center" justifyContent="space-between" alignContent="center">
-                          <Typography sx={{ my: 2, mx: 2,fontSize:'5rem' }} color="text.secondary">¡Bienvenid@!</Typography>
-                      </Grid>
+                  <Route path="/HomeAdmin" className={Classes.appBar}>
+                    <div align="center">
+                      <Grid sx={{ my: 2, mx: 2}} className={Classes.appBar} >
+                      <Typography className={Classes.appBar} sx={{fontSize:'5rem'}} color="text.secondary">    ¡Bienvenid@ al nuevo sistema </Typography>
+                      <Typography className={Classes.appBar} sx={{fontSize:'5rem'}} color="text.secondary">    de administrador de electivos !</Typography>
+                    </Grid>
                     </div>
                   </Route>
                 </Switch>
