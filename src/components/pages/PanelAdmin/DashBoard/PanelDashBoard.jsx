@@ -1,22 +1,14 @@
-import React,{useState,useEffect} from 'react'
-import {Grid, TextField, Autocomplete, Box} from '@mui/material';
+import React,{useState} from 'react'
+import {Grid, TextField, Autocomplete} from '@mui/material';
 import Cards from './CardDashboard';
 import Paper from '@mui/material/Paper';
 import Typography from '@mui/material/Typography';
 
-import {
-  BrowserRouter as Router,
-  Route,
-  useParams,
-  Link,
-  Switch
-  } from "react-router-dom";
 
   const endpoint_dashboard = "https://backend-electives.herokuapp.com/ucn/Dashboard?semestre="
 
   export default function PanelDashBoard(props) {
 
-    const {id} = useParams();
     const [dashboard,setDashboard] = useState([])
     const [semestre,setSemestre] = useState("")
 
@@ -65,7 +57,7 @@ import {
             <Grid>
               <Typography sx={{ my: 2, mx: 2,fontSize:20 }} color="text.secondary">Semestre: {semestre}</Typography>
             </Grid>
-            <Grid width={'20%'}>
+            <Grid width={'30%'}>
               <Autocomplete
                 //style={{ backgroundColor: 'rgba(160, 160, 160, 0.6)'}}
                 disablePortal
@@ -75,8 +67,9 @@ import {
                 options={props.semestres}
                 onChange={(event,value) => handleAutocompleteChange(value.semestre)} // prints the selected value
                 renderInput={params => (
-                    <TextField {...params} label="Semestre" variant="outlined" fullWidth required />
+                    <TextField {...params} label="Seleccione un semestre" variant="outlined" fullWidth  InputLabelProps={{style: {fontSize: '2rem'}}}  required  />
                 )}
+                
               />
             </Grid>
 

@@ -173,7 +173,7 @@ export default function PanelInformeCurricular() {
               rowsPerPageOptions={[12]}
               //checkboxSelection
               disableSelectionOnClick
-              
+              sx={{fontSize:'1.5rem'}}
               
               //onCellEditStop = {async(params, event)=> console.log("e1: ",params.row)}
               
@@ -189,8 +189,9 @@ export default function PanelInformeCurricular() {
           <Grid item direction="row" alignItems="center" justifyContent="space-between" alignContent="center">
             <Typography  sx={{ my: 2, mx: 2,fontSize:20 }} color="text.secondary">No se encuentra contenido del alumno.</Typography>
           </Grid>
-        )}
-        </div>
+        )
+      }
+      </div>
   </Grid>
 
   </Paper>
