@@ -93,22 +93,21 @@ export default function PanelInformeCurricular() {
 
   return (
     <Paper sx={{ maxWidth: '100%', margin: 'auto', overflow: 'hidden' }} >
-      <Typography sx={{ my: 2, mx: 2,fontSize:30 }} color="text.secondary" align="center">
+    <Grid  container spacing={1}  justifyContent="center"  maxWidth="90%">
+    <Typography justifyContent="center"  sx={{ my: 2, mx: 2,fontSize:30 }} color="text.secondary" align="center">
       INFORME CURRICULAR
-    </Typography>
+     </Typography>
+    </Grid>
     
-    <Grid container spacing={1}  justifyContent="center" marginTop={32} margin="5%" maxWidth="90%">
-      <div >
+    <Grid container spacing={1}  justifyContent="center"  maxWidth="90%">
         <Box  sx={{ borderRadius: 15, p: 0.5, border: 1 }}> 
         <InputBase 
           sx={{ ml: 2, flex: 1 }}
           placeholder="Buscar RUT alumno"
           onChange={handleInputChange}
-          
           style={{ 
             color: '#000000',
             fontSize:'1.5rem',
-            
             }}
           //inputProps={{ 'aria-label': 'search google maps' }}
         />
@@ -116,8 +115,7 @@ export default function PanelInformeCurricular() {
           <SearchIcon sx={{ fontSize: '3rem' }} align="right"/>
         </IconButton>
         </Box>
-      </div>
-      </Grid>
+    </Grid>
       <Grid container spacing={1}  justifyContent="center" direction="column" marginTop={32} margin="5%" maxWidth="90%">
 
       <Divider sx={{ height: 28, m: 0.5 }} orientation="vertical"/>

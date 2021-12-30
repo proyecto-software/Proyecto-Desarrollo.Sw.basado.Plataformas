@@ -56,9 +56,6 @@ function Header(props) {
               </Link>
             </Grid>
             <Grid item>
- 
-            </Grid>
-            <Grid item>
               <IconButton color="inherit" sx={{ p: 0.5 }}>
                
               </IconButton>
